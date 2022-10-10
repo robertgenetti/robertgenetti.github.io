@@ -1,0 +1,40 @@
+---
+title: Projects
+layout: default
+bodyClass: page-services-list
+---
+
+<div class="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mt-6">
+        <h1>Projects</h1>
+        <p>
+          Building on publicly available data to inform and create meaningful discussion.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pb-6">
+  <div class="row">
+    {% for project in site.projects %}
+    <div class="col-12 col-md-4 mb-5">
+      <div class="service service-summary">
+        <div class="service-content whitebox">
+          <div class="feature">
+              <a href="{{site.baseurl}}{{ project.url }}">
+                <img src="{{ project.image }}" alt="{{ project.title }}"> 
+              </a>
+          </div>
+          <h2 class="service-title mt-2">
+            <a href="{{site.baseurl}}{{ project.url }}">{{ project.title }}</a>
+          </h2>
+          {{ project.content | markdownify | strip_html | truncate: 50 }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

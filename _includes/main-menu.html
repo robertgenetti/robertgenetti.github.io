@@ -1,0 +1,9 @@
+<div id="main-menu" class="main-menu">
+  <ul>
+    <li><a href="{{site.baseurl}}/" class="{% if page.url == '/' %}current{% endif %}">Home</a></li>
+    <li><a href="{{site.baseurl}}/projects/" class="{% if page.url contains 'projects' %}current{% endif %}">Projects</a></li>
+    <!-- <li><a href="{{site.baseurl}}/education/" class="{% if page.url contains 'education' %}current{% endif %}">Education</a></li>
+    <li><a href="{{site.baseurl}}/interests/" class="{% if page.url contains 'interests' %}current{% endif %}">Interests</a></li> -->
+    <li><a href="{{site.baseurl}}/contact/" class="{% if page.url contains 'contact' %}current{% endif %}">About Me</a></li>
+  </ul>
+</div>

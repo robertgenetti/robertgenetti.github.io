@@ -1,0 +1,34 @@
+.logo {
+  display: none;
+  @include media-breakpoint-up(sm) {
+    display: block;
+    width: 160px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// new logo plus logo-mobile
+.logo {
+  display: block;
+  width: 30px;
+  // @include media-breakpoint-up(sm) {
+  //   display: none;
+  // }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

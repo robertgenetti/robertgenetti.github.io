@@ -1,0 +1,44 @@
+I"ç<p>Bambi was looking for</p>
+
+<h2 id="background">Background</h2>
+
+<h2 id="challenges">Challenges</h2>
+
+<ol>
+  <li>Organizing interview scheduling</li>
+  <li>Obtaining insights from data collected</li>
+  <li>Quantifying impact from redesign features</li>
+</ol>
+
+<h2 id="constraints">Constraints</h2>
+
+<p>Constraints to keep in mind are limited time available and budget. Both will be a factors in the planning stage of the research study.</p>
+
+<p><img src="/images/projects/records.png" alt="screenshot" title="King County Records" /></p>
+
+<h2 id="methods">Methods</h2>
+
+<p>Taking into consideration the time and budget constraints I chose to limit my study methods to just contextual interviews and</p>
+
+<p><img src="/images/projects/map.png" alt="screenshot" title="Map of Pin Locations" /></p>
+
+<p>The result is a user friendly visualization of the data. The user can easily look in the area of interest and select the property for more information. The summary information that is displayed is as follows:</p>
+
+<h2 id="findings">Findings</h2>
+
+<ul>
+  <li>Address</li>
+  <li>Neighborhood</li>
+  <li>Metropolitan</li>
+</ul>
+
+<p>The python code is available at <a href="#https://colab.research.google.com/drive/1aG52L321RsyHK6OJNmJmdugBtXDewjSH?usp=sharing">king_county_foreclosures.ipynb</a>.</p>
+
+<h2 id="impact">Impact</h2>
+
+<p>Future plans include expanding the map features so that when a user clicks on a property link it sends then to a detail page with more information. Another improvement would be to integrate the program into an app or website to be used as a service or online reference.</p>
+
+<h2 id="further-research">Further Research</h2>
+
+<p>Future plans include expanding the map features so that when a user clicks on a property link it sends then to a detail page with more information. Another improvement would be to integrate the program into an app or website to be used as a service or online reference.</p>
+:ET

@@ -1,0 +1,45 @@
+I"·	<p>This project takes publicly available data from Washingtonâ€™s King county records to look at recent in foreclosure properties. The data is collected then merged with geolocation to be used in an interactive map representation.</p>
+
+<h2 id="description">Description</h2>
+
+<p>My initial thoughts when starting this project focused on increasing the usefullness of the data. As it was the publicly available date was just a table of records. By collecting the data in python and merging it with geolocation data I was able to display the data as a much more useful visualization.</p>
+
+<p>The project makes use of several python packages that are essential to the collecting, formating and displaying of data.</p>
+
+<ol>
+  <li>Selenium webdriver</li>
+  <li>Pandas</li>
+  <li>Geocoders Nominatim</li>
+  <li>BeautifulSoup</li>
+  <li>Folium</li>
+  <li>Shutil</li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<p>The first few cells of the jupyter notebook are just for initialization purposes. After that the user can input how many weeks of records to collect. Selenium sebdriver and Beautiful soup then scrape the website for data and return it as Pandas data tables.</p>
+
+<p><img src="/images/projects/records.png" alt="screenshot" title="King County Records" /></p>
+
+<p>After the records are collected as Pandas tables they get merged with location data. The data is then used in Folium to generate a map vizualization. The final result can be seen below - a map of pins for each record along with summery information when clicked.</p>
+
+<p><img src="/images/projects/map.png" alt="screenshot" title="Map of Pin Locations" /></p>
+
+<p>The result is a user friendly visualization of the data. The user can easily look in the area of interest and select the property for more information. The summary information that is displayed is as follows:</p>
+
+<ul>
+  <li>Address</li>
+  <li>Neighborhood</li>
+  <li>Metropolitan</li>
+  <li>Appraised Value</li>
+  <li>Parcel Identification Number</li>
+  <li>Record Date</li>
+</ul>
+
+<p>The python code is available at <a href="#https://colab.research.google.com/drive/1aG52L321RsyHK6OJNmJmdugBtXDewjSH?usp=sharing">king_county_foreclosures.ipynb</a>.</p>
+
+<h2 id="roadmap">Roadmap</h2>
+
+<p>Future plans include expanding the map features so that when a user clicks on a property link it sends then to a detail page with more information. Another improvement would be to integrate the program into an app or website to be used as a service or online reference.</p>
+
+:ET

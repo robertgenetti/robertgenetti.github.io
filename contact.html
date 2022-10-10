@@ -1,0 +1,76 @@
+---
+title: Contact
+layout: default
+bodyClass: page-services-single
+---
+
+<div class="strip strip-white strip-diagonal">
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-1">
+          <h1>Contact</h1>
+          <ul>
+            <li><strong>Phone: </strong>{{ site.data.contact.phone }}</li>
+            <li><strong>Email: </strong><a href="mailto:{{ site.data.contact.email }}">
+                {{ site.data.contact.email }}</a></li>
+            {% if site.data.contact.address %}
+            <li><strong>Address: </strong>{{ site.data.contact.address }}</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="container">
+    <div class="row justify-content-between">
+
+      <div class="col-12 col-md-6 mb-1">
+
+        <div class="team team-summary">
+          {% if site.data.contact.image %}
+          <div class="team-image">
+            <img alt="{{ contact.title }} logo" class="img-fluid mb-2"
+              src="{{site.baseurl}}{{ site.data.contact.image }}" />
+          </div>
+          {% endif %}
+          <div class="team-meta">
+            <h2 class="team-name">{{ site.data.contact.title }}</h2>
+            <p class="team-description">{{ site.data.contact.jobtitle }}</p>
+            {% if site.data.social.linkedin %}
+            <a target="_blank" href="{{ site.data.social.linkedin }}">LinkedIn</a>
+            {% endif %}
+          </div>
+          {% for item in site.data.contact.content %}
+          <div class="team-content mb-2">{{item.paragraph}}</div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-12 col-md-5">
+
+        {% for degree in site.education reversed %}
+
+        <div class="team team-summary pb-4">
+          {% if degree.image %}
+          <div class="team-image">
+            <img alt="{{ degree.title }} logo" class="img-fluid mb-2" src="{{site.baseurl}}{{ degree.image }}" />
+          </div>
+          {% endif %}
+          <div class="team-meta mb-2">
+            <h2 class="team-name">{{ degree.university }}</h2>
+            <p class="team-description">{{ degree.title }}</p>
+            {% if degree.universityurl %}
+            <a target="_blank" href="{{ degree.universityurl }}">University Home Page</a>
+            {% endif %}
+          </div>
+          <div class="team-content">{{ degree.content }}</div>
+        </div>
+
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</div>
