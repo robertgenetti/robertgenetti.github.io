@@ -51,45 +51,131 @@
               <img src="/images/projects/sp500rating.png" alt="S&P 500 Rating" style="width:100%; object-fit: cover;">
             </div>
           </div>
-          <div class="content"><p>Intro</p>
+          <div class="content"><p>The S&amp;P 500 is one of the most widely followed index in the U.S. And every stock in that index gets a buy or sell recomendation. Depending on how much a stock is followed determines how much attention is given in the form of analysis and recommendations. <em>What benefits can be gained by having a self-hosted stock analysis tool that can give buy or sell recommendations with every earnings release?</em></p>
 
 <h3 id="problem">Problem</h3>
 
+<p>Buy or sell recommendations are issued with every quarterly earnings and by different investment institutions. However that schedule is not always the same with every stock. Stocks can get very little analysis and suffer by having few buy or sell recommendations issued.</p>
+
 <h3 id="solution">Solution</h3>
 
+<p>A self-hosted stock analysis tool can, with the use of statistical modeling, issue buy or sell recommendations to all stocks at every new earning release.</p>
+
 <div class="col-12 text-center">
-    <a href="https://public.tableau.com/views/Book3_16649292527140/screener?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;">View Dashboard</a>
+    <a href="https://public.tableau.com/views/Book3_16649292527140/screener?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
 </div>
 
 <h3 id="overview">Overview</h3>
 
-<p>Constraints to keep in mind are limited time available and budget. Both will be a factors in the planning stage of the research study.</p>
+<p><b>Role:</b> Data Analyst</p>
+<p><b>Requirements:</b> Develop a stock screener and analysis dashboard</p>
+<p><b>Timeline:</b> Approximately 120 hours</p>
+<p><b>Tools:</b> Python, R, Jupyter Lab, SQL, Azure Data Studio, Affinity Design</p>
 
-<p><img src="/images/projects/records.png" alt="screenshot" title="King County Records" /></p>
+<p>Define -&gt; Plan -&gt; Data -&gt; Analysis -&gt; Visualize</p>
+<div class="mb-3"></div>
 
-<h4 id="method1">Method1</h4>
+<h3 id="define">Define</h3>
 
-<p>Taking into consideration the time and budget constraints I chose to limit my study methods to just contextual interviews and</p>
+<p>A dashboard that can be modified and updated is more flexible and responsive than a third party tool or recommendation system.</p>
+<div class="mb-3"></div>
 
-<p>The result is a user friendly visualization of the data. The user can easily look in the area of interest and select the property for more information. The summary information that is displayed is as follows:</p>
+<h3 id="plan">Plan</h3>
+<ol>
+  <li>Extract, Transform, and Load
+    <ul>
+      <li>Pull list of companies in S&amp;P 500</li>
+      <li>Pull financial data from Yahoo Finance</li>
+      <li>Sort and transform data in Pandas</li>
+      <li>import dataframes into SQL Postgres Database</li>
+    </ul>
+  </li>
+  <li>Analyze buy/sell ecommendation data in Python
+    <ul>
+      <li>Select features best suited</li>
+      <li>Transform data to limit outliers</li>
+      <li>Import into SQL Postgres Database</li>
+    </ul>
+  </li>
+  <li>Build Linear Regression with Fixed Effects in R
+    <ul>
+      <li>Explore data</li>
+      <li>Perform linear regression on test data</li>
+      <li>Use fixed effects to seperate sector bias</li>
+    </ul>
+  </li>
+  <li>Design Tableau dashboard
+    <ul>
+      <li>Screener to filter companies based on specific measures</li>
+      <li>Overview with buy/sell readout from linear model</li>
+      <li>Income statement KPIs</li>
+      <li>Balance sheet KPIs</li>
+      <li>Cashflow statement KPIs</li>
+    </ul>
+  </li>
+</ol>
 
-<h4 id="content">Content</h4>
+<h3 id="data">Data</h3>
 
 <ul>
-  <li>Address</li>
-  <li>Neighborhood</li>
-  <li>Metropolitan
-<!-- 
-The python code is available at [king_county_foreclosures.ipynb](#https://colab.research.google.com/drive/1aG52L321RsyHK6OJNmJmdugBtXDewjSH?usp=sharing). --></li>
+  <li>Data source: <a href="https://finance.yahoo.com/">Yahoo Finance</a></li>
+  <li>Four different datasets were collected: general info, income statement, balance sheet, cashflow statement</li>
+  <li>Info dataset common features: symbol, date, total revenue, debt/equity</li>
+  <li>Income Statement dataset common features: ticker, date, net income, cost of revenue</li>
+  <li>Balance Sheet dataset common features: ticker, date, total assets, total liabilities</li>
+  <li>Cashflow Statement dataset common features: ticker, date, cash from operations, cash from financing
+<img src="/images/projects/yahoofinance.png" alt="screenshot" /></li>
 </ul>
+<div class="mb-3"></div>
+
+<h3 id="analysis">Analysis</h3>
+
+<ul>
+  <li>Pandas ETL - Yahoo Finance</li>
+  <li>Azure Data Studio</li>
+  <li>Statistical Analysis - Feature selection</li>
+  <li>Linear Regression with Fixed Effects</li>
+</ul>
+<div class="whitebox-inset">
+  <iframe src="/images/projects/sp500ranking.html" frameborder="0" height="450" width="100%"></iframe>
+</div>
+<div class="mb-3"></div>
+<div class="whitebox-inset">
+  <iframe src="/images/projects/sp500.html" frameborder="0" height="450" width="100%"></iframe>
+</div>
+<div class="mb-3"></div>
+<div class="whitebox-inset">
+  <iframe src="/images/projects/sp500_lm_features.html" frameborder="0" height="450" width="100%"></iframe>
+</div>
+<div class="mb-3"></div>
+<div class="whitebox-inset">
+  <iframe src="/images/projects/sp500_lm.html" frameborder="0" height="450" width="100%"></iframe>
+</div>
+<div class="mb-3"></div>
+
+<h3 id="visualize">Visualize</h3>
+
+<ul>
+  <li>Design - Affinity Design</li>
+  <li>Visualization - Tableau</li>
+</ul>
+<div class="mb-3"></div>
+
+<h4 id="affinity-designer">Affinity Designer</h4>
+<p><img src="/images/projects/sp500_dash_design.png" alt="screenshot" /></p>
+<h4 id="tableau">Tableau</h4>
+<p><img src="/images/projects/book3.png" alt="screenshot" /></p>
+<div class="mb-3"></div>
 
 <h3 id="conclusion">Conclusion</h3>
 <div class="row justify-content-start">
 <div class="col-6">
-Future plans include expanding the map features so that when a user clicks on a property link it sends then to a detail page with more information. Another improvement would be to integrate the program into an app or website to be used as a service or online reference. 
+
+<p>A dashboard is no substitute for meaningful stock analysis done by professionals. However, there is value in having a self-hosted analysis dashboard. This stock anlaysis tool is both flexibility easy to use. The regression model included allows for responsive recommendation updates and customizable key performance measures. </p>
+<p>Future plans include adding more stocks beyond those listed in the S&amp;P 500, a recommendation scale with the source of other institutions, and building out the competition section to show more measures relative to the target stock.</p>
 
 <div class="col-12 text-center">
-    <a href="https://public.tableau.com/views/Book3_16649292527140/screener?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-6" style="text-decoration:none;">View Dashboard</a>
+    <a href="https://public.tableau.com/views/Book3_16649292527140/screener?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
 </div>
 
 </div>

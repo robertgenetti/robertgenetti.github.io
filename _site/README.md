@@ -1,34 +1,22 @@
-# Jekyll Serif Theme
+# My Portfolio
+This portfolio is a collection of work that represents my skills as a data analyst. Project one is a dive into the Our World In Data covid dataset, and explores how vaccinations globally have had on tempering the effects of the virus. Project two takes a look at Seattle WA real estate, more specifically, what the conditions of the market for distress properties and how investors might - with real time data - have a clear view of the market to convert underperforming assets into higher value. The third project is more a series of dashboards that together are a tool for gaining insights into the S&P 500 market and what value might potentially present a good investment.
 
-Serif is a beautiful small business theme for Jekyll. It contains content types for the archetypical small business website. The theme is fully responsive, blazing fast and artfully illustrated.
+# My projects
+
+![screenshot](/images/projects/covid19vacc.png "Covid-19 Vaccination Satatus Project Link")
+[Covid-19 Vaccination Satatus Project](https://public.tableau.com/views/Book1_16627808205440/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
+
+![screenshot](/images/projects/seattlehousing.png "Seattle Distressed Property Project Link")
+[Seattle Distressed Property Project](https://public.tableau.com/views/Book2_16641659196370/Dashboard1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
+
+![screenshot](/images/projects/sp500rating.png "S&P 500 Fundamentals and Rating Project Link")
+[S&P 500 Fundamentals and Rating Project](https://public.tableau.com/views/Book3_16649292527140/screener?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
+
+## Portfolio Theme
+
+The Portfolio theme if you are interested was done by Robert Austin, and can be viewed in the links below.
 
 [Live Demo](https://jekyll-serif-theme.netlify.com/) | 
-[Installation](#installation) | 
 [Zerostatic Themes](https://www.zerostatic.io/theme/hugo-hero/)
 
-![Hugo Serif Theme screenshot](https://github.com/JugglerX/jekyll-serif-theme/blob/master/screenshots/screenshot-with-border.png)
 
-## Theme features
-
-- Services (Collection)
-- Team (Collection)
-- Testimonials (Collection)
-- Features (Data)
-- SCSS
-- Responsive design
-- Bootstrap 4 grid and media queries only
-- Responsive menu
-- 100/100 Google Lighthouse speed score
-- Under 30KB without images or 80KB with images and illustrations ⚡
-- Robust example content included
-- Royalty free illustrations included
-
-# Installation
-
-To run the theme locally, navigate to the theme directory and run `bundle install` to install the dependencies, then run `jekyll serve` or `bundle exec jekyll serve` to start the Jekyll server.
-
-I would recommend checking the [Deployment Methods](https://jekyllrb.com/docs/deployment-methods/) page on Jekyll website.
-
-# License
-
-If you fork or copy this theme the LICENSE file and the copyright notice on line 3 (where I am listed as the author) must not be changed. You cannot just replace the copyright line with your own name. Attribution in your README.md or on your site is also welcome but not required.

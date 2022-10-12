@@ -8,3 +8,14 @@
 .whitebox {
   @include whitebox();
 }
+
+@mixin whitebox-inset($padding: 4px) {
+  // border: 1px solid #dcdcdc;
+  // border-radius: 3px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: $padding;
+}
+.whitebox-inset {
+  @include whitebox-inset();
+}

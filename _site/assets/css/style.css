@@ -2450,6 +2450,8 @@ ul.social li a span { font-size: 24px; }
 
 .whitebox { border: 1px solid #dcdcdc; border-radius: 3px; box-shadow: 0 1px 18px rgba(0, 0, 0, 0.2); background: #fff; padding: 10px; }
 
+.whitebox-inset { box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); background: #fff; padding: 4px; }
+
 .feature { height: 100%; border: 2px solid #eaeaea; padding: 20px; background-color: #ffffff; display: flex; align-items: center; flex-direction: column; text-align: center; }
 .feature .feature-image { flex: 0 0 auto; width: 80px; height: 80px; display: flex; margin-bottom: 20px; text-align: center; }
 .feature img { width: 100%; height: auto; }

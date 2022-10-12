@@ -51,18 +51,18 @@
               <img src="/images/projects/covid19vacc.png" alt="Covid-19 Vaccines" style="width:100%; object-fit: cover;">
             </div>
           </div>
-          <div class="content"><p>Covid-19 dashboard that presents up to date key measures on health and vaccine status to inform policy makers and assist in directing further policy decisions.</p>
+          <div class="content"><p>In the early days of the Covid-19 Pandemic, policy makers and health organizations had little to compare to what the world was going through. Now, most of the policy decisions that were made in the two plus years that followed have come to an end. And with it the chance to look back at the data collected and ask <em>what impact did policy have on the general health of different nations?</em></p>
 
 <h3 id="problem">Problem</h3>
 
-<p>In the early days of the Covid-19 Pandemic world policy makers and health organizations had little to compare to what they were going through. Now, most of the policy decisions that were made in the two plus years that followed have come to an end. And with it the chance to look back at the data collected and present an organized look at what impact was had on the nations that enacted them.</p>
+<p>Policy decisions made during the pandemic were less effective and ill received as there was nothing to compare to. Now that we have established common methods of data collection - the task of analysis is easy. What remains difficult is the care and consideration that although the pandemic has receded the threat has not.</p>
 
 <h3 id="solution">Solution</h3>
 
-<p>This project takes publicly available data from Our World In Data and presents a set of key measures that when taken together give a holistic view of the impact of policies on public health presented in an easy to read dashboard.</p>
+<p>This project takes publicly available data from Our World In Data and presents a set of key measures that when taken together give a holistic view of the impact of policy decisions on public health and presents it in an up-to-date easy to interpret dashboard for anyone to use.</p>
 
 <div class="col-12 text-center">
-    <a href="https://public.tableau.com/views/Book1_16627808205440/Dashboard1?:language=en-US&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;">View Dashboard</a>
+    <a href="https://public.tableau.com/views/Book1_16627808205440/Dashboard1?:language=en-US&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
 </div>
 
 <h3 id="overview">Overview</h3>
@@ -72,29 +72,92 @@
 <p><b>Timeline:</b> Approximately 80 hours</p>
 <p><b>Tools:</b> Python, Jupyter Lab, SQL, Azure Data Studio, Affinity Design</p>
 
-<p>Define - Plan - Data - Analysis - Visualize</p>
+<p>Define -&gt; Plan -&gt; Data -&gt; Analysis -&gt; Visualize</p>
 
-<p><img src="/images/projects/records.png" alt="screenshot" title="process1" /></p>
+<div class="mb-3"></div>
 
-<h4 id="method">Method</h4>
+<h3 id="define">Define</h3>
 
-<p>Taking into consideration the time and budget constraints I chose to limit my study methods to just contextual interviews and</p>
+<p>A well defined pandemic time political and health care response measuring system, against known benchmarks will provide the necessary information to make more informed decisions and greatly increase the likelihood of lives saved moving forward.</p>
+<div class="mb-3"></div>
 
-<h4 id="content">Content</h4>
+<h3 id="plan">Plan</h3>
+
+<ol>
+  <li>Extract, Transform, and Load
+    <ul>
+      <li>Pull dataset from Our World in Data</li>
+      <li>Sort and transform data in Pandas</li>
+      <li>import dataframes into PostgreSQL Database</li>
+    </ul>
+  </li>
+  <li>Query SQL Database for subsets
+    <ul>
+      <li>Get aggregate dataset</li>
+      <li>Get vaccination status by nation</li>
+      <li>Get List of highest death count countries</li>
+      <li>Get vaccination status by income</li>
+    </ul>
+  </li>
+  <li>Design Tableau dashboard
+    <ul>
+      <li>Top worst countries with highest death count</li>
+      <li>Time parameter</li>
+      <li>World metrics</li>
+      <li>Map with vaccination status</li>
+      <li>Bar graph of vaccination status by income</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="data">Data</h3>
+<ul>
+  <li>Data source: <a href="https://ourworldindata.org/coronavirus">Our World In Data - Coronavirus Pandemic</a></li>
+  <li>Rows of data: 214706</li>
+  <li>Common features: location, date, cases, deaths, vaccinations, population
+<img src="/images/projects/ourworldindata.png" alt="screenshot" /></li>
+</ul>
+<div class="mb-3"></div>
+
+<h3 id="analysis">Analysis</h3>
 
 <ul>
-  <li>Address</li>
-  <li>Neighborhood</li>
-  <li>Metropolitan</li>
+  <li>Pandas ETL - Our World In Data</li>
+  <li>Azure Data Studio</li>
 </ul>
+<div class="whitebox-inset">
+  <iframe src="/images/projects/owid-covid.html" frameborder="0" height="450" width="100%"></iframe>
+</div>
+<div class="mb-3"></div>
+<div class="whitebox-inset">
+  <iframe src="/images/projects/covid.html" frameborder="0" height="450" width="100%"></iframe>
+</div>
+<div class="mb-3"></div>
+
+<h3 id="visualize">Visualize</h3>
+
+<ul>
+  <li>Design - Affinity Design</li>
+  <li>Visualization - Tableau</li>
+</ul>
+<div class="mb-3"></div>
+
+<h4 id="affinity-designer">Affinity Designer</h4>
+<p><img src="/images/projects/covid_dash_design.png" alt="screenshot" /></p>
+<h4 id="tableau">Tableau</h4>
+<p><img src="/images/projects/book1.png" alt="screenshot" /></p>
+<div class="mb-3"></div>
 
 <h3 id="conclusion">Conclusion</h3>
 <div class="row justify-content-start">
 <div class="col-6">
-Future plans include expanding the map features so that when a user clicks on a property link it sends then to a detail page with more information. Another improvement would be to integrate the program into an app or website to be used as a service or online reference. 
+
+<p>The dashboard illustrates the differences in policy restrictions and their effect on public health. The data suggests that nations that acted more quickly to stem the infection rate with restrictive policy were more equiped to combate the virus and limit the tole on fatality rates. Also included in the data is the vaccination status of income groups. This suggests that lower income groups were less protected or less willing to get vaccinated than that of the middle and high income groups.</p>
+
+<p>Future plans include expanding the map and list features to respond to changes in the time parameter.</p>
 
 <div class="col-12 text-center">
-    <a href="https://public.tableau.com/views/Book1_16627808205440/Dashboard1?:language=en-US&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-6" style="text-decoration:none;">View Dashboard</a>
+    <a href="https://public.tableau.com/views/Book1_16627808205440/Dashboard1?:language=en-US&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
 </div>
 
 </div>
