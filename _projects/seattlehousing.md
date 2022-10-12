@@ -74,15 +74,15 @@ When market clearing mechanisms are allowed to function efficiently those market
 - Pandas ETL - Pre-foreclosure listings
 - Pandas ETL - NMDB
 - Azure Data Studio
-<div class="whitebox-inset">
+<div style="border: 1px solid #dcdcdc;">
   <iframe src="/images/projects/king_county_foreclosures.html" frameborder="0" height="450" width="100%"></iframe>
 </div>
 <div class="mb-3"></div>
-<div class="whitebox-inset">
+<div style="border: 1px solid #dcdcdc;">
   <iframe src="/images/projects/nmdb.html" frameborder="0" height="450" width="100%"></iframe>
 </div>
 <div class="mb-3"></div>
-<div class="whitebox-inset">
+<div style="border: 1px solid #dcdcdc;">
   <iframe src="/images/projects/seattle.html" frameborder="0" height="450" width="100%"></iframe>
 </div>
 <div class="mb-3"></div>

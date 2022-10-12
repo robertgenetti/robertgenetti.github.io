@@ -72,19 +72,19 @@ A dashboard that can be modified and updated is more flexible and responsive tha
 - Azure Data Studio
 - Statistical Analysis - Feature selection
 - Linear Regression with Fixed Effects
-<div class="whitebox-inset">
+<div style="border: 1px solid #dcdcdc;">
   <iframe src="/images/projects/sp500ranking.html" frameborder="0" height="450" width="100%"></iframe>
 </div>
 <div class="mb-3"></div>
-<div class="whitebox-inset">
+<div style="border: 1px solid #dcdcdc;">
   <iframe src="/images/projects/sp500.html" frameborder="0" height="450" width="100%"></iframe>
 </div>
 <div class="mb-3"></div>
-<div class="whitebox-inset">
+<div style="border: 1px solid #dcdcdc;">
   <iframe src="/images/projects/sp500_lm_features.html" frameborder="0" height="450" width="100%"></iframe>
 </div>
 <div class="mb-3"></div>
-<div class="whitebox-inset">
+<div style="border: 1px solid #dcdcdc;">
   <iframe src="/images/projects/sp500_lm.html" frameborder="0" height="450" width="100%"></iframe>
 </div>
 <div class="mb-3"></div>
