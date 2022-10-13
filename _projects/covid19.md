@@ -5,11 +5,11 @@ gif: "/images/projects/covid19vacc.gif"
 link: "https://public.tableau.com/views/Book1_16627808205440/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link"
 ---
 
-In the early days of the Covid-19 Pandemic, policy makers and health organizations had little to compare to what the world was going through. Now, most of the policy decisions that were made in the two plus years that followed have come to an end. And with it the chance to look back at the data collected and ask _what impact did policy have on the general health of different nations?_ 
+In the early days of the Covid-19 Pandemic, policy makers and health officials were in a precarious position of recommending and enacting restrictions without the benefit of historical data. Today however, we are in the unique position of having data available to measure those same policy decisions against some common health metrics. My question in this analysis is _what impact did restrictive policy have on the general health of different nations?_ 
 
 ### Problem
 
-Policy decisions made during the pandemic were less effective and ill received as there was nothing to compare to. Now that we have established common methods of data collection - the task of analysis is easy. What remains difficult is the care and consideration that although the pandemic has receded the threat has not.
+Policy decisions during the Covid-19 pandemic were rendered less effective and ill received by the public in part because no known metrics or data was then available. Now that we have established a system of health and vaccine data collection the challenge of determining policy outcomes is possible.
 
 ### Solution 
 
