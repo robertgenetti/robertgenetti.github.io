@@ -31,7 +31,7 @@ Define -> Plan -> Data -> Analysis -> Visualize
 
 ### Define
 
-A multi-paged dashboard that can be used suppliment investment analysis using both exploratory analysis and regression modeling will be of great benefit to individual investors. Such a dashboard will feature financial reporting with common metrics, filtering, historical graphs, and up-to-date recommendatons.
+A multi-paged dashboard that can suppliment investment analysis using both exploratory analysis and regression modeling will be of great benefit to individual investors. Such a dashboard will feature financial reporting with common metrics, filtering, historical graphs, and up-to-date recommendatons.
 <div class="mb-3"></div>
 
 ### Plan
