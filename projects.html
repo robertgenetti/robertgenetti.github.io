@@ -4,37 +4,40 @@ layout: default
 bodyClass: page-services-list
 ---
 
-<div class="intro">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 mt-6">
-        <h1>Projects</h1>
-        <p>
-          Building meaningful discussion around open source data.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="px-4">
 
-<div class="container pb-6">
-  <div class="row">
-    {% for project in site.projects %}
-    <div class="col-12 col-md-4 mb-5">
-      <div class="service service-summary">
-        <div class="service-content whitebox">
-          <div class="feature">
-            <a href="{{site.baseurl}}{{ project.url }}">
-              <img src="{{ project.image }}" alt="{{ project.title }}">
-            </a>
-          </div>
-          <h2 class="service-title mt-2">
-            <a href="{{site.baseurl}}{{ project.url }}">{{ project.title }}</a>
-          </h2>
-          {{ project.content | markdownify | strip_html | truncate: 65 }}
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-10 mt-6">
+          <h1>Projects</h1>
+          <p>
+            Building meaningful discussion around open source data.
+          </p>
         </div>
       </div>
     </div>
-    {% endfor %}
+  </div>
+
+  <div class="container pb-6">
+    <div class="row">
+      {% for project in site.projects reversed %}
+      <div class="col-12 col-md-4 mb-5">
+        <div class="service service-summary">
+          <div class="service-content whitebox">
+            <h2 class="service-title my-2 text-center">
+              <a href="{{site.baseurl}}{{ project.url }}">{{ project.title }}</a>
+            </h2>
+            <div class="feature">
+              <a href="{{site.baseurl}}{{ project.url }}">
+                <img src="{{ project.image }}" alt="{{ project.title }}">
+              </a>
+            </div>
+            <!-- {{ project.content | markdownify | strip_html | truncate: 65 }} -->
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
