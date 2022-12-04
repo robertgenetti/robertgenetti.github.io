@@ -10,7 +10,7 @@ bodyClass: page-services-list
       <div class="col-12 mt-6">
         <h1>Projects</h1>
         <p>
-          Creating insights from open source data to advance meaningful discussion.
+          Building meaningful discussion around open source data.
         </p>
       </div>
     </div>
@@ -31,7 +31,7 @@ bodyClass: page-services-list
           <h2 class="service-title mt-2">
             <a href="{{site.baseurl}}{{ project.url }}">{{ project.title }}</a>
           </h2>
-          {{ project.content | markdownify | strip_html | truncate: 85 }}
+          {{ project.content | markdownify | strip_html | truncate: 65 }}
         </div>
       </div>
     </div>
