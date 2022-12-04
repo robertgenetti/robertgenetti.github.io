@@ -94,8 +94,8 @@ Present a clear representation of the traffic related accident data that is rele
 
 ### Analyze
 
-- Azure Data Studio - Vision Zero Crash data
-- SQL - Feature selection
+- Feature selection - Azure Data Studio
+- Data source: Vision Zero Crash data
 
 <div class="mb-3"></div>
 <div style="border: 1px solid #dcdcdc;">
@@ -104,8 +104,8 @@ Present a clear representation of the traffic related accident data that is rele
 <div class="mb-3"></div>
 
 #### QGIS
-- Vision Zero Corridor data
-- Vector tooll - Add corridors
+- Data source: Vision Zero Corridor dataset
+- Vector tool - Add corridors
 - Calculate - Update length field
 
 ![screenshot](/images/projects/qgis_snap.png)
