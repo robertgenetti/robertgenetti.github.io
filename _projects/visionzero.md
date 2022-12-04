@@ -10,11 +10,11 @@ The San Jose Vision Zero Initiative aims to eliminate fatal and severe injuries 
 
 ### Problem
 
-The Vision Zero Initiative in San Jose, CA relies greatly on having an accurate representation of its traffic related accident data to inform and guide future projects. Without this the initiative will suffer from significant setbacks and excessive resource consumption.
+The success of the Vision Zero Initiative in San Jose, CA greatly relies on having all traffic accident data easily interpreted and able to drill-down into specifics when necessary. Loss of time and resources may result from data visualizations being too complex and difficult to navigate.
 
 ### Solution 
 
-Present a clear representation of the traffic related accident data relevant to the type of questions being asked. This will reduce time on task and increase overall performance outcomes of the Vision Zero Initiative.
+Present a clear representation of the traffic related accident data that is relevant to the types of questions being asked in this context. A clear yet fully functional dashboard has the potential to reduce time and resources while boosting productivity.
 
 <div class="col-12 text-center">
     <a href="{{page.link}}" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
