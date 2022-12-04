@@ -25,7 +25,7 @@ Present a clear representation of the traffic related accident data that is rele
 <p><b>Role:</b> Data Analyst</p>
 <p><b>Requirements:</b> Develop a vision zero dashboard</p>
 <p><b>Timeline:</b> Approximately 120 hours</p>
-<p><b>Tools:</b> Apache Airflow, Python, R, Jupyter Lab, QGIS, SQL, Azure Data Studio, Affinity Design, Tableau</p>
+<p><b>Tools:</b> Apache Airflow, Python, Jupyter Lab, QGIS, SQL, Azure Data Studio, Affinity Design, Tableau</p>
 
 <div class="container text-center my-4">
     <div class="row justify-content-center">
@@ -97,20 +97,33 @@ Present a clear representation of the traffic related accident data that is rele
 - Azure Data Studio - Vision Zero Crash data
 - SQL - Feature selection
 
+<div class="mb-3"></div>
 <div style="border: 1px solid #dcdcdc;">
   <iframe src="/images/projects/visionzerosj.html" frameborder="0" height="450" width="100%"></iframe>
 </div>
 <div class="mb-3"></div>
 
-### Visualize
+#### QGIS
+- Vision Zero Corridor data
+- Vector tooll - Add corridors
+- Calculate - Update length field
 
-- Design - Affinity Design
-- Visualization - Tableau
+![screenshot](/images/projects/qgis_snap.png)
 <div class="mb-3"></div>
 
-#### Affinity Designer
+### Visualize
+
+- Design dashboard elements - Affinity Design
+
 ![screenshot](/images/projects/affinity_snap.png)
+<div class="mb-3"></div>
+
 #### Tableau
+- Build sheets and dashboards - Tabeau
+- Summary page with filters
+- Details page with corridor filters
+- Information page with vision zero initiative links
+
 ![screenshot](/images/projects/tableau_snap.png)
 <div class="mb-3"></div>
 
