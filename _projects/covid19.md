@@ -24,15 +24,29 @@ This project takes publicly available data from Our World In Data and presents a
 <p><b>Role:</b> Data Analyst</p>
 <p><b>Requirements:</b> Develop a pandemic policy response dashboard</p>
 <p><b>Timeline:</b> Approximately 80 hours</p>
-<p><b>Tools:</b> Python, Jupyter Lab, SQL, Azure Data Studio, Affinity Design</p>
+<p><b>Tools:</b> Python, Jupyter Lab, SQL, Azure Data Studio, Affinity Design, Tableau</p>
 
-Define -> Plan -> Data -> Analysis -> Visualize
+<div class="container text-center my-4">
+    <div class="row justify-content-center">
+        <div class="col p-2">
+            <h3>Plan</h3>
+            <img src="/images/projects/Plan.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Extract</h3>
+            <img src="/images/projects/Extract.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Analyze</h3>
+            <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Visualize</h3>
+            <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+    </div>
+</div>
 
-<div class="mb-3"></div>
-
-### Define
-
-A well defined pandemic time political and health care response measuring system, against known benchmarks will provide the necessary information to make more informed decisions and greatly increase the likelihood of lives saved moving forward.
 <div class="mb-3"></div>
 
 ### Plan
@@ -53,7 +67,7 @@ A well defined pandemic time political and health care response measuring system
     - Map with vaccination status
     - Bar graph of vaccination status by income
 
-### Data
+### Extract
 - Data source: [Our World In Data - Coronavirus Pandemic](https://ourworldindata.org/coronavirus)
 - Rows of data: 214706
 - Common features: location, date, cases, deaths, vaccinations, population
@@ -86,23 +100,23 @@ A well defined pandemic time political and health care response measuring system
 <div class="mb-3"></div>
 
 ### Conclusion
-<div class="row justify-content-start">
-<div class="col-6">
-
-<p>The dashboard illustrates the differences in policy restrictions and their effect on public health. The data suggests that nations that acted more quickly to stem the infection rate with restrictive policy were more equiped to combate the virus and limit the tole on fatality rates. Also included in the data is the vaccination status of income groups. This suggests that lower income groups were less protected or less willing to get vaccinated than that of the middle and high income groups.</p>
-
-<p>Future plans include expanding the map and list features to respond to changes in the time parameter.</p>
-
-<div class="col-12 text-center">
-    <a href="{{page.link}}" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-6 mb-5">
+            <p>The dashboard illustrates the differences in policy restrictions and their effect on public health. The data suggests that nations that acted more quickly to stem the infection rate with restrictive policy were more equiped to combate the virus and limit the tole on fatality rates. Also included in the data is the vaccination status of income groups. This suggests that lower income groups were less protected or less willing to get vaccinated than that of the middle and high income groups.</p>
+            <p>Future plans include expanding the map and list features to respond to changes in the time parameter.
+            </p>
+            <div class="text-center">
+                <a href="{{page.link}}" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="whitebox" ><a href="{{page.link}}" target="_blank">
+            <img src="{{page.gif}}" alt="{{page.title}}" style="width:100%; height:auto; object-fit: cover;"></a>
+            </div>
+        </div>
+    </div>
 </div>
 
-</div>
-<div class="col-6">
-<div class="whitebox" ><a href="{{page.link}}" target="_blank">
-<img src="{{page.gif}}" alt="{{page.title}}" style="width:100%; height:auto; object-fit: cover;">
-</a>
-</div>
-</div>
-</div>
+
 

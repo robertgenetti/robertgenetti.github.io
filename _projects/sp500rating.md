@@ -24,14 +24,29 @@ A self-hosted stock analysis tool can, with the use of statistical modeling, iss
 <p><b>Role:</b> Data Analyst</p>
 <p><b>Requirements:</b> Develop a stock screener and analysis dashboard</p>
 <p><b>Timeline:</b> Approximately 120 hours</p>
-<p><b>Tools:</b> Python, R, Jupyter Lab, SQL, Azure Data Studio, Affinity Design</p>
+<p><b>Tools:</b> Python, R, Jupyter Lab, SQL, Azure Data Studio, Affinity Design, Tableau</p>
 
-Define -> Plan -> Data -> Analysis -> Visualize
-<div class="mb-3"></div>
+<div class="container text-center my-4">
+    <div class="row justify-content-center">
+        <div class="col p-2">
+            <h3>Plan</h3>
+            <img src="/images/projects/Plan.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Extract</h3>
+            <img src="/images/projects/Extract.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Analyze</h3>
+            <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Visualize</h3>
+            <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+    </div>
+</div>
 
-### Define
-
-A dashboard that can be modified and updated is more flexible and responsive than a third party tool or recommendation system.
 <div class="mb-3"></div>
 
 ### Plan
@@ -39,8 +54,8 @@ A dashboard that can be modified and updated is more flexible and responsive tha
     - Pull list of companies in S&P 500
     - Pull financial data from Yahoo Finance
     - Sort and transform data in Pandas
-    - import dataframes into SQL Postgres Database
-2. Analyze buy/sell ecommendation data in Python
+    - Import dataframes into SQL Postgres Database
+2. Analyze buy/sell recommendation data in Python
     - Select features best suited
     - Transform data to limit outliers
     - Import into SQL Postgres Database 
@@ -55,7 +70,7 @@ A dashboard that can be modified and updated is more flexible and responsive tha
     - Balance sheet KPIs
     - Cashflow statement KPIs
 
-### Data
+### Extract
 
 - Data source: [Yahoo Finance](https://finance.yahoo.com/)
 - Four different datasets were collected: general info, income statement, balance sheet, cashflow statement
@@ -102,22 +117,19 @@ A dashboard that can be modified and updated is more flexible and responsive tha
 <div class="mb-3"></div>
 
 ### Conclusion
-<div class="row justify-content-start">
-<div class="col-6">
-
-<p>A dashboard is no substitute for meaningful stock analysis done by professionals. However, there is value in having a self-hosted analysis dashboard. This stock anlaysis tool is both flexibility easy to use. The regression model included allows for responsive recommendation updates and customizable key performance measures. </p>
-<p>Future plans include adding more stocks beyond those listed in the S&P 500, a recommendation scale with the source of other institutions, and building out the competition section to show more measures relative to the target stock.</p>
-
-<div class="col-12 text-center">
-    <a href="{{page.link}}" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-6 mb-5">
+            <p>A dashboard is no substitute for meaningful stock analysis done by professionals. However, there is value in having a self-hosted analysis dashboard. This stock anlaysis tool is both flexibility easy to use. The regression model included allows for responsive recommendation updates and customizable key performance measures. </p>
+            <p>Future plans include adding more stocks beyond those listed in the S&P 500, a recommendation scale with the source of other institutions, and building out the competition section to show more measures relative to the target stock.</p>
+            <div class="text-center">
+                <a href="{{page.link}}" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="whitebox" ><a href="{{page.link}}" target="_blank">
+            <img src="{{page.gif}}" alt="{{page.title}}" style="width:100%; height:auto; object-fit: cover;"></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-</div>
-<div class="col-6">
-<div class="whitebox" ><a href="{{page.link}}" target="_blank">
-<img src="{{page.gif}}" alt="{{page.title}}" style="width:100%; height:auto; object-fit: cover;">
-</a>
-</div>
-</div>
-</div>
-

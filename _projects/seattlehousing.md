@@ -24,14 +24,29 @@ My initial thoughts when starting this project focused on increasing the usefull
 <p><b>Role:</b> Data Analyst</p>
 <p><b>Requirements:</b> Develop a pre-foreclosure property dashboard</p>
 <p><b>Timeline:</b> Approximately 80 hours</p>
-<p><b>Tools:</b> Python, Jupyter Lab, SQL, Azure Data Studio, Affinity Design</p>
+<p><b>Tools:</b> Python, Jupyter Lab, SQL, Azure Data Studio, Affinity Design, Tableau</p>
 
-Define -> Plan -> Data -> Analysis -> Visualize
-<div class="mb-3"></div>
+<div class="container text-center my-4">
+    <div class="row justify-content-center">
+        <div class="col p-2">
+            <h3>Plan</h3>
+            <img src="/images/projects/Plan.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Extract</h3>
+            <img src="/images/projects/Extract.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Analyze</h3>
+            <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+        <div class="col p-2">
+            <h3>Visualize</h3>
+            <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;">
+        </div>
+    </div>
+</div>
 
-### Define
-
-When market clearing mechanisms are allowed to function efficiently those market participants are better off for it. By providing investors the advantage of clear insight into the market their function in the market can lead to less time property owners spend in pre-foreclosure process.
 <div class="mb-3"></div>
 
 ### Plan
@@ -51,7 +66,7 @@ When market clearing mechanisms are allowed to function efficiently those market
     - Display investment potential figures with params
     - Walkability Score
 
-### Data
+### Extract
 
 - Data source: [King County Records](https://recordsearch.kingcounty.gov/LandmarkWeb/search/index?theme=.blue&section=undefined&quickSearchSelection=undefined)
 - Rows of data: 214706
@@ -100,22 +115,21 @@ When market clearing mechanisms are allowed to function efficiently those market
 <div class="mb-3"></div>
 
 ### Conclusion
-<div class="row justify-content-start">
-<div class="col-6">
-<p>The improvement to market information accessability has a net benefit to the real estate investment community. Tools for gathering information and presenting it in a way that can be used directly already exist. However this dashboard is focused on the underserved pre-foreclosure market, which can benefit from the addition of lower barriers to market information. </p>
-<p>Future plans include expanding the map features so that when a user clicks on a property link it sends then to a detail page with more information. Another improvement would be to integrate the program into an app or website to be used as a service or online reference.</p> 
-
-<div class="col-12 text-center">
-    <a href="{{page.link}}" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
-</div>
-
-</div>
-<div class="col-6">
-<div class="whitebox" ><a href="{{page.link}}" target="_blank">
-<img src="{{page.gif}}" alt="{{page.title}}" style="width:100%; height:auto; object-fit: cover;">
-</a>
-</div>
-</div>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-6 mb-5">
+            <p>The improvement to market information accessability has a net benefit to the real estate investment community. Tools for gathering information and presenting it in a way that can be used directly already exist. However this dashboard is focused on the underserved pre-foreclosure market, which can benefit from the addition of lower barriers to market information. </p>
+            <p>Future plans include expanding the map features so that when a user clicks on a property link it sends then to a detail page with more information. Another improvement would be to integrate the program into an app or website to be used as a service or online reference.</p> 
+            <div class="text-center">
+                <a href="{{page.link}}" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="whitebox" ><a href="{{page.link}}" target="_blank">
+            <img src="{{page.gif}}" alt="{{page.title}}" style="width:100%; height:auto; object-fit: cover;"></a>
+            </div>
+        </div>
+    </div>
 </div>
 
 

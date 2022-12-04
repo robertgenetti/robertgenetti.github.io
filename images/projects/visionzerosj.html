@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>visionzerosj</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="custom.css">
+
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    init_mathjax = function() {
+        if (window.MathJax) {
+        // MathJax loaded
+            MathJax.Hub.Config({
+                TeX: {
+                    equationNumbers: {
+                    autoNumber: "AMS",
+                    useLabelIds: true
+                    }
+                },
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                displayAlign: 'center',
+                CommonHTML: {
+                    linebreaks: {
+                    automatic: true
+                    }
+                }
+            });
+
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    }
+    init_mathjax();
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">--</span> <span class="n">check</span> <span class="n">the</span> <span class="n">total</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">data</span> <span class="n">table</span>
+<span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">vision_zero_crash</span>
+<span class="n">WHERE</span> <span class="s2">&quot;YEAR&quot;</span> <span class="o">&gt;=</span> <span class="mi">2011</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+(1 row(s) affected)
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Total execution time: 00:00:09.027
+</div>
+
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<table><tr><th>count</th></tr><tr><td>64188</td></tr></table>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Vision-Zero-Project---San-Jose,-CA">Vision Zero Project - San Jose, CA<a class="anchor-link" href="#Vision-Zero-Project---San-Jose,-CA">&#182;</a></h1><h2 id="SQL---Azure-Data-Studio">SQL - Azure Data Studio<a class="anchor-link" href="#SQL---Azure-Data-Studio">&#182;</a></h2><h3 id="PostgresSQL-queried-datasets-to-be-used-in-Tableau-visualization">PostgresSQL queried datasets to be used in Tableau visualization<a class="anchor-link" href="#PostgresSQL-queried-datasets-to-be-used-in-Tableau-visualization">&#182;</a></h3><ul>
+<li>(Panel) Crash details for map</li>
+<li>(Panel) Corridor Specific safety details</li>
+<li>(Panel) Top 60 Safety Corridors \w moving average and rolling total</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">--</span> <span class="p">(</span><span class="n">Panel</span><span class="p">)</span> <span class="n">Crash</span> <span class="n">details</span> <span class="k">for</span> <span class="nb">map</span>
+
+<span class="n">create</span> <span class="ow">or</span> <span class="n">replace</span> <span class="n">function</span> <span class="n">violation</span><span class="p">(</span><span class="n">a</span> <span class="n">text</span><span class="p">)</span> <span class="n">RETURNS</span> <span class="n">text</span> <span class="n">AS</span> <span class="err">$$</span>
+<span class="n">BEGIN</span>
+    <span class="n">IF</span>  <span class="n">position</span><span class="p">(</span><span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span>
+        <span class="n">DECLARE</span>
+        <span class="n">v</span> <span class="n">text</span><span class="p">;</span>
+        <span class="n">arr</span> <span class="n">text</span><span class="p">[]</span> <span class="o">=</span> <span class="n">string_to_array</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;,&#39;</span><span class="p">);</span>
+        <span class="n">BEGIN</span>
+            <span class="n">FOREACH</span> <span class="n">v</span> <span class="n">IN</span> <span class="n">ARRAY</span> <span class="n">arr</span> 
+            <span class="n">LOOP</span>
+                <span class="n">IF</span> <span class="n">v</span> <span class="o">!=</span> <span class="s1">&#39;Unknown&#39;</span> <span class="n">then</span> 
+                    <span class="k">return</span> <span class="n">trim</span><span class="p">(</span><span class="n">leading</span> <span class="s1">&#39; &#39;</span> <span class="kn">from</span> <span class="nn">v</span><span class="p">);</span>
+                <span class="n">END</span> <span class="n">IF</span><span class="p">;</span>
+            <span class="n">END</span> <span class="n">LOOP</span><span class="p">;</span>
+        <span class="n">END</span><span class="p">;</span>
+    <span class="n">ELSE</span>
+      <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">END</span> <span class="n">IF</span><span class="p">;</span>
+<span class="n">END</span><span class="p">;</span> 
+<span class="err">$$</span> <span class="n">language</span> <span class="n">plpgsql</span><span class="p">;</span>
+
+
+<span class="n">SELECT</span> 
+<span class="n">to_date</span><span class="p">(</span><span class="s2">&quot;CRASHDATETIME&quot;</span><span class="p">,</span><span class="s1">&#39;YYYY/MM/DD&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;CRASHDATE&quot;</span><span class="p">,</span>
+<span class="n">violation</span><span class="p">(</span><span class="s2">&quot;VEHICLEVIOLATIONCODEDESCRIPTION&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;VIOLATION&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">CASE</span>
+<span class="n">WHEN</span> <span class="n">SPLIT_PART</span><span class="p">(</span><span class="s2">&quot;AGERANGE&quot;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;NULL&#39;</span> <span class="n">then</span> <span class="n">SPLIT_PART</span><span class="p">(</span><span class="s2">&quot;AGERANGE&quot;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
+<span class="k">else</span> <span class="s1">&#39;30-49&#39;</span> <span class="n">end</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;AGE&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">CASE</span>  
+<span class="n">WHEN</span> <span class="s2">&quot;LIGHTING&quot;</span> <span class="o">=</span> <span class="s1">&#39;Dusk - Dawn&#39;</span> <span class="n">then</span> <span class="s1">&#39;Dusk/Dawn&#39;</span>
+<span class="n">WHEN</span> <span class="s2">&quot;LIGHTING&quot;</span> <span class="n">LIKE</span> <span class="s1">&#39;Dark%&#39;</span> <span class="n">then</span> <span class="s1">&#39;Dark&#39;</span>
+<span class="k">else</span> <span class="s1">&#39;Daylight&#39;</span> <span class="n">end</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;LIGHTING&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">CASE</span>  
+<span class="n">WHEN</span> <span class="s2">&quot;VEHICLEPARTYCATEGORY&quot;</span> <span class="n">LIKE</span> <span class="s1">&#39;%Pedestrian%&#39;</span> <span class="n">then</span> <span class="s1">&#39;Pedestrian&#39;</span>
+<span class="n">WHEN</span> <span class="s2">&quot;VEHICLEPARTYCATEGORY&quot;</span> <span class="n">LIKE</span> <span class="s1">&#39;%Bicycle%&#39;</span> <span class="n">then</span> <span class="s1">&#39;Bicycle&#39;</span>
+<span class="k">else</span> <span class="s1">&#39;Vehicle&#39;</span> <span class="n">end</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;INVOLVING&quot;</span><span class="p">,</span>
+<span class="s2">&quot;WEATHER&quot;</span><span class="p">,</span>
+<span class="s2">&quot;DAYOFWEEKNAME&quot;</span><span class="p">,</span>  
+<span class="s2">&quot;NARRATIVE&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;VEHICLEINVOLVEDWITH&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;COLLISIONTYPE&quot;</span><span class="p">,</span>
+<span class="s2">&quot;MINORINJURIES&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;MODERATEINJURIES&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;SEVEREINJURIES&quot;</span><span class="p">,</span>
+<span class="s2">&quot;FATALINJURIES&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;ROADWAYCONDITION&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;ROADWAYSURFACE&quot;</span><span class="p">,</span>
+<span class="s2">&quot;INTASTREETNAME&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;INTBSTREETNAME&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;INTERSECTIONNUMBERINT&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;PROXIMITYTOINTERSECTION&quot;</span><span class="p">,</span>
+<span class="s2">&quot;LATITUDE&quot;</span><span class="p">,</span> <span class="s2">&quot;LONGITUDE&quot;</span>
+<span class="n">FROM</span> <span class="n">vision_zero_crash</span> 
+<span class="n">WHERE</span> <span class="s2">&quot;YEAR&quot;</span> <span class="o">&gt;=</span> <span class="mi">2011</span>
+<span class="n">ORDER</span> <span class="n">by</span> <span class="s2">&quot;CRASHDATETIME&quot;</span><span class="p">::</span><span class="n">date</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+(64188 row(s) affected)
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Displaying Top 10 rows.
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Total execution time: 00:00:11.086
+</div>
+
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<table><tr><th>CRASHDATE</th><th>VIOLATION</th><th>AGE</th><th>LIGHTING</th><th>INVOLVING</th><th>WEATHER</th><th>DAYOFWEEKNAME</th><th>NARRATIVE</th><th>VEHICLEINVOLVEDWITH</th><th>COLLISIONTYPE</th><th>MINORINJURIES</th><th>MODERATEINJURIES</th><th>SEVEREINJURIES</th><th>FATALINJURIES</th><th>ROADWAYCONDITION</th><th>ROADWAYSURFACE</th><th>INTASTREETNAME</th><th>INTBSTREETNAME</th><th>INTERSECTIONNUMBERINT</th><th>PROXIMITYTOINTERSECTION</th><th>LATITUDE</th><th>LONGITUDE</th></tr><tr><td>2011-01-01</td><td>Unsafe U-Turn</td><td>16-29</td><td>Dark</td><td>Vehicle</td><td>Clear</td><td>Saturday</td><td>29 year-old female driver vs unspecified driver</td><td>Other Vehicle</td><td>Rear End</td><td>0</td><td>0</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Dry</td><td>ALMA AV</td><td>PALM ST</td><td>4168</td><td>Non-Related</td><td>37.3115987</td><td>-121.8808112</td></tr><tr><td>2011-01-01</td><td>Speeding</td><td>30-49</td><td>Dark</td><td>Vehicle</td><td>Rain</td><td>Saturday</td><td>Unspecified driver vs parked car</td><td>Parked Vehicle</td><td>Other</td><td>0</td><td>0</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Wet</td><td>MANZANITA DR</td><td>SARATOGA AV</td><td>87460</td><td>Non-Related</td><td>37.31164303</td><td>-121.97861969</td></tr><tr><td>2011-01-01</td><td>Speeding</td><td>16-29</td><td>Daylight</td><td>Vehicle</td><td>Cloudy</td><td>Saturday</td><td>21 year-old female driver vs object</td><td>Fixed Object</td><td>Other</td><td>0</td><td>1</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Wet</td><td>BLOSSOM HILL RD/DW</td><td>COTTLE RD</td><td>42668</td><td>Non-Related</td><td>37.25377914</td><td>-121.8031774</td></tr><tr><td>2011-01-01</td><td>Speeding</td><td>30-49</td><td>Daylight</td><td>Vehicle</td><td>Rain</td><td>Saturday</td><td>Unspecified driver vs object</td><td>Fixed Object</td><td>Other</td><td>0</td><td>0</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Wet</td><td>DELMAS AV/SHEPHERD AV</td><td>WILLOW ST</td><td>50214</td><td>Non-Related</td><td>37.31217342</td><td>-121.8938377</td></tr><tr><td>2011-01-01</td><td>Speeding</td><td>30-49</td><td>Dusk/Dawn</td><td>Vehicle</td><td>Cloudy</td><td>Saturday</td><td>40 year-old male drunk truck driver vs 29 year-old male driver</td><td>Other Vehicle</td><td>Broadside</td><td>0</td><td>0</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Wet</td><td>BAYSHORE FR</td><td>JULIAN ST</td><td>14960</td><td>Non-Related</td><td>37.35317711</td><td>-121.8672439</td></tr><tr><td>2011-01-01</td><td>Unsafe Turn Movement</td><td>16-29</td><td>Daylight</td><td>Vehicle</td><td>Rain</td><td>Saturday</td><td>28 year-old male drunk driver vs object</td><td>Fixed Object</td><td>Other</td><td>0</td><td>1</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Wet</td><td>CAPITOL EX</td><td>QUIMBY RD</td><td>32922</td><td>Non-Related</td><td>37.3238552</td><td>-121.8084406</td></tr><tr><td>2011-01-01</td><td>Unsafe Turn Movement</td><td>30-49</td><td>Dark</td><td>Vehicle</td><td>Cloudy</td><td>Saturday</td><td>Unspecified driver vs 2 parked cars</td><td>Parked Vehicle</td><td>Other</td><td>0</td><td>0</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Dry</td><td>ESTEBAN WY</td><td>SOLANO DR</td><td>57530</td><td>Non-Related</td><td>37.23211429</td><td>-121.7981208</td></tr><tr><td>2011-01-01</td><td>Unknown</td><td>65 plus</td><td>Daylight</td><td>Vehicle</td><td>Clear</td><td>Saturday</td><td>84 year-old male driver vs unspecified driver</td><td>Other Vehicle</td><td>Rear End</td><td>0</td><td>0</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Dry</td><td>KIELY BL</td><td>SARATOGA AV</td><td>79188</td><td>Non-Related</td><td>37.32015115</td><td>-121.9724316</td></tr><tr><td>2011-01-01</td><td>Unknown</td><td>16-29</td><td>Dark</td><td>Pedestrian</td><td>Rain</td><td>Saturday</td><td>44 year-old male driver vs 21 year-old male pedestrian with serious injury</td><td>Pedestrian</td><td>Other</td><td>0</td><td>0</td><td>1</td><td>0</td><td>No Unusual Conditions</td><td>Wet</td><td>ELEVENTH ST</td><td>SAN CARLOS ST</td><td>55813</td><td>Non-Related</td><td>37.33649044</td><td>-121.8764777</td></tr><tr><td>2011-01-01</td><td>Speeding</td><td>30-49</td><td>Dusk/Dawn</td><td>Vehicle</td><td>Rain</td><td>Saturday</td><td>Unspecified tipsy driver vs 2 parked cars</td><td>Parked Vehicle</td><td>Other</td><td>0</td><td>0</td><td>0</td><td>0</td><td>No Unusual Conditions</td><td>Wet</td><td>MENKER AV</td><td>PARKMOOR AV</td><td>90474</td><td>Non-Related</td><td>37.31720424</td><td>-121.9216311</td></tr></table>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">--</span> <span class="p">(</span><span class="n">Panel</span><span class="p">)</span> <span class="n">Corridor</span> <span class="n">Specific</span> <span class="n">safety</span> <span class="n">details</span>
+
+<span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">safety_corridors</span> 
+<span class="n">ADD</span> <span class="n">COLUMN</span> <span class="n">IF</span> <span class="n">NOT</span> <span class="n">EXISTS</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">VARCHAR</span><span class="p">;</span>
+
+<span class="n">UPDATE</span> <span class="n">safety_corridors</span>
+<span class="n">SET</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="o">=</span> <span class="n">UPPER</span><span class="p">(</span><span class="s2">&quot;SAFETYPRIO&quot;</span><span class="p">);</span>
+
+<span class="n">UPDATE</span> <span class="n">safety_corridors</span> 
+<span class="n">SET</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="o">=</span> <span class="n">REPLACE</span><span class="p">(</span><span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s1">&#39;AVE&#39;</span><span class="p">,</span> <span class="s1">&#39;AV&#39;</span><span class="p">);</span>
+
+<span class="n">UPDATE</span> <span class="n">safety_corridors</span> 
+<span class="n">SET</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="o">=</span> <span class="n">REPLACE</span><span class="p">(</span><span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s1">&#39;EXPRESSWAY&#39;</span><span class="p">,</span> <span class="s1">&#39;EX&#39;</span><span class="p">);</span>
+
+<span class="n">UPDATE</span> <span class="n">safety_corridors</span> 
+<span class="n">SET</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="o">=</span> <span class="n">REPLACE</span><span class="p">(</span><span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s1">&#39;ROAD&#39;</span><span class="p">,</span> <span class="s1">&#39;RD&#39;</span><span class="p">);</span>
+
+<span class="n">UPDATE</span> <span class="n">safety_corridors</span> 
+<span class="n">SET</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="o">=</span> <span class="n">REPLACE</span><span class="p">(</span><span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s1">&#39;STREET&#39;</span><span class="p">,</span> <span class="s1">&#39;ST&#39;</span><span class="p">);</span>
+    
+<span class="n">UPDATE</span> <span class="n">safety_corridors</span> 
+<span class="n">SET</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="o">=</span> <span class="n">REPLACE</span><span class="p">(</span><span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s1">&#39;LANE&#39;</span><span class="p">,</span> <span class="s1">&#39;LN&#39;</span><span class="p">);</span>
+
+<span class="n">SELECT</span> <span class="o">*</span>
+<span class="n">FROM</span> <span class="n">safety_corridors</span>
+<span class="n">ORDER</span> <span class="n">BY</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+NOTICE:  column "STREETNAME" of relation "safety_corridors" already exists, skipping
+
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+(30 row(s) affected)
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Displaying Top 10 rows.
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Total execution time: 00:00:01.733
+</div>
+
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">--</span> <span class="p">(</span><span class="n">Panel</span><span class="p">)</span> <span class="n">Top</span> <span class="mi">60</span> <span class="n">Safety</span> <span class="n">Corridors</span> \<span class="n">w</span> <span class="n">moving</span> <span class="n">average</span> <span class="ow">and</span> <span class="n">rolling</span> <span class="n">total</span>
+
+<span class="n">BEGIN</span><span class="p">;</span>
+
+<span class="n">CREATE</span> <span class="n">TEMPORARY</span> <span class="n">TABLE</span> <span class="n">Astreet</span> <span class="n">ON</span> <span class="n">COMMIT</span> <span class="n">DROP</span>
+<span class="k">as</span> <span class="n">SELECT</span> 
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;MINORINJURIES&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">minorA</span><span class="p">,</span> 
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;MODERATEINJURIES&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">moderateA</span><span class="p">,</span> 
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;SEVEREINJURIES&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">severeA</span><span class="p">,</span>
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;FATALINJURIES&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fatalA</span><span class="p">,</span> 
+<span class="s2">&quot;INTASTREETNAME&quot;</span><span class="p">,</span>
+<span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span>
+<span class="n">FROM</span> <span class="n">vision_zero_crash</span> 
+<span class="n">WHERE</span> <span class="s2">&quot;YEAR&quot;</span> <span class="o">&gt;=</span> <span class="mi">2011</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="s2">&quot;INTASTREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span><span class="p">;</span>
+
+
+<span class="n">CREATE</span> <span class="n">TEMPORARY</span> <span class="n">TABLE</span> <span class="n">Bstreet</span> <span class="n">ON</span> <span class="n">COMMIT</span> <span class="n">DROP</span>
+<span class="k">as</span> <span class="n">SELECT</span> 
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;MINORINJURIES&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">minorB</span><span class="p">,</span> 
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;MODERATEINJURIES&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">moderateB</span><span class="p">,</span> 
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;SEVEREINJURIES&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">severeB</span><span class="p">,</span>
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;FATALINJURIES&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fatalB</span><span class="p">,</span> 
+<span class="s2">&quot;INTBSTREETNAME&quot;</span><span class="p">,</span>
+<span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span>
+<span class="n">FROM</span> <span class="n">vision_zero_crash</span> 
+<span class="n">WHERE</span> <span class="s2">&quot;YEAR&quot;</span> <span class="o">&gt;=</span> <span class="mi">2011</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="s2">&quot;INTBSTREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span><span class="p">;</span>
+
+
+<span class="n">CREATE</span> <span class="n">TEMPORARY</span> <span class="n">TABLE</span> <span class="n">crashes</span> <span class="n">ON</span> <span class="n">COMMIT</span> <span class="n">DROP</span>
+<span class="k">as</span> <span class="n">SELECT</span> 
+<span class="p">(</span><span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="n">bstreet</span><span class="o">.</span><span class="s2">&quot;YEAR&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="s2">&quot;MONTHNAME&quot;</span><span class="p">,</span> <span class="n">bstreet</span><span class="o">.</span><span class="s2">&quot;MONTHNAME&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="s2">&quot;MONTHNAME&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="n">minorA</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">bstreet</span><span class="o">.</span><span class="n">minorB</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">as</span> <span class="s2">&quot;MINORINJURIES&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="n">moderateA</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">bstreet</span><span class="o">.</span><span class="n">moderateB</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">as</span> <span class="s2">&quot;MODERATEINJURIES&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="n">severeA</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">bstreet</span><span class="o">.</span><span class="n">severeB</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">as</span> <span class="s2">&quot;SEVEREINJURIES&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="n">fatalA</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">bstreet</span><span class="o">.</span><span class="n">fatalB</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">as</span> <span class="s2">&quot;FATALINJURIES&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="n">minorA</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">bstreet</span><span class="o">.</span><span class="n">minorB</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="n">moderateA</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">bstreet</span><span class="o">.</span><span class="n">moderateB</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">as</span> <span class="s2">&quot;MMI&quot;</span><span class="p">,</span>
+<span class="p">(</span><span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="n">fatalA</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">bstreet</span><span class="o">.</span><span class="n">fatalB</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">astreet</span><span class="o">.</span><span class="n">severeA</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">bstreet</span><span class="o">.</span><span class="n">severeB</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">as</span> <span class="s2">&quot;KSI&quot;</span><span class="p">,</span>
+<span class="n">CASE</span> <span class="n">WHEN</span> <span class="n">bstreet</span><span class="o">.</span><span class="s2">&quot;INTBSTREETNAME&quot;</span> <span class="n">IS</span> <span class="n">NULL</span> <span class="n">THEN</span> <span class="n">astreet</span><span class="o">.</span><span class="s2">&quot;INTASTREETNAME&quot;</span> <span class="n">ELSE</span> <span class="n">bstreet</span><span class="o">.</span><span class="s2">&quot;INTBSTREETNAME&quot;</span> <span class="n">END</span> <span class="n">AS</span> <span class="s2">&quot;STREETNAME&quot;</span>
+<span class="n">FROM</span> <span class="n">Astreet</span> <span class="n">astreet</span>
+<span class="n">full</span> <span class="n">outer</span> <span class="n">join</span> <span class="n">Bstreet</span> <span class="n">bstreet</span>
+<span class="n">ON</span> <span class="n">bstreet</span><span class="o">.</span><span class="s2">&quot;INTBSTREETNAME&quot;</span> <span class="o">=</span> <span class="n">astreet</span><span class="o">.</span><span class="s2">&quot;INTASTREETNAME&quot;</span>
+<span class="ow">and</span> <span class="n">bstreet</span><span class="o">.</span><span class="s2">&quot;YEAR&quot;</span> <span class="o">=</span> <span class="n">astreet</span><span class="o">.</span><span class="s2">&quot;YEAR&quot;</span>
+<span class="ow">and</span> <span class="n">bstreet</span><span class="o">.</span><span class="s2">&quot;MONTHNAME&quot;</span> <span class="o">=</span> <span class="n">astreet</span><span class="o">.</span><span class="s2">&quot;MONTHNAME&quot;</span>
+<span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> 
+<span class="n">CASE</span> <span class="n">astreet</span><span class="o">.</span><span class="s2">&quot;MONTHNAME&quot;</span> 
+<span class="n">WHEN</span> <span class="s1">&#39;January&#39;</span> <span class="n">then</span> <span class="mi">1</span>
+<span class="n">WHEN</span> <span class="s1">&#39;February&#39;</span> <span class="n">then</span> <span class="mi">2</span>
+<span class="n">WHEN</span> <span class="s1">&#39;March&#39;</span> <span class="n">then</span> <span class="mi">3</span>
+<span class="n">WHEN</span> <span class="s1">&#39;April&#39;</span> <span class="n">then</span> <span class="mi">4</span>
+<span class="n">WHEN</span> <span class="s1">&#39;May&#39;</span> <span class="n">then</span> <span class="mi">5</span>
+<span class="n">WHEN</span> <span class="s1">&#39;June&#39;</span> <span class="n">then</span> <span class="mi">6</span>
+<span class="n">WHEN</span> <span class="s1">&#39;July&#39;</span> <span class="n">then</span> <span class="mi">7</span>
+<span class="n">WHEN</span> <span class="s1">&#39;August&#39;</span> <span class="n">then</span> <span class="mi">8</span>
+<span class="n">WHEN</span> <span class="s1">&#39;September&#39;</span> <span class="n">then</span> <span class="mi">9</span>
+<span class="n">WHEN</span> <span class="s1">&#39;October&#39;</span> <span class="n">then</span> <span class="mi">10</span>
+<span class="n">WHEN</span> <span class="s1">&#39;November&#39;</span> <span class="n">then</span> <span class="mi">11</span>
+<span class="k">else</span> <span class="mi">12</span> <span class="n">end</span><span class="p">;</span>
+
+
+<span class="n">CREATE</span> <span class="n">TEMPORARY</span> <span class="n">TABLE</span> <span class="n">topstreets</span> <span class="n">ON</span> <span class="n">COMMIT</span> <span class="n">DROP</span>
+<span class="k">as</span> <span class="n">SELECT</span> 
+<span class="p">(</span><span class="n">CASE</span>  
+<span class="n">WHEN</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="ow">in</span> <span class="p">(</span>
+<span class="s1">&#39;MONTEREY RD&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;ALUM ROCK AV&#39;</span><span class="p">,</span>
+<span class="s1">&#39;CAPITOL EX&#39;</span><span class="p">,</span>
+<span class="s1">&#39;BLOSSOM HILL RD&#39;</span><span class="p">,</span>
+<span class="s1">&#39;JACKSON AV&#39;</span><span class="p">,</span>
+<span class="s1">&#39;MCKEE RD&#39;</span><span class="p">,</span>
+<span class="s1">&#39;SENTER RD&#39;</span><span class="p">,</span>
+<span class="s1">&#39;TULLY RD&#39;</span><span class="p">,</span>
+<span class="s1">&#39;WHITE RD&#39;</span><span class="p">,</span>
+<span class="s1">&#39;ALMADEN EX&#39;</span><span class="p">,</span>
+<span class="s1">&#39;MCLAUGHLIN AV&#39;</span><span class="p">,</span>
+<span class="s1">&#39;BRANHAM LN&#39;</span><span class="p">,</span>
+<span class="s1">&#39;KING RD&#39;</span><span class="p">,</span>
+<span class="s1">&#39;STORY RD&#39;</span><span class="p">,</span>
+<span class="s1">&#39;SANTA CLARA ST&#39;</span><span class="p">,</span>
+<span class="s1">&#39;SARATOGA AV&#39;</span><span class="p">,</span>
+<span class="s1">&#39;FRUITDALE AV&#39;</span><span class="p">,</span>
+<span class="s1">&#39;HILLSDALE AV&#39;</span><span class="p">,</span>
+<span class="s1">&#39;FIRST ST&#39;</span><span class="p">)</span> <span class="n">then</span> <span class="s1">&#39;True&#39;</span> 
+<span class="k">else</span> <span class="s1">&#39;False&#39;</span> <span class="n">end</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;PRIORITY&quot;</span><span class="p">,</span>
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;KSI&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;KSI&quot;</span><span class="p">,</span> <span class="s2">&quot;STREETNAME&quot;</span>
+<span class="n">FROM</span> <span class="n">crashes</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span>
+<span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;KSI&quot;</span> <span class="n">DESC</span>
+<span class="n">LIMIT</span> <span class="mi">60</span><span class="p">;</span>
+
+<span class="n">CREATE</span> <span class="n">TEMPORARY</span> <span class="n">TABLE</span> <span class="n">safetycorridors</span> <span class="n">ON</span> <span class="n">COMMIT</span> <span class="n">DROP</span>
+<span class="k">as</span> <span class="n">SELECT</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">topstreets</span>
+<span class="n">where</span> <span class="s2">&quot;KSI&quot;</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="ow">or</span> <span class="s2">&quot;PRIORITY&quot;</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span><span class="p">;</span>
+
+
+<span class="n">SELECT</span> <span class="o">*</span><span class="p">,</span>
+<span class="n">to_date</span><span class="p">((</span><span class="s2">&quot;YEAR&quot;</span><span class="p">::</span><span class="n">text</span><span class="o">||</span><span class="s2">&quot;MONTHNAME&quot;</span><span class="p">),</span><span class="s1">&#39;YYYYMonth&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;AGGDATE&quot;</span><span class="p">,</span>
+<span class="n">AVG</span><span class="p">(</span><span class="s2">&quot;MINORINJURIES&quot;</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span> <span class="n">ROWS</span> <span class="n">BETWEEN</span> <span class="mi">5</span> <span class="n">PRECEDING</span> <span class="n">AND</span> <span class="n">CURRENT</span> <span class="n">ROW</span><span class="p">)</span> <span class="n">AS</span> <span class="s2">&quot;6M_MOV_MIN&quot;</span><span class="p">,</span>
+<span class="n">AVG</span><span class="p">(</span><span class="s2">&quot;MODERATEINJURIES&quot;</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span> <span class="n">ROWS</span> <span class="n">BETWEEN</span> <span class="mi">5</span> <span class="n">PRECEDING</span> <span class="n">AND</span> <span class="n">CURRENT</span> <span class="n">ROW</span><span class="p">)</span> <span class="n">AS</span> <span class="s2">&quot;6M_MOV_MOD&quot;</span><span class="p">,</span>
+<span class="n">AVG</span><span class="p">(</span><span class="s2">&quot;MMI&quot;</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span> <span class="n">ROWS</span> <span class="n">BETWEEN</span> <span class="mi">5</span> <span class="n">PRECEDING</span> <span class="n">AND</span> <span class="n">CURRENT</span> <span class="n">ROW</span><span class="p">)</span> <span class="n">AS</span> <span class="s2">&quot;6M_MOV_MMI&quot;</span><span class="p">,</span>
+<span class="n">AVG</span><span class="p">(</span><span class="s2">&quot;KSI&quot;</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span> <span class="n">ROWS</span> <span class="n">BETWEEN</span> <span class="mi">5</span> <span class="n">PRECEDING</span> <span class="n">AND</span> <span class="n">CURRENT</span> <span class="n">ROW</span><span class="p">)</span> <span class="n">AS</span> <span class="s2">&quot;6M_MOV_KSI&quot;</span><span class="p">,</span>
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;MINORINJURIES&quot;</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span><span class="p">)</span> <span class="n">AS</span> <span class="s2">&quot;ROLL_TOT_MIN&quot;</span><span class="p">,</span>
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;MODERATEINJURIES&quot;</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span><span class="p">)</span> <span class="n">AS</span> <span class="s2">&quot;ROLL_TOT_MOD&quot;</span><span class="p">,</span>
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;MMI&quot;</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span><span class="p">)</span> <span class="n">AS</span> <span class="s2">&quot;ROLL_TOT_MMI&quot;</span><span class="p">,</span>
+<span class="n">SUM</span><span class="p">(</span><span class="s2">&quot;KSI&quot;</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="s2">&quot;STREETNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTHNAME&quot;</span><span class="p">)</span> <span class="n">AS</span> <span class="s2">&quot;ROLL_TOT_KSI&quot;</span>
+<span class="n">FROM</span> <span class="n">crashes</span>
+<span class="n">WHERE</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="n">IN</span> <span class="p">(</span><span class="n">select</span> <span class="s2">&quot;STREETNAME&quot;</span> <span class="kn">from</span> <span class="nn">safetycorridors</span><span class="p">);</span>
+
+<span class="n">COMMIT</span><span class="p">;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+(4204 row(s) affected)
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Displaying Top 10 rows.
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Commands completed successfully
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+Total execution time: 00:00:01.780
+</div>
+
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<table><tr><th>YEAR</th><th>MONTHNAME</th><th>MINORINJURIES</th><th>MODERATEINJURIES</th><th>SEVEREINJURIES</th><th>FATALINJURIES</th><th>MMI</th><th>KSI</th><th>STREETNAME</th><th>AGGDATE</th><th>6M_MOV_MINI</th><th>6M_MOV_MODI</th><th>6M_MOV_MMI</th><th>6M_MOV_KSI</th><th>ROLL_TOT_MINI</th><th>ROLL_TOT_MODI</th><th>ROLL_TOT_MMI</th><th>ROLL_TOT_KSI</th></tr><tr><td>2011</td><td>April</td><td>15</td><td>1</td><td>0</td><td>0</td><td>16</td><td>0</td><td>ALMADEN EX</td><td>2011-04-01</td><td>15.0000000000000000</td><td>1.00000000000000000000</td><td>16.0000000000000000</td><td>0E-20</td><td>15</td><td>1</td><td>16</td><td>0</td></tr><tr><td>2011</td><td>August</td><td>11</td><td>0</td><td>0</td><td>0</td><td>11</td><td>0</td><td>ALMADEN EX</td><td>2011-08-01</td><td>13.0000000000000000</td><td>0.50000000000000000000</td><td>13.5000000000000000</td><td>0E-20</td><td>26</td><td>1</td><td>27</td><td>0</td></tr><tr><td>2011</td><td>December</td><td>13</td><td>6</td><td>0</td><td>0</td><td>19</td><td>0</td><td>ALMADEN EX</td><td>2011-12-01</td><td>13.0000000000000000</td><td>2.3333333333333333</td><td>15.3333333333333333</td><td>0E-20</td><td>39</td><td>7</td><td>46</td><td>0</td></tr><tr><td>2011</td><td>February</td><td>2</td><td>1</td><td>0</td><td>0</td><td>3</td><td>0</td><td>ALMADEN EX</td><td>2011-02-01</td><td>10.2500000000000000</td><td>2.0000000000000000</td><td>12.2500000000000000</td><td>0E-20</td><td>41</td><td>8</td><td>49</td><td>0</td></tr><tr><td>2011</td><td>January</td><td>8</td><td>0</td><td>0</td><td>0</td><td>8</td><td>0</td><td>ALMADEN EX</td><td>2011-01-01</td><td>9.8000000000000000</td><td>1.6000000000000000</td><td>11.4000000000000000</td><td>0E-20</td><td>49</td><td>8</td><td>57</td><td>0</td></tr><tr><td>2011</td><td>July</td><td>5</td><td>1</td><td>0</td><td>0</td><td>6</td><td>0</td><td>ALMADEN EX</td><td>2011-07-01</td><td>9.0000000000000000</td><td>1.5000000000000000</td><td>10.5000000000000000</td><td>0E-20</td><td>54</td><td>9</td><td>63</td><td>0</td></tr><tr><td>2011</td><td>June</td><td>5</td><td>0</td><td>0</td><td>0</td><td>5</td><td>0</td><td>ALMADEN EX</td><td>2011-06-01</td><td>7.3333333333333333</td><td>1.3333333333333333</td><td>8.6666666666666667</td><td>0E-20</td><td>59</td><td>9</td><td>68</td><td>0</td></tr><tr><td>2011</td><td>March</td><td>3</td><td>0</td><td>0</td><td>0</td><td>3</td><td>0</td><td>ALMADEN EX</td><td>2011-03-01</td><td>6.0000000000000000</td><td>1.3333333333333333</td><td>7.3333333333333333</td><td>0E-20</td><td>62</td><td>9</td><td>71</td><td>0</td></tr><tr><td>2011</td><td>May</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>ALMADEN EX</td><td>2011-05-01</td><td>4.0000000000000000</td><td>0.33333333333333333333</td><td>4.3333333333333333</td><td>0E-20</td><td>63</td><td>9</td><td>72</td><td>0</td></tr><tr><td>2011</td><td>November</td><td>5</td><td>1</td><td>0</td><td>0</td><td>6</td><td>0</td><td>ALMADEN EX</td><td>2011-11-01</td><td>4.5000000000000000</td><td>0.33333333333333333333</td><td>4.8333333333333333</td><td>0E-20</td><td>68</td><td>10</td><td>78</td><td>0</td></tr></table>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</body>
+
+
+
+
+
+
+
+</html>
