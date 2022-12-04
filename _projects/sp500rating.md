@@ -5,15 +5,15 @@ gif: "/images/projects/sp500rating.gif"
 link: "https://public.tableau.com/views/Book3_16649292527140/screener?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link"
 ---
 
- The S&P 500 is one of the most widely followed index in the U.S. And every stock in that index gets a buy or sell recomendation. Depending on how much a stock is followed determines how much attention is given in the form of analysis and recommendations. _What benefits can be gained by having a self-hosted stock analysis tool that can give buy or sell recommendations with every earnings release?_
+ The S&P 500 is one of the most widely followed indices in the U.S. Within that index each stock is given buy or sell recommendations based on how much that stock is folowed by analysts. For this reason some stocks, though included in the S&P 500 may not get a frequent update on its recommendation rating. I wan to know _what benefits can be gained by having a regression driven stock analysis tool that provided buy or sell recommendations on demand and is updated with every earnings release no matter the popularity of the stock?_
 
 ### Problem
 
-Buy or sell recommendations are issued with every quarterly earnings and by different investment institutions. However that schedule is not always the same with every stock. Stocks can get very little analysis and suffer by having few buy or sell recommendations issued.
+Buy or sell recommendations are issued by investment firms on an irregluar schedule. Depending on how popular the stock, a recommendation may be more or less fequent, leaving some investors with little guidence when deciding to update an invetment position.
 
 ### Solution 
 
-A self-hosted stock analysis tool can, with the use of statistical modeling, issue buy or sell recommendations to all stocks at every new earning release.
+A regression driven stock analysis tool can be more available to the average investor on a regular schedule when issuing buy or sell recommendations. The benefit is having some way to update a investment position no matter the level of activity coming from the investment firm analysis.
 
 <div class="col-12 text-center">
     <a href="{{page.link}}" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>

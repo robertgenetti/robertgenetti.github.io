@@ -2454,7 +2454,7 @@ ul.social li a span { font-size: 24px; }
 .feature .feature-image { flex: 0 0 auto; width: 80px; height: 80px; display: flex; margin-bottom: 20px; text-align: center; }
 .feature img { width: 100%; height: auto; }
 .feature .feature-title { font-size: 1.5rem; font-weight: 300; line-height: 1.2; }
-.feature .feature-content { margin-bottom: 0; margin-top: auto; }
+.feature .feature-content { margin-bottom: 15px; margin-top: auto; }
 .feature .feature-content p { margin: 0; }
 .feature .feature-content p strong { color: #414156; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; }
 .feature .feature-content p em { color: #1c3ed3; font-style: normal; }
@@ -2462,7 +2462,7 @@ ul.social li a span { font-size: 24px; }
 .page-home { background-image: url("../images/undraw_taking_notes_tjaf.svg"); background-repeat: no-repeat; background-size: 115%; background-position: 400px -10px; }
 @media (min-width: 576px) { .page-home { background-size: 80%; background-position: 500px -20px; } }
 @media (min-width: 768px) { .page-home { background-size: 70%; background-position: 200% -30px; } }
-@media (min-width: 992px) { .page-home { background-size: 70vmin; background-position: center 30px; } }
+@media (min-width: 992px) { .page-home { background-size: 70vmin; background-position: 600px 30px; } }
 .page-home .call { position: relative; overflow: hidden; background-color: #ffffff; border-radius: 4px; box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); width: 100%; color: #414156; display: flex; align-items: flex-start; flex-direction: column; }
 @media (min-width: 576px) { .page-home .call { align-items: center; flex-direction: row; width: 90%; } }
 @media (min-width: 768px) { .page-home .call { width: 70%; } }
