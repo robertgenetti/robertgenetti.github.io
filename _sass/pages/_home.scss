@@ -15,6 +15,10 @@
     background-size: 70vmin;
     background-position: 600px 30px;
   }
+  @include media-breakpoint-up(xl) {
+    background-size: 70vmin;
+    background-position: 70% 30px;
+  }
   .call {
     position: relative;
     overflow: hidden;

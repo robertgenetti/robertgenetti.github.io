@@ -2474,6 +2474,7 @@ ul.social li a span { font-size: 24px; }
 @media (min-width: 576px) { .page-home { background-size: 80%; background-position: 500px -20px; } }
 @media (min-width: 768px) { .page-home { background-size: 70%; background-position: 200% -30px; } }
 @media (min-width: 992px) { .page-home { background-size: 70vmin; background-position: 600px 30px; } }
+@media (min-width: 1200px) { .page-home { background-size: 70vmin; background-position: 70% 30px; } }
 .page-home .call { position: relative; overflow: hidden; background-color: #ffffff; border-radius: 4px; box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); width: 100%; color: #414156; display: flex; align-items: flex-start; flex-direction: column; }
 @media (min-width: 576px) { .page-home .call { align-items: center; flex-direction: row; width: 90%; } }
 @media (min-width: 768px) { .page-home .call { width: 70%; } }
