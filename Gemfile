@@ -8,7 +8,7 @@ gem "github-pages"
 gem 'jekyll-environment-variables'
 gem "minima"
 
-group :jekyll_plugins do
-    gem "jekyll-feed"
-  end
+# group :jekyll_plugins do
+#     gem "jekyll-feed"
+#   end
 gem "webrick", "~> 1.7"

@@ -41,7 +41,7 @@ This project focused on increasing the utilization of open data provided by King
             <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;">
         </div>
         <div class="col p-2">
-            <h3>Visualize</h3>
+            <h3>Visualization</h3>
             <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;">
         </div>
     </div>
@@ -102,7 +102,7 @@ This project focused on increasing the utilization of open data provided by King
 </div>
 <div class="mb-3"></div>
 
-### Visualize
+### Visualization
 
 - Design - Affinity Design
 - Visualization - Tableau

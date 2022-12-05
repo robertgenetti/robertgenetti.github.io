@@ -42,7 +42,7 @@ Present a clear representation of the traffic related accident data that is rele
             <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;">
         </div>
         <div class="col p-2">
-            <h3>Visualize</h3>
+            <h3>Visualization</h3>
             <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;">
         </div>
     </div>
@@ -111,7 +111,7 @@ Present a clear representation of the traffic related accident data that is rele
 ![screenshot](/images/projects/qgis_snap.png)
 <div class="mb-3"></div>
 
-### Visualize
+### Visualization
 
 - Design dashboard elements - Affinity Design
 
