@@ -41,7 +41,7 @@ This project takes on two roles: to provide insight into the policy outcomes of 
             <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;">
         </div>
         <div class="col p-2">
-            <h3>Visualization</h3>
+            <h3>Visualize</h3>
             <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;">
         </div>
     </div>
@@ -87,7 +87,7 @@ This project takes on two roles: to provide insight into the policy outcomes of 
 </div>
 <div class="mb-3"></div>
 
-### Visualization
+### Visualize
 
 - Design - Affinity Design
 - Visualization - Tableau
