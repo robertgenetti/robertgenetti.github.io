@@ -36,12 +36,12 @@ bodyClass: page-home
       </div>
       {% for project in site.projects reversed %}
       <div class="col-12 col-md-4 mb-6">
-        <div class="service service-summary">
+        <div class="service-summary">
           <div class="service-content">
             <h2 class="service-title">
               <a href="{{site.baseurl}}{{ project.url }}">{{ project.title }}</a>
             </h2>
-            {{ project.content | markdownify | strip_html | truncate }}
+            {{ project.content | markdownify | strip_html | truncate: 105 }}
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 ---
-title: "San Jose Vision Zero"
+title: "SJ Vision Zero"
 image: "/images/projects/visionzero_hero.png"
 gif: "/images/projects/visionzero.gif"
 link: "https://public.tableau.com/views/Book4_16695084459570/Home-Page?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link"

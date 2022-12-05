@@ -1,5 +1,5 @@
 ---
-title: "Covid-19 Vaccines"
+title: "Covid-19 Vacc"
 image: "/images/projects/covid19vacc.png"
 gif: "/images/projects/covid19vacc.gif"
 link: "https://public.tableau.com/views/Book1_16627808205440/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link"

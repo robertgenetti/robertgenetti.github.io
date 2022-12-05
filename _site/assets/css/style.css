@@ -2450,6 +2450,8 @@ ul.social li a span { font-size: 24px; }
 
 .whitebox { border: 1px solid #dcdcdc; border-radius: 3px; box-shadow: 0 1px 18px rgba(0, 0, 0, 0.2); background: #fff; padding: 10px; }
 
+.whitebox-noshadow { border-radius: 3px; background: #fff; padding: 10px; }
+
 .feature { height: 100%; padding: 20px; background-color: #ffffff; display: flex; align-items: center; flex-direction: column; text-align: center; }
 .feature .feature-image { flex: 0 0 auto; width: 80px; height: 80px; display: flex; margin-bottom: 20px; text-align: center; }
 .feature img { width: 100%; height: auto; }
@@ -2458,6 +2460,15 @@ ul.social li a span { font-size: 24px; }
 .feature .feature-content p { margin: 0; }
 .feature .feature-content p strong { color: #414156; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; }
 .feature .feature-content p em { color: #1c3ed3; font-style: normal; }
+
+.interest { height: 100%; border: 2px solid #eaeaea; padding: 20px; background-color: #ffffff; display: flex; align-items: center; flex-direction: column; text-align: center; }
+.interest .interest-image { flex: 0 0 auto; width: 80px; height: 80px; display: flex; margin-bottom: 20px; text-align: center; }
+.interest img { width: 100%; height: auto; }
+.interest .interest-title { font-size: 1.5rem; font-weight: 300; line-height: 1.2; }
+.interest .interest-content { margin-bottom: 15px; margin-top: auto; }
+.interest .interest-content p { margin: 0; }
+.interest .interest-content p strong { color: #414156; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; }
+.interest .interest-content p em { color: #1c3ed3; font-style: normal; }
 
 .page-home { background-image: url("../images/undraw_taking_notes_tjaf.svg"); background-repeat: no-repeat; background-size: 115%; background-position: 400px -10px; }
 @media (min-width: 576px) { .page-home { background-size: 80%; background-position: 500px -20px; } }
@@ -2524,7 +2535,7 @@ ul.social li a span { font-size: 24px; }
 
 img[alt=screenshot] { max-width: 650px; width: 100%; padding: 45px; }
 
-.service-summary { display: flex; align-items: flex-start; }
+.service-summary { max-width: 300px; display: flex; align-items: flex-start; }
 .service-summary .service-image { flex: 0 0 100px; margin-right: 10px; }
 .service-summary .service-image img { max-width: 100%; height: auto; }
 .service-summary .service-content { flex: 1; }

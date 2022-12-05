@@ -284,7 +284,6 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-environment-variables
-  jekyll-feed
   minima
   webrick (~> 1.7)
 

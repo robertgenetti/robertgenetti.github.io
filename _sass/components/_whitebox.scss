@@ -8,3 +8,12 @@
 .whitebox {
   @include whitebox();
 }
+
+@mixin whitebox-noshadow($padding: 10px) {
+  border-radius: 3px;
+  background: #fff;
+  padding: $padding;
+}
+.whitebox-noshadow {
+  @include whitebox-noshadow();
+}
