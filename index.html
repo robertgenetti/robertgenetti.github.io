@@ -41,7 +41,7 @@ bodyClass: page-home
             <h2 class="service-title">
               <a href="{{site.baseurl}}{{ project.url }}">{{ project.title }}</a>
             </h2>
-            {{ project.content | markdownify | strip_html | truncate: 125 }}
+            {{ project.content | markdownify | strip_html | truncate }}
           </div>
         </div>
       </div>

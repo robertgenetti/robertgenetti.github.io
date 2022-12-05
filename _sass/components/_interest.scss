@@ -1,12 +1,13 @@
-.feature {
+.interest {
   height: 100%;
+  border: 2px solid #eaeaea;
   padding: 20px;
   background-color: #ffffff;
   display: flex;
   align-items: center;
   flex-direction: column;
   text-align: center;
-  .feature-image {
+  .interest-image {
     flex: 0 0 auto;
     width: 80px;
     height: 80px;
@@ -18,12 +19,12 @@
     width: 100%;
     height: auto;
   }
-  .feature-title {
+  .interest-title {
     font-size: 1.5rem;
     font-weight: 300;
     line-height: 1.2;
   }
-  .feature-content {
+  .interest-content {
     margin-bottom: 15px;
     margin-top: auto;
     p {
