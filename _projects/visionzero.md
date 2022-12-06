@@ -6,7 +6,7 @@ link: "https://public.tableau.com/views/Book4_16695084459570/Home-Page?:language
 ---
 
 
-The San Jose Vision Zero Initiative aims to eliminate fatal and severe traffic related injuries. The city initiative was implemented in 2015 and now has prioritized 19 safety corridors of which have undergone significant safety upgrades. Those projects the the Vision Zero Initiative review process depends on accurate and timely data visualizations to update and support its planning process. _What benefit might the Vision Zero Initiative gain from having a dashboard with a heatmap feature to filter through traffic accident data by street(corridor) and type of injury?_
+The San Jose Vision Zero Initiative aims to eliminate fatal and severe traffic related injuries. The city initiative was implemented in 2015 and since then have expanded its safety priority corridors list to 19 high KSI rated streets. But before those projects under went any safety upgrades it go through a review process which depends on data collection and visualization. _What benefit might the Vision Zero Initiative gain from having a data visualization that features a corridor filtered view of the traffic related injury data?_
 
 ### Problem
 
