@@ -51,15 +51,15 @@
               <img src="/images/projects/visionzero_hero.png" alt="SJ Vision Zero" style="width:100%; object-fit: cover;">
             </div>
           </div>
-          <div class="content"><p>The San Jose Vision Zero Initiative aims to eliminate fatal and severe traffic related injuries. The city initiative was implemented in 2015 and since then have expanded its safety priority corridors list to 19 high KSI rated streets. But before those projects under went any safety upgrades it go through a review process which depends on data collection and visualization. <em>What benefit might the Vision Zero Initiative gain from having a data visualization that features a corridor filtered view of the traffic related injury data?</em></p>
+          <div class="content"><p>The San Jose Vision Zero Initiative aims to eliminate fatal and severe traffic related injuries. The city initiative was implemented in 2015 and since then have expanded its safety priority corridors list to 19 high KSI rated streets. The initiative has made data collection and visualization a key component to its planning and implementation process. <em>What benefit might the Vision Zero Initiative gain from having a data visualization that features a corridor filtered view of the traffic related injury data?</em></p>
 
 <h3 id="problem">Problem</h3>
 
-<p>Current data visualization solutions do not have corridor filtered data in order to drill-down into specifics when necessary. The absense of a corridor-by-corridor look at the traffic accident data may limit the quality of the planning teams’ ability to answer critical questions or track performance metrics.</p>
+<p>Current data visualization solutions do not include a corridor view data that drills down into crash data. The absense of a density map at the corridor level limits the planning and implementation process to only aggregate level.</p>
 
 <h3 id="solution">Solution</h3>
 
-<p>Creating a data visualization that illustrates the trends of corridor specific related traffic accident data will increase planning productivity and its ability to set clear performance goals.</p>
+<p>Creating a data visualization that illustrates the trends over time from corridors in the traffic accident data will increase the planning teams’ ability to set clear performance goals and monitor the progress on past projects.</p>
 
 <div class="col-12 text-center">
     <a href="https://public.tableau.com/views/Book4_16695084459570/Home-Page?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
@@ -105,21 +105,21 @@
   </li>
   <li>Analyze data in SQL
     <ul>
-      <li>Select features best suited</li>
-      <li>Transform data to create moving average field</li>
+      <li>Feature selection</li>
+      <li>Transform data, add moving average/ rolling total</li>
       <li>Import into SQL Postgres Database</li>
     </ul>
   </li>
   <li>Update shapefile with QGIS
     <ul>
-      <li>Add 11 new corridors using vector tool</li>
-      <li>Calculate length for existing field update</li>
-      <li>Differentiate priority corridors</li>
+      <li>Add more high KSI corridors using vector tool</li>
+      <li>Calculate length for existing field and update</li>
+      <li>Create boolean field for non-priority corridors</li>
     </ul>
   </li>
   <li>Design Tableau dashboard
     <ul>
-      <li>Overview with aggregate chrash data</li>
+      <li>Overview with aggregate crash data</li>
       <li>Filters to drill-down into data</li>
       <li>Corridor heat map</li>
       <li>Additional filters for corridor selection</li>

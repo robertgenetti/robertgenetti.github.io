@@ -6,15 +6,15 @@ link: "https://public.tableau.com/views/Book4_16695084459570/Home-Page?:language
 ---
 
 
-The San Jose Vision Zero Initiative aims to eliminate fatal and severe traffic related injuries. The city initiative was implemented in 2015 and since then have expanded its safety priority corridors list to 19 high KSI rated streets. But before those projects under went any safety upgrades it go through a review process which depends on data collection and visualization. _What benefit might the Vision Zero Initiative gain from having a data visualization that features a corridor filtered view of the traffic related injury data?_
+The San Jose Vision Zero Initiative aims to eliminate fatal and severe traffic related injuries. The city initiative was implemented in 2015 and since then have expanded its safety priority corridors list to 19 high KSI rated streets. The initiative has made data collection and visualization a key component to its planning and implementation process. _What benefit might the Vision Zero Initiative gain from having a data visualization that features a corridor filtered view of the traffic related injury data?_
 
 ### Problem
 
-Current data visualization solutions do not have corridor filtered data in order to drill-down into specifics when necessary. The absense of a corridor-by-corridor look at the traffic accident data may limit the quality of the planning teams' ability to answer critical questions or track performance metrics.
+Current data visualization solutions do not include a corridor view data that drills down into crash data. The absense of a density map at the corridor level limits the planning and implementation process to only aggregate level.
 
 ### Solution 
 
-Creating a data visualization that illustrates the trends of corridor specific related traffic accident data will increase planning productivity and its ability to set clear performance goals.
+Creating a data visualization that illustrates the trends over time from corridors in the traffic accident data will increase the planning teams' ability to set clear performance goals and monitor the progress on past projects.
 
 <div class="col-12 text-center">
     <a href="{{page.link}}" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
@@ -55,15 +55,15 @@ Creating a data visualization that illustrates the trends of corridor specific r
     - Pull crash data from San Jose Open Data Portal
     - Import dataframes into SQL Postgres Database
 2. Analyze data in SQL
-    - Select features best suited
-    - Transform data to create moving average field
+    - Feature selection
+    - Transform data, add moving average/ rolling total
     - Import into SQL Postgres Database 
 3. Update shapefile with QGIS
-    - Add 11 new corridors using vector tool
-    - Calculate length for existing field update
-    - Differentiate priority corridors
+    - Add more high KSI corridors using vector tool
+    - Calculate length for existing field and update
+    - Create boolean field for non-priority corridors
 4. Design Tableau dashboard
-    - Overview with aggregate chrash data
+    - Overview with aggregate crash data
     - Filters to drill-down into data
     - Corridor heat map
     - Additional filters for corridor selection
