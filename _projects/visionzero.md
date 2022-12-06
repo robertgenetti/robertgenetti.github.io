@@ -6,15 +6,15 @@ link: "https://public.tableau.com/views/Book4_16695084459570/Home-Page?:language
 ---
 
 
-The San Jose Vision Zero Initiative aims to eliminate fatal and severe injuries of traffic related accidents. The city initiative was implemented in 2015 and now has 19 streets it categorizes as priority safety corridors which have undergone significant re-engineering efforts. These projects under review by the Vision Zero team rely heavily on information from data-driven models to update current and future plans. _What benefit might the Vision Zero Initiative gain from having a dashboard with a heatmap feature to filter through traffic accident data by street(corridor) and type of injury?_
+The San Jose Vision Zero Initiative aims to eliminate fatal and severe traffic related injuries. The city initiative was implemented in 2015 and now has prioritized 19 safety corridors of which have undergone significant safety upgrades. Those projects the the Vision Zero Initiative review process depends on accurate and timely data visualizations to update and support its planning process. _What benefit might the Vision Zero Initiative gain from having a dashboard with a heatmap feature to filter through traffic accident data by street(corridor) and type of injury?_
 
 ### Problem
 
-The success of the Vision Zero Initiative in San Jose, CA greatly relies on having all traffic accident data easily interpreted and able to drill-down into specifics when necessary. Loss of time and resources may result from data visualizations being too complex and difficult to navigate.
+Current data visualization solutions do not have corridor filtered data in order to drill-down into specifics when necessary. The absense of a corridor-by-corridor look at the traffic accident data may limit the quality of the planning teams' ability to answer critical questions or track performance metrics.
 
 ### Solution 
 
-Present a clear representation of the traffic related accident data that is relevant to the types of questions being asked in this context. A clear yet fully functional dashboard has the potential to reduce time and resources while boosting productivity.
+Creating a data visualization that illustrates the trends of corridor specific related traffic accident data will increase planning productivity and its ability to set clear performance goals.
 
 <div class="col-12 text-center">
     <a href="{{page.link}}" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
