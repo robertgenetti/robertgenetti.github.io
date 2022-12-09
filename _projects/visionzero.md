@@ -10,11 +10,11 @@ The San Jose Vision Zero Initiative aims to eliminate fatal and severe traffic r
 
 ### Problem
 
-Current data visualization solutions do not include a corridor view data that drills down into crash data. The absense of a density map at the corridor level limits the planning and implementation process to only aggregate level.
+Current data visualization solutions do not include a corridor map that filters and displays crash data by corridor. Not having a density map of high KSI corridors constrains data interpretation to only an aggregate level.
 
 ### Solution 
 
-Creating a data visualization that illustrates the trends over time from corridors in the traffic accident data will increase the planning teams' ability to set clear performance goals and monitor the progress on past projects.
+Creating a data visualization that illustrates corridor level traffic accident data may increase corridor specific metrics and improve trend forecasting.
 
 <div class="col-12 text-center">
     <a href="{{page.link}}" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
