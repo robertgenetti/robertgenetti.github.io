@@ -60,8 +60,8 @@ Creating a data visualization that illustrates corridor level traffic accident d
     - Import into SQL Postgres Database 
 3. Update shapefile with QGIS
     - Add more high KSI corridors using vector tool
-    - Calculate length for existing field and update
-    - Create boolean field for non-priority corridors
+    - Calculate length for added corridor rows
+    - Create boolean field -- non-priority or priority corridor
 4. Design Tableau dashboard
     - Overview with aggregate crash data
     - Filters to drill-down into data
