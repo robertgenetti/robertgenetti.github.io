@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SJ Vision Zero</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/images/favicon.png">
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class='page page-services-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    <li><a href="/" class="">Home</a></li>
+    <li><a href="/projects/" class="current">Projects</a></li>
+    <!-- <li><a href="/team/" class="">Team</a></li>
+    <li><a href="/testimonials/" class="">Testimonials</a></li> -->
+    <li><a href="/contact/" class="">About Me</a></li>
+  </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header header-extra'>
+  <div class="container">
+   
+    <div class="logo">
+      <a href="/"><img alt="Figurit Homepage" src="/assets/images/logo-mobile.png" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    <li><a href="/" class="">Home</a></li>
+    <li><a href="/projects/" class="current">Projects</a></li>
+    <!-- <li><a href="/education/" class="">Education</a></li>
+    <li><a href="/interests/" class="">Interests</a></li> -->
+    <li><a href="/contact/" class="">About Me</a></li>
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+    <div class="strip strip-white strip-diagonal">
+  <div class="container pt-4 pt-md-10">
+    <div class="row justify-content-center">
+      <div class="col-12 px-4">
+        <div class="service service-single">
+          <h1 class="title text-center">SJ Vision Zero Project</h1>
+          <div style="display: flex;align-items: center;justify-content: center;">
+            <div class="whitebox mt-4 mb-12" style="max-width:750px;">
+              <img src="/images/projects/visionzero_hero.png" alt="SJ Vision Zero" style="width:100%; object-fit: cover;">
+            </div>
+          </div>
+          <div class="content"><p>San Jose joined the effort of cities across the United States to eliminate severe and fatal traffic related accidents. The Vision Zero Initiative is a bold new way of solving a long standing issue. Reduce traffic related injuries by upgrading street design to better safeguard transportation activity.</p>
+
+<h3 id="goal">Goal</h3>
+<p>The data collected from traffic accidents will serve as a guide to monitor and evaluate safety outcomes.</p>
+
+<h3 id="outcome">Outcome</h3>
+<p>Adding the corridor map view was an improvement to the insights gathering process. Through this I was able to identify several other corridors with frequently occurring traffic related injuries.</p>
+
+<div class="col-12 text-center">
+    <a href="https://public.tableau.com/views/VisionZero_16858311589970/Home-Page?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">Dashboard</a>
+    <!-- <a href="https://public.tableau.com/views/VisionZero_16858311589970/Home-Page?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">Report</a> -->
+</div>
+
+<h3 id="overview">Overview</h3>
+
+<p><b>Role:</b> Data Analyst</p>
+<p><b>Requirements:</b> Develop a vision zero dashboard</p>
+<p><b>Timeline:</b> Approximately 120 hours</p>
+<p><b>Tools:</b> Apache Airflow, Python, Jupyter Lab, QGIS, SQL, Azure Data Studio, Affinity Design, Tableau</p>
+
+<div class="container text-center my-4">
+    <div class="row justify-content-center">
+        <div class="col p-2">
+            <h3>Plan</h3>
+            <img src="/images/projects/Plan.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Extract</h3>
+            <img src="/images/projects/Extract.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Analyze</h3>
+            <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Visualize</h3>
+            <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+    </div>
+</div>
+
+<div class="mb-3"></div>
+
+<h3 id="plan-4-steps">Plan (4 Steps)</h3>
+<ol>
+  <li>Extract and Load
+    <ul>
+      <li>Pull crash data from San Jose Open Data Portal</li>
+      <li>Import dataframes into SQL Postgres Database</li>
+    </ul>
+  </li>
+  <li>Analyze data in SQL
+    <ul>
+      <li>Feature selection</li>
+      <li>Transform data, add moving average/ rolling total</li>
+      <li>Import into SQL Postgres Database</li>
+    </ul>
+  </li>
+  <li>Update shapefile with QGIS
+    <ul>
+      <li>Add more high KSI corridors using vector tool</li>
+      <li>Calculate length for added corridor rows</li>
+      <li>Create boolean field – non-priority or priority corridor</li>
+    </ul>
+  </li>
+  <li>Design Tableau dashboard
+    <ul>
+      <li>Overview with aggregate crash data</li>
+      <li>Filters to drill-down into data</li>
+      <li>Corridor heat map</li>
+      <li>Additional filters for corridor selection</li>
+      <li>information about Vision Zero Initiative (Refrences)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="extract-transform-and-load">Extract, Transform, and Load</h3>
+<ul>
+  <li>Data source: <a href="https://data.sanjoseca.gov/dataset/crash-locations1">Crash Locations</a></li>
+  <li>Three different datasets were collected: Crash Locations, Crash Vehicles Involved, and Safety Corridors</li>
+  <li>Crash Locations dataset features: date, age, lighting, weather, involved, narrative, violation</li>
+  <li>Crash Vehicles Involved dataset features: date, direction, damage, violation</li>
+  <li>Safety Corridors dataset features: streetname, limits, grantamount, notes</li>
+</ul>
+
+<h4 id="apache-airflow">Apache Airflow</h4>
+<ul>
+  <li>Build three DAG functions to auto extract and load data into Postgresql database</li>
+  <li>Set Airflow to run every week to update database</li>
+</ul>
+
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: Apache Airflow (Python)</h4>
+        <a href="/projects/visionzero//code#airflow" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/airflow_vision_zero.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h3 id="analyze-data">Analyze Data</h3>
+<ul>
+  <li>Feature selection - Azure Data Studio</li>
+</ul>
+
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: Azure Data Studio Code (SQL)</h4>
+        <a href="/projects/visionzero//code#sql" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/visionzerosj.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h4 id="qgis">QGIS</h4>
+<ul>
+  <li>Data source: Vision Zero Corridor dataset</li>
+  <li>Vector tool - Add corridors</li>
+  <li>Calculate - Update length field</li>
+</ul>
+
+<p><img src="/images/projects/qgis_snap.png" alt="screenshot" /></p>
+<div class="mb-3"></div>
+
+<h3 id="evaluate-results">Evaluate Results</h3>
+<ul>
+  <li>Design - Affinity Design</li>
+  <li>Visualization - Tableau</li>
+</ul>
+<div class="mb-3"></div>
+
+<h4 id="tableau-dashboard-shapshot-">Tableau Dashboard Shapshot 📸</h4>
+<p><img src="/images/projects/tableau_snap.png" alt="screenshot" /></p>
+<div class="mb-3"></div>
+
+<h3 id="conclusion">Conclusion</h3>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-6 mb-5">
+            <p>Downtown San Jose has always been a troublesome area for bicyclists, pedestrians, and motorists. Because of its busy streets and dense population the chances of being involved in a traffic related accident is more likely. In the last three year 7,728 traffic related injuries were recorded, most were minor injuries, but a significant amount were severe and even fatal. The Vision Zero Initiative aims to target these most troublesome streets and reimagine its use with safety as the priority.</p>
+            <p>While the San Jose Vision Zero Initiative has done a good job of targeting and redesigning several corridor streets labeling them as priority, other injury prone streets have not made the list. 10th street and Santa Clara street has a record of multiple severe and fatal injuries from motorists running red lights. Capital avenue and McKee road has multiple pedestrian injuries severe and fatal caused from jaywalking. A stretch of San Carlos from Race to Bascom has multiple severe and fatal injuries by pedestrians failing to yield to cars. The opportunity to improve yet more unsafe street designs still exists.</p>
+            <p>In this project we gathered traffic accident data to evaluate the safety outcomes of San Jose Vision Zero. The results of which revealed eleven corridors of interests for safety redesign in addition to the existing nineteen corridors that are already priority. For San Jose to achieve it objective and fully eliminate severe and fatal injures from traffic accidents the progress of previous redesign efforts must be focused towards safeguarding other corridors. If your interested visit <a href="https://www.sanjoseca.gov/your-government/departments-offices/transportation/safety/vision-zero" style="text-decoration:none;" target="_blank">https://www.sanjoseca.gov</a> to learn more about current action plans for San Jose Vision Zero.</p>
+            <div class="text-center">
+                <a href="https://public.tableau.com/views/VisionZero_16858311589970/Home-Page?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="whitebox"><a href="https://public.tableau.com/views/VisionZero_16858311589970/Home-Page?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" target="_blank">
+            <img src="/images/projects/visionzero.gif" alt="SJ Vision Zero" style="width:100%; height:auto; object-fit: cover;" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="footer-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="footer">
+          <h3 class="footer-title">Robert Genetti</h3>
+          <ul class="footer-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="sub-footer-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer">
+          <ul>
+            <li><strong>Phone: </strong>(669) 291-5278</li>
+            <li><strong>Email: </strong><a href="mailto:robertkgenetti@gmail.com">
+                robertkgenetti@gmail.com</a></li>
+          </ul>
+          <ul id="social" class="social">
+  <li>
+    <a class="social-github" href="https://github.com/robertgenetti" target="blank"><img src='/images/social/logo-github.png' alt="github-image" height="16"/></a>
+  </li>
+  <li>
+    <a class="social-linkedin" href="https://www.linkedin.com/in/robert-genetti-0ab34533" target="blank"><img src='/images/social/logo-linkedin.png' alt="linkedin-image" height="16"/></a>
+  </li>
+</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="/assets/js/scripts.js"></script>
+
+</body>
+</html>

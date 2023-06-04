@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Seattle Housing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/images/favicon.png">
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class='page page-services-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    <li><a href="/" class="">Home</a></li>
+    <li><a href="/projects/" class="current">Projects</a></li>
+    <!-- <li><a href="/team/" class="">Team</a></li>
+    <li><a href="/testimonials/" class="">Testimonials</a></li> -->
+    <li><a href="/contact/" class="">About Me</a></li>
+  </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header header-extra'>
+  <div class="container">
+   
+    <div class="logo">
+      <a href="/"><img alt="Figurit Homepage" src="/assets/images/logo-mobile.png" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    <li><a href="/" class="">Home</a></li>
+    <li><a href="/projects/" class="current">Projects</a></li>
+    <!-- <li><a href="/education/" class="">Education</a></li>
+    <li><a href="/interests/" class="">Interests</a></li> -->
+    <li><a href="/contact/" class="">About Me</a></li>
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+    <div class="strip strip-white strip-diagonal">
+  <div class="container pt-4 pt-md-10">
+    <div class="row justify-content-center">
+      <div class="col-12 px-4">
+        <div class="service service-single">
+          <h1 class="title text-center">Seattle Housing Project</h1>
+          <div style="display: flex;align-items: center;justify-content: center;">
+            <div class="whitebox mt-4 mb-12" style="max-width:750px;">
+              <img src="/images/projects/seattlehousing.png" alt="Seattle Housing" style="width:100%; object-fit: cover;">
+            </div>
+          </div>
+          <div class="content"><p>When residential property is in financial distress so too is the owner. In these trying times owners have little to guide them out from under this burden and often must wait to be foreclosed on. However this does not have to be the case, and in other instances can be an opportunity. When the going gets tough, the tough get going. Investors may step in before the foreclosure process and rescue the distressed property so that it may retain its value at the market rate.</p>
+
+<h3 id="goal">Goal</h3>
+
+<p>The challenge of investing in pre-foreclosure property is the increase in costs associated with identifying investment opportunities. In this project we aim to lower the research costs by improving investment prospects through a data-driven approach.</p>
+
+<h3 id="outcome">Outcome</h3>
+
+<p>A more streamline research experience for investors looking into the pre-foreclosure market has the benefit of lower barriers to entry and increased market clearing capacity.</p>
+
+<div class="col-12 text-center">
+    <a href="https://public.tableau.com/views/SeattlePre-foreclosureInvestmentTool/Dashboard1?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+</div>
+
+<h3 id="overview">Overview</h3>
+
+<p><b>Role:</b> Data Analyst</p>
+<p><b>Requirements:</b> Develop a pre-foreclosure property dashboard</p>
+<p><b>Timeline:</b> Approximately 80 hours</p>
+<p><b>Tools:</b> Python, Jupyter Lab, SQL, Azure Data Studio, Affinity Design, Tableau</p>
+
+<div class="container text-center my-4">
+    <div class="row justify-content-center">
+        <div class="col p-2">
+            <h3>Plan</h3>
+            <img src="/images/projects/Plan.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Extract</h3>
+            <img src="/images/projects/Extract.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Analyze</h3>
+            <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Visualize</h3>
+            <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+    </div>
+</div>
+
+<div class="mb-3"></div>
+
+<h3 id="plan-3-steps">Plan (3 Steps)</h3>
+<ol>
+  <li>Extract, Transform, and Load
+    <ul>
+      <li>Pull list of distressed properties from King County Records</li>
+      <li>Pull property details from related resources</li>
+      <li>Pull National Mortgage Database (NMDB) dataset</li>
+      <li>Sort and transform data in Pandas</li>
+      <li>import dataframes into SQL Postgres Database</li>
+    </ul>
+  </li>
+  <li>Create subsets in Azure Data Studio
+    <ul>
+      <li>Using SQL queries to create data tables</li>
+    </ul>
+  </li>
+  <li>Design Tableau dashboard
+    <ul>
+      <li>Map feature to filter by location</li>
+      <li>List for selection</li>
+      <li>Past due home loan data line chart</li>
+      <li>Display investment potential figures with params</li>
+      <li>Walkability Score</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="extract-transform-and-load">Extract, Transform, and Load</h3>
+<ul>
+  <li>Data sources: <a href="https://recordsearch.kingcounty.gov/LandmarkWeb/search/index?theme=.blue&amp;section=undefined&amp;quickSearchSelection=undefined">King County Records</a>, <a href="https://gismaps.kingcounty.gov/parcelviewer2/">Parcel Viewer</a>, <a href="https://www.fhfa.gov/DataTools/Downloads/Pages/National-Mortgage-Database-Aggregate-Data.aspx">National Mortgage Database</a></li>
+  <li>All fields were collected: property details, mortgage deliquency rates</li>
+</ul>
+
+<h4 id="jupyter-notebook">Jupyter Notebook</h4>
+<ul>
+  <li>Build Python functions to extract and load data into Postgresql database</li>
+  <li>Transform and join data from two sources</li>
+</ul>
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: JupyterLab (Python)</h4>
+        <a href="/projects/seattlehousing//code#python1" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/king_county_foreclosures.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h4 id="jupyter-notebook-1">Jupyter Notebook</h4>
+<ul>
+  <li>Build Python functions to extract and load data into Postgresql database</li>
+  <li>Filter data to only include most relevant</li>
+</ul>
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: JupyterLab (Python)</h4>
+        <a href="/projects/seattlehousing//code#python2" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/nmdb.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h3 id="analyze-data">Analyze Data</h3>
+<ul>
+  <li>Feature selection - Azure Data Studio</li>
+</ul>
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: Azure Data Studio Code (SQL)</h4>
+        <a href="/projects/seattlehousing//code#sql" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/seattle.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h3 id="evaluate-results">Evaluate Results</h3>
+<ul>
+  <li>Design dashboard elements - Affinity Design</li>
+  <li>Build sheets and dashboards - Tabeau</li>
+  <li>Main section with map for geographic context</li>
+  <li>Details section with investment costs estimates</li>
+  <li>Additional section with market context illustrating national deliquency rates</li>
+</ul>
+
+<div class="mb-3"></div>
+
+<h4 id="tableau-dashboard-shapshot-">Tableau Dashboard Shapshot 📸</h4>
+<p><img src="/images/projects/book2.png" alt="screenshot" /></p>
+<div class="mb-3"></div>
+
+<h3 id="conclusion">Conclusion</h3>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-6 mb-5">
+            <p>Not long ago the nation experienced a deep and painful recession and in this period of financial uncertainty many residential property under financial strain flooded the market. Market participants were slow to react and as a result prolonged the market clearing process. Pre-foreclosures being a prime example of this, represented an opportunity for unlocking great value.</p>
+            <p>How this value can be unlocked is not with anyone solution. But with this research tool we have created, I aim to reduce the costs of investment uncertainty and market research if it is only an incremental improvement. The greatest value is to the owners of these properties for which may improve their opportunities to recover and progress in their future.</p>
+            <p>This project examines potential areas for cost reduction and research efficiency by using a data-driven approach. Included in the research tool capability is a contextual map feature, delinquency rates graph, and investment costs estimation calculator. If interested in this market, and would like to become an investor yourself, pick up a copy of <i>Cashing In On Pre-foreclosures and Short Sales</i> by Chip Cummings.</p> 
+            <div class="text-center">
+                <a href="https://public.tableau.com/views/SeattlePre-foreclosureInvestmentTool/Dashboard1?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="whitebox"><a href="https://public.tableau.com/views/SeattlePre-foreclosureInvestmentTool/Dashboard1?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" target="_blank">
+            <img src="/images/projects/seattlehousing.gif" alt="Seattle Housing" style="width:100%; height:auto; object-fit: cover;" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="footer-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="footer">
+          <h3 class="footer-title">Robert Genetti</h3>
+          <ul class="footer-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="sub-footer-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer">
+          <ul>
+            <li><strong>Phone: </strong>(669) 291-5278</li>
+            <li><strong>Email: </strong><a href="mailto:robertkgenetti@gmail.com">
+                robertkgenetti@gmail.com</a></li>
+          </ul>
+          <ul id="social" class="social">
+  <li>
+    <a class="social-github" href="https://github.com/robertgenetti" target="blank"><img src='/images/social/logo-github.png' alt="github-image" height="16"/></a>
+  </li>
+  <li>
+    <a class="social-linkedin" href="https://www.linkedin.com/in/robert-genetti-0ab34533" target="blank"><img src='/images/social/logo-linkedin.png' alt="linkedin-image" height="16"/></a>
+  </li>
+</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="/assets/js/scripts.js"></script>
+
+</body>
+</html>

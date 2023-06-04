@@ -8,8 +8,13 @@ bodyClass: page-home
 
   <div class="intro pb-4 mt-6">
     <div class="container">
-      <h1>Robert Genetti</h1>
-      <p>{{ site.data.contact.intro }}</p>
+      <div class="row">
+        <div class="col-12 col-lg-10">
+          <h1>{{ site.data.contact.title }}</h1>
+          <p>{{ site.data.contact.intro }}</p>
+
+        </div>
+      </div>
     </div>
   </div>
 
@@ -30,12 +35,44 @@ bodyClass: page-home
   </div>
 
   <div class="container pt-8 pt-md-10">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h2 class="title-3 text-dark mb-4 mt-2">Professional Experience</h2>
+      </div>
+      <div class="col-12 text-center mb-2">
+        {% for job in site.data.experience %}
+        <h5><b>{{ job.title}}:</b> {{ job.description }}</h5>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="container pt-5 pt-md-7">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h2 class="title-3 text-dark mb-4">Areas of Interests</h2>
+      </div>
+      {% for interest in site.data.interests %}
+      <div class="col-12 col-md-6 col-lg-4 mb-2">
+        <div class="interest">
+          {% if interest.image %}<div class="interest-image"><img alt="{{ interest.title }} logo"
+              src="{{ interest.image }}" /></div> {% endif %}
+          <h2 class="interest-title">{{ interest.title }}</h2>
+          <div class="interest-content">{{ interest.description }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="container py-5 pt-md-7">
     <div class="row justify-content-start">
       <div class="col-12">
-        <h2 class="title-3 text-dark mb-3 mt-2">Projects</h2>
+        <h2 class="title-3 text-dark mb-3">Projects</h2>
       </div>
-      {% for project in site.projects reversed %}
-      <div class="col-12 col-md-4 mb-6">
+      {% assign projects = site.projects | sort: "order" %}
+      {% for project in projects reversed %}
+      <div class="col-12 col-md-4 mb-8">
         <div class="service-summary">
           <div class="service-content">
             <h2 class="service-title">
@@ -47,26 +84,8 @@ bodyClass: page-home
       </div>
       {% endfor %}
       <div class="col-12 text-center">
-        <a class="button button-primary mt-2" href="{{site.baseurl}}/projects">View All Projects</a>
+        <a class="button button-primary mb-10" href="{{site.baseurl}}/projects">View All Projects</a>
       </div>
-    </div>
-  </div>
-
-  <div class="container pt-5 pb-5 pt-md-7 pb-md-7">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <h2 class="title-3 text-dark mb-4 mt-2">Interests</h2>
-      </div>
-      {% for interest in site.data.interests %}
-      <div class="col-12 col-md-6 col-lg-4 mb-5">
-        <div class="interest">
-          {% if interest.image %}<div class="interest-image"><img alt="{{ interest.title }} logo"
-              src="{{ interest.image }}" /></div> {% endif %}
-          <h2 class="interest-title">{{ interest.title }}</h2>
-          <div class="interest-content">{{ interest.description }}</div>
-        </div>
-      </div>
-      {% endfor %}
     </div>
   </div>
 

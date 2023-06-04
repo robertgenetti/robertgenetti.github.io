@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>sp500_lm</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+<head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
+     <title>sp500_lm</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+     <!-- Custom stylesheet, it must be in the same directory as the html file -->
+     <link rel="stylesheet" href="custom.css">
+
+     <!-- Load mathjax -->
+     <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
+     <!-- MathJax configuration -->
+     <script type="text/x-mathjax-config">
     init_mathjax = function() {
         if (window.MathJax) {
         // MathJax loaded
@@ -40,35 +44,63 @@
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --></head>
+     <!-- End of mathjax configuration -->
+</head>
+
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[99]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># load packages</span>
+     <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">
+                    </div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput "
+                         data-mime-type="text/markdown">
+                         <h1 id="S&amp;P-500-Ranking-Project---Linear-Model-Feature-Selection">S&amp;P 500 Screener
+                              Project - OLS Model<a class="anchor-link"
+                                   href="#S&amp;P-500-Ranking-Project---Linear-Model-Feature-Selection">&#182;</a></h1>
+                         <h2 id="Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">R: Select best fit
+                              model to estimate buy/sell recommendation<a class="anchor-link"
+                                   href="#Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">&#182;</a>
+                         </h2>
+
+
+                    </div>
+               </div>
+          </div>
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[99]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="c1"># load packages</span>
 <span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="n">pacman</span><span class="p">))</span> <span class="nf">install.packages</span><span class="p">(</span><span class="s">"pacman"</span><span class="p">)</span>
 <span class="n">pacman</span><span class="o">::</span><span class="nf">p_load</span><span class="p">(</span><span class="n">pacman</span><span class="p">,</span> <span class="n">RPostgreSQL</span><span class="p">,</span> <span class="n">ggplot2</span><span class="p">,</span> <span class="n">tidyverse</span><span class="p">,</span> <span class="n">dplyr</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">tryCatch</span><span class="p">({</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">tryCatch</span><span class="p">({</span>
     <span class="n">drv</span> <span class="o">&lt;-</span> <span class="nf">dbDriver</span><span class="p">(</span><span class="s">"PostgreSQL"</span><span class="p">)</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"Connecting to Database…"</span><span class="p">)</span>
     <span class="n">connec</span> <span class="o">&lt;-</span> <span class="nf">dbConnect</span><span class="p">(</span><span class="n">drv</span><span class="p">,</span> 
@@ -82,749 +114,1609 @@
     <span class="n">error</span><span class="o">=</span><span class="nf">function</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span> <span class="p">{</span>
             <span class="nf">print</span><span class="p">(</span><span class="s">"Unable to connect to Database."</span><span class="p">)</span>
     <span class="p">})</span>
-</pre></div>
+</pre>
+                              </div>
 
-     </div>
-</div>
-</div>
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[1] &#34;Connecting to Database…&#34;
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                         <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                              <pre>[1] &#34;Connecting to Database…&#34;
 [1] &#34;Database Connected!&#34;
 </pre>
-</div>
-</div>
+                         </div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
+          </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">connec</span><span class="p">,</span> <span class="s">"SELECT * FROM \"SP500LM\""</span><span class="p">)</span>
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">connec</span><span class="p">,</span> <span class="s">"SELECT * FROM \"SP500LM\""</span><span class="p">)</span>
 <span class="nf">tail</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <table class="dataframe">
+                                   <caption>A data.frame: 6 × 12</caption>
+                                   <thead>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>symbol</th>
+                                             <th scope=col>priceToSales</th>
+                                             <th scope=col>priceToBook</th>
+                                             <th scope=col>dividendYield</th>
+                                             <th scope=col>debtToEquity</th>
+                                             <th scope=col>marketCap</th>
+                                             <th scope=col>CARG</th>
+                                             <th scope=col>CANSG</th>
+                                             <th scope=col>opMarg</th>
+                                             <th scope=col>intCov</th>
+                                             <th scope=col>sector</th>
+                                             <th scope=col>rating</th>
+                                        </tr>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr>
+                                             <th scope=row>497</th>
+                                             <td>XYL </td>
+                                             <td>3.135184</td>
+                                             <td> 5.505256</td>
+                                             <td>0.0130</td>
+                                             <td> 78.166</td>
+                                             <td>16337443840</td>
+                                             <td>-0.0007685965</td>
+                                             <td>0</td>
+                                             <td>0.1362332</td>
+                                             <td> 7.078947</td>
+                                             <td>Industrials </td>
+                                             <td>2.500000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>498</th>
+                                             <td>YUM </td>
+                                             <td>4.847612</td>
+                                             <td> 0.000000</td>
+                                             <td>0.0186</td>
+                                             <td> 0.000</td>
+                                             <td>32212383744</td>
+                                             <td> 0.0499569186</td>
+                                             <td>0</td>
+                                             <td>0.2329258</td>
+                                             <td> 3.096189</td>
+                                             <td>Consumer Cyclical </td>
+                                             <td>1.857143</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>499</th>
+                                             <td>ZBH </td>
+                                             <td>2.855887</td>
+                                             <td> 1.838131</td>
+                                             <td>0.0087</td>
+                                             <td> 53.098</td>
+                                             <td>22555797504</td>
+                                             <td>-0.0040788575</td>
+                                             <td>0</td>
+                                             <td>0.1954320</td>
+                                             <td> 7.193858</td>
+                                             <td>Healthcare </td>
+                                             <td>2.500000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>500</th>
+                                             <td>ZBRA</td>
+                                             <td>2.560271</td>
+                                             <td> 6.823679</td>
+                                             <td>0.0000</td>
+                                             <td> 43.221</td>
+                                             <td>14624266240</td>
+                                             <td> 0.1008117913</td>
+                                             <td>0</td>
+                                             <td>0.1862731</td>
+                                             <td>213.800000</td>
+                                             <td>Technology </td>
+                                             <td>2.666667</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>501</th>
+                                             <td>ZION</td>
+                                             <td>2.823184</td>
+                                             <td> 1.163843</td>
+                                             <td>0.0279</td>
+                                             <td> 0.000</td>
+                                             <td> 8190056448</td>
+                                             <td> 0.0413673890</td>
+                                             <td>0</td>
+                                             <td>0.2915183</td>
+                                             <td> 0.000000</td>
+                                             <td>Financial Services</td>
+                                             <td>2.666667</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>502</th>
+                                             <td>ZTS </td>
+                                             <td>9.156736</td>
+                                             <td>19.260940</td>
+                                             <td>0.0071</td>
+                                             <td>144.912</td>
+                                             <td>72255807488</td>
+                                             <td> 0.1010567650</td>
+                                             <td>0</td>
+                                             <td>0.2992832</td>
+                                             <td> 9.879464</td>
+                                             <td>Healthcare </td>
+                                             <td>1.250000</td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">priceToSales</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
+</pre>
+                              </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table class="dataframe">
-<caption>A data.frame: 6 × 12</caption>
-<thead>
-	<tr><th></th><th scope=col>symbol</th><th scope=col>priceToSales</th><th scope=col>priceToBook</th><th scope=col>dividendYield</th><th scope=col>debtToEquity</th><th scope=col>marketCap</th><th scope=col>CARG</th><th scope=col>CANSG</th><th scope=col>opMarg</th><th scope=col>intCov</th><th scope=col>sector</th><th scope=col>rating</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>497</th><td>XYL </td><td>3.135184</td><td> 5.505256</td><td>0.0130</td><td> 78.166</td><td>16337443840</td><td>-0.0007685965</td><td>0</td><td>0.1362332</td><td>  7.078947</td><td>Industrials       </td><td>2.500000</td></tr>
-	<tr><th scope=row>498</th><td>YUM </td><td>4.847612</td><td> 0.000000</td><td>0.0186</td><td>  0.000</td><td>32212383744</td><td> 0.0499569186</td><td>0</td><td>0.2329258</td><td>  3.096189</td><td>Consumer Cyclical </td><td>1.857143</td></tr>
-	<tr><th scope=row>499</th><td>ZBH </td><td>2.855887</td><td> 1.838131</td><td>0.0087</td><td> 53.098</td><td>22555797504</td><td>-0.0040788575</td><td>0</td><td>0.1954320</td><td>  7.193858</td><td>Healthcare        </td><td>2.500000</td></tr>
-	<tr><th scope=row>500</th><td>ZBRA</td><td>2.560271</td><td> 6.823679</td><td>0.0000</td><td> 43.221</td><td>14624266240</td><td> 0.1008117913</td><td>0</td><td>0.1862731</td><td>213.800000</td><td>Technology        </td><td>2.666667</td></tr>
-	<tr><th scope=row>501</th><td>ZION</td><td>2.823184</td><td> 1.163843</td><td>0.0279</td><td>  0.000</td><td> 8190056448</td><td> 0.0413673890</td><td>0</td><td>0.2915183</td><td>  0.000000</td><td>Financial Services</td><td>2.666667</td></tr>
-	<tr><th scope=row>502</th><td>ZTS </td><td>9.156736</td><td>19.260940</td><td>0.0071</td><td>144.912</td><td>72255807488</td><td> 0.1010567650</td><td>0</td><td>0.2992832</td><td>  9.879464</td><td>Healthcare        </td><td>1.250000</td></tr>
-</tbody>
-</table>
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph1.svg" width="504pt" height="504pt"></img>
+                         </div>
 
-</div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">priceToSales</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">dividendYield</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
+</pre>
+                              </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-<img src="/images/projects/graph1.svg" width="504pt" height="504pt"></img>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">dividendYield</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph2.svg" width="504pt" height="504pt"></img>
-</div>
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph2.svg" width="504pt" height="504pt"></img>
+                         </div>
 
-</div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">opMarg</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">opMarg</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
+</pre>
+                              </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph3.svg" width="504pt" height="504pt"></img>
-</div>
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph3.svg" width="504pt" height="504pt"></img>
+                         </div>
 
-</div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
+          </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">test_cyc</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Consumer Defensive"</span><span class="p">)</span>
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">test_cyc</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Consumer Defensive"</span><span class="p">)</span>
 <span class="nf">tail</span><span class="p">(</span><span class="n">test_cyc</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">test_cyc</span><span class="o">$</span><span class="n">intCov</span><span class="p">),])</span>
 
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">intCov</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <table class="dataframe">
+                                   <caption>A data.frame: 6 × 12</caption>
+                                   <thead>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>symbol</th>
+                                             <th scope=col>priceToSales</th>
+                                             <th scope=col>priceToBook</th>
+                                             <th scope=col>dividendYield</th>
+                                             <th scope=col>debtToEquity</th>
+                                             <th scope=col>marketCap</th>
+                                             <th scope=col>CARG</th>
+                                             <th scope=col>CANSG</th>
+                                             <th scope=col>opMarg</th>
+                                             <th scope=col>intCov</th>
+                                             <th scope=col>sector</th>
+                                             <th scope=col>rating</th>
+                                        </tr>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr>
+                                             <th scope=row>157</th>
+                                             <td>EL </td>
+                                             <td>4.3433313</td>
+                                             <td>14.333968</td>
+                                             <td>0.0088</td>
+                                             <td>110.523</td>
+                                             <td> 78666416128</td>
+                                             <td>0.05821139</td>
+                                             <td>0.000000000</td>
+                                             <td> 0.18500557</td>
+                                             <td> 20.98844</td>
+                                             <td>Consumer Defensive</td>
+                                             <td>1.727273</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>225</th>
+                                             <td>HRL </td>
+                                             <td>2.0136251</td>
+                                             <td> 3.810466</td>
+                                             <td>0.0211</td>
+                                             <td> 45.212</td>
+                                             <td> 25088436224</td>
+                                             <td>0.06034583</td>
+                                             <td>0.005112769</td>
+                                             <td> 0.10816551</td>
+                                             <td> 23.13561</td>
+                                             <td>Consumer Defensive</td>
+                                             <td>3.000000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>12</th>
+                                             <td>ADM </td>
+                                             <td>0.4843027</td>
+                                             <td> 2.191079</td>
+                                             <td>0.0193</td>
+                                             <td> 50.788</td>
+                                             <td> 45700739072</td>
+                                             <td>0.09830687</td>
+                                             <td>0.053573828</td>
+                                             <td>-0.02959775</td>
+                                             <td> 24.88679</td>
+                                             <td>Consumer Defensive</td>
+                                             <td>2.600000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>366</th>
+                                             <td>PG </td>
+                                             <td>3.8900514</td>
+                                             <td> 6.901905</td>
+                                             <td>0.0263</td>
+                                             <td> 67.215</td>
+                                             <td>311931535360</td>
+                                             <td>0.05811584</td>
+                                             <td>0.442118260</td>
+                                             <td> 0.23009448</td>
+                                             <td> 38.09339</td>
+                                             <td>Consumer Defensive</td>
+                                             <td>1.833333</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>110</th>
+                                             <td>COST</td>
+                                             <td>0.9699068</td>
+                                             <td>13.456687</td>
+                                             <td>0.0067</td>
+                                             <td> 44.050</td>
+                                             <td>210991595520</td>
+                                             <td>0.11479989</td>
+                                             <td>0.000000000</td>
+                                             <td> 0.04531590</td>
+                                             <td> 52.38596</td>
+                                             <td>Consumer Defensive</td>
+                                             <td>1.800000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>307</th>
+                                             <td>MNST</td>
+                                             <td>8.0988750</td>
+                                             <td> 9.107746</td>
+                                             <td>0.0000</td>
+                                             <td> 0.500</td>
+                                             <td> 47103950848</td>
+                                             <td>0.13324502</td>
+                                             <td>0.004730752</td>
+                                             <td> 0.26888066</td>
+                                             <td>392.81342</td>
+                                             <td>Consumer Defensive</td>
+                                             <td>2.500000</td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+
+                         </div>
+
+                    </div>
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph4.svg" width="504pt" height="504pt"></img>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table class="dataframe">
-<caption>A data.frame: 6 × 12</caption>
-<thead>
-	<tr><th></th><th scope=col>symbol</th><th scope=col>priceToSales</th><th scope=col>priceToBook</th><th scope=col>dividendYield</th><th scope=col>debtToEquity</th><th scope=col>marketCap</th><th scope=col>CARG</th><th scope=col>CANSG</th><th scope=col>opMarg</th><th scope=col>intCov</th><th scope=col>sector</th><th scope=col>rating</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>157</th><td>EL  </td><td>4.3433313</td><td>14.333968</td><td>0.0088</td><td>110.523</td><td> 78666416128</td><td>0.05821139</td><td>0.000000000</td><td> 0.18500557</td><td> 20.98844</td><td>Consumer Defensive</td><td>1.727273</td></tr>
-	<tr><th scope=row>225</th><td>HRL </td><td>2.0136251</td><td> 3.810466</td><td>0.0211</td><td> 45.212</td><td> 25088436224</td><td>0.06034583</td><td>0.005112769</td><td> 0.10816551</td><td> 23.13561</td><td>Consumer Defensive</td><td>3.000000</td></tr>
-	<tr><th scope=row>12</th><td>ADM </td><td>0.4843027</td><td> 2.191079</td><td>0.0193</td><td> 50.788</td><td> 45700739072</td><td>0.09830687</td><td>0.053573828</td><td>-0.02959775</td><td> 24.88679</td><td>Consumer Defensive</td><td>2.600000</td></tr>
-	<tr><th scope=row>366</th><td>PG  </td><td>3.8900514</td><td> 6.901905</td><td>0.0263</td><td> 67.215</td><td>311931535360</td><td>0.05811584</td><td>0.442118260</td><td> 0.23009448</td><td> 38.09339</td><td>Consumer Defensive</td><td>1.833333</td></tr>
-	<tr><th scope=row>110</th><td>COST</td><td>0.9699068</td><td>13.456687</td><td>0.0067</td><td> 44.050</td><td>210991595520</td><td>0.11479989</td><td>0.000000000</td><td> 0.04531590</td><td> 52.38596</td><td>Consumer Defensive</td><td>1.800000</td></tr>
-	<tr><th scope=row>307</th><td>MNST</td><td>8.0988750</td><td> 9.107746</td><td>0.0000</td><td>  0.500</td><td> 47103950848</td><td>0.13324502</td><td>0.004730752</td><td> 0.26888066</td><td>392.81342</td><td>Consumer Defensive</td><td>2.500000</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph4.svg" width="504pt" height="504pt"></img>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[60]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">test_cansg</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Technology"</span><span class="p">)</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[60]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">test_cansg</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Technology"</span><span class="p">)</span>
 <span class="nf">tail</span><span class="p">(</span><span class="n">test_cansg</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">test_cansg</span><span class="o">$</span><span class="n">CANSG</span><span class="p">),])</span>
 
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">CANSG</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <table class="dataframe">
+                                   <caption>A data.frame: 6 × 12</caption>
+                                   <thead>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>symbol</th>
+                                             <th scope=col>priceToSales</th>
+                                             <th scope=col>priceToBook</th>
+                                             <th scope=col>dividendYield</th>
+                                             <th scope=col>debtToEquity</th>
+                                             <th scope=col>marketCap</th>
+                                             <th scope=col>CARG</th>
+                                             <th scope=col>CANSG</th>
+                                             <th scope=col>opMarg</th>
+                                             <th scope=col>intCov</th>
+                                             <th scope=col>sector</th>
+                                             <th scope=col>rating</th>
+                                        </tr>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr>
+                                             <th scope=row>36</th>
+                                             <td>ANET</td>
+                                             <td>11.229631</td>
+                                             <td> 2.647189</td>
+                                             <td>0.000</td>
+                                             <td> 1.384</td>
+                                             <td>35458023424</td>
+                                             <td>0.11069462</td>
+                                             <td>0.4421183</td>
+                                             <td>0.3237822</td>
+                                             <td> 0.000000</td>
+                                             <td>Technology</td>
+                                             <td>2.363636</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>185</th>
+                                             <td>FFIV</td>
+                                             <td> 3.426164</td>
+                                             <td> 4.481531</td>
+                                             <td>0.000</td>
+                                             <td> 26.674</td>
+                                             <td> 9174612992</td>
+                                             <td>0.06396900</td>
+                                             <td>0.4421183</td>
+                                             <td>0.3036429</td>
+                                             <td> 0.000000</td>
+                                             <td>Technology</td>
+                                             <td>2.625000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>263</th>
+                                             <td>KLAC</td>
+                                             <td> 5.246267</td>
+                                             <td>15.692973</td>
+                                             <td>0.011</td>
+                                             <td>476.075</td>
+                                             <td>48327995392</td>
+                                             <td>0.26324296</td>
+                                             <td>0.4421183</td>
+                                             <td>0.2914832</td>
+                                             <td> 0.000000</td>
+                                             <td>Technology</td>
+                                             <td>2.222222</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>281</th>
+                                             <td>LRCX</td>
+                                             <td> 3.228145</td>
+                                             <td>10.485836</td>
+                                             <td>0.012</td>
+                                             <td> 79.731</td>
+                                             <td>55611383808</td>
+                                             <td>0.21374443</td>
+                                             <td>0.4421183</td>
+                                             <td>0.2414883</td>
+                                             <td> 0.000000</td>
+                                             <td>Technology</td>
+                                             <td>2.150000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>293</th>
+                                             <td>MCHP</td>
+                                             <td> 5.192484</td>
+                                             <td> 3.244548</td>
+                                             <td>0.016</td>
+                                             <td>133.170</td>
+                                             <td>35417415680</td>
+                                             <td>0.08434484</td>
+                                             <td>0.4421183</td>
+                                             <td>0.3437371</td>
+                                             <td>11.061089</td>
+                                             <td>Technology</td>
+                                             <td>1.857143</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>471</th>
+                                             <td>VRSN</td>
+                                             <td>14.536477</td>
+                                             <td> 0.000000</td>
+                                             <td>0.000</td>
+                                             <td> 0.000</td>
+                                             <td>19964049408</td>
+                                             <td>0.02997862</td>
+                                             <td>0.4421183</td>
+                                             <td>0.5928969</td>
+                                             <td> 9.694937</td>
+                                             <td>Technology</td>
+                                             <td>3.000000</td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+
+                         </div>
+
+                    </div>
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph5.svg" width="504pt" height="504pt"></img>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table class="dataframe">
-<caption>A data.frame: 6 × 12</caption>
-<thead>
-	<tr><th></th><th scope=col>symbol</th><th scope=col>priceToSales</th><th scope=col>priceToBook</th><th scope=col>dividendYield</th><th scope=col>debtToEquity</th><th scope=col>marketCap</th><th scope=col>CARG</th><th scope=col>CANSG</th><th scope=col>opMarg</th><th scope=col>intCov</th><th scope=col>sector</th><th scope=col>rating</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>36</th><td>ANET</td><td>11.229631</td><td> 2.647189</td><td>0.000</td><td>  1.384</td><td>35458023424</td><td>0.11069462</td><td>0.4421183</td><td>0.3237822</td><td> 0.000000</td><td>Technology</td><td>2.363636</td></tr>
-	<tr><th scope=row>185</th><td>FFIV</td><td> 3.426164</td><td> 4.481531</td><td>0.000</td><td> 26.674</td><td> 9174612992</td><td>0.06396900</td><td>0.4421183</td><td>0.3036429</td><td> 0.000000</td><td>Technology</td><td>2.625000</td></tr>
-	<tr><th scope=row>263</th><td>KLAC</td><td> 5.246267</td><td>15.692973</td><td>0.011</td><td>476.075</td><td>48327995392</td><td>0.26324296</td><td>0.4421183</td><td>0.2914832</td><td> 0.000000</td><td>Technology</td><td>2.222222</td></tr>
-	<tr><th scope=row>281</th><td>LRCX</td><td> 3.228145</td><td>10.485836</td><td>0.012</td><td> 79.731</td><td>55611383808</td><td>0.21374443</td><td>0.4421183</td><td>0.2414883</td><td> 0.000000</td><td>Technology</td><td>2.150000</td></tr>
-	<tr><th scope=row>293</th><td>MCHP</td><td> 5.192484</td><td> 3.244548</td><td>0.016</td><td>133.170</td><td>35417415680</td><td>0.08434484</td><td>0.4421183</td><td>0.3437371</td><td>11.061089</td><td>Technology</td><td>1.857143</td></tr>
-	<tr><th scope=row>471</th><td>VRSN</td><td>14.536477</td><td> 0.000000</td><td>0.000</td><td>  0.000</td><td>19964049408</td><td>0.02997862</td><td>0.4421183</td><td>0.5928969</td><td> 9.694937</td><td>Technology</td><td>3.000000</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph5.svg" width="504pt" height="504pt"></img>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">test_carg</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Healthcare"</span><span class="p">)</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">test_carg</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Healthcare"</span><span class="p">)</span>
 <span class="nf">tail</span><span class="p">(</span><span class="n">test_carg</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">test_carg</span><span class="o">$</span><span class="n">CARG</span><span class="p">),])</span>
 
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">CARG</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <table class="dataframe">
+                                   <caption>A data.frame: 6 × 12</caption>
+                                   <thead>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>symbol</th>
+                                             <th scope=col>priceToSales</th>
+                                             <th scope=col>priceToBook</th>
+                                             <th scope=col>dividendYield</th>
+                                             <th scope=col>debtToEquity</th>
+                                             <th scope=col>marketCap</th>
+                                             <th scope=col>CARG</th>
+                                             <th scope=col>CANSG</th>
+                                             <th scope=col>opMarg</th>
+                                             <th scope=col>intCov</th>
+                                             <th scope=col>sector</th>
+                                             <th scope=col>rating</th>
+                                        </tr>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr>
+                                             <th scope=row>105</th>
+                                             <td>CNC </td>
+                                             <td>0.3568911</td>
+                                             <td> 1.762078</td>
+                                             <td>0.0000</td>
+                                             <td>83.680</td>
+                                             <td>46481850368</td>
+                                             <td>0.2773785</td>
+                                             <td> 0.000000000</td>
+                                             <td> 0.03277978</td>
+                                             <td> 6.323308</td>
+                                             <td>Healthcare</td>
+                                             <td>1.818182</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>150</th>
+                                             <td>DXCM</td>
+                                             <td>3.0449908</td>
+                                             <td> 4.267568</td>
+                                             <td>0.0000</td>
+                                             <td>94.751</td>
+                                             <td> 8140478464</td>
+                                             <td>0.3338239</td>
+                                             <td> 0.000000000</td>
+                                             <td> 0.19001796</td>
+                                             <td> 4.411765</td>
+                                             <td>Healthcare</td>
+                                             <td>2.250000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>472</th>
+                                             <td>VRTX</td>
+                                             <td>9.5678800</td>
+                                             <td> 8.620013</td>
+                                             <td>0.0000</td>
+                                             <td> 7.999</td>
+                                             <td>76041682944</td>
+                                             <td>0.3544536</td>
+                                             <td>-0.006057656</td>
+                                             <td> 0.41676951</td>
+                                             <td> 42.983740</td>
+                                             <td>Healthcare</td>
+                                             <td>2.300000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>95</th>
+                                             <td>CI </td>
+                                             <td>0.5371745</td>
+                                             <td> 2.022405</td>
+                                             <td>0.0163</td>
+                                             <td>73.102</td>
+                                             <td>95073427456</td>
+                                             <td>0.4070775</td>
+                                             <td> 0.000000000</td>
+                                             <td> 0.06126098</td>
+                                             <td> 5.531538</td>
+                                             <td>Healthcare</td>
+                                             <td>2.117647</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>314</th>
+                                             <td>MRNA</td>
+                                             <td>2.1643136</td>
+                                             <td>18.782501</td>
+                                             <td>0.0000</td>
+                                             <td> 5.546</td>
+                                             <td>48913485824</td>
+                                             <td>0.4070775</td>
+                                             <td> 0.000000000</td>
+                                             <td>-0.06295800</td>
+                                             <td>392.813417</td>
+                                             <td>Healthcare</td>
+                                             <td>3.200000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>392</th>
+                                             <td>REGN</td>
+                                             <td>4.7639020</td>
+                                             <td> 6.895521</td>
+                                             <td>0.0000</td>
+                                             <td>13.560</td>
+                                             <td>78642970624</td>
+                                             <td>0.4070775</td>
+                                             <td> 0.000000000</td>
+                                             <td> 0.38647089</td>
+                                             <td>123.582897</td>
+                                             <td>Healthcare</td>
+                                             <td>2.692308</td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+
+                         </div>
+
+                    </div>
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph6.svg" width="504pt" height="504pt"></img>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table class="dataframe">
-<caption>A data.frame: 6 × 12</caption>
-<thead>
-	<tr><th></th><th scope=col>symbol</th><th scope=col>priceToSales</th><th scope=col>priceToBook</th><th scope=col>dividendYield</th><th scope=col>debtToEquity</th><th scope=col>marketCap</th><th scope=col>CARG</th><th scope=col>CANSG</th><th scope=col>opMarg</th><th scope=col>intCov</th><th scope=col>sector</th><th scope=col>rating</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>105</th><td>CNC </td><td>0.3568911</td><td> 1.762078</td><td>0.0000</td><td>83.680</td><td>46481850368</td><td>0.2773785</td><td> 0.000000000</td><td> 0.03277978</td><td>  6.323308</td><td>Healthcare</td><td>1.818182</td></tr>
-	<tr><th scope=row>150</th><td>DXCM</td><td>3.0449908</td><td> 4.267568</td><td>0.0000</td><td>94.751</td><td> 8140478464</td><td>0.3338239</td><td> 0.000000000</td><td> 0.19001796</td><td>  4.411765</td><td>Healthcare</td><td>2.250000</td></tr>
-	<tr><th scope=row>472</th><td>VRTX</td><td>9.5678800</td><td> 8.620013</td><td>0.0000</td><td> 7.999</td><td>76041682944</td><td>0.3544536</td><td>-0.006057656</td><td> 0.41676951</td><td> 42.983740</td><td>Healthcare</td><td>2.300000</td></tr>
-	<tr><th scope=row>95</th><td>CI  </td><td>0.5371745</td><td> 2.022405</td><td>0.0163</td><td>73.102</td><td>95073427456</td><td>0.4070775</td><td> 0.000000000</td><td> 0.06126098</td><td>  5.531538</td><td>Healthcare</td><td>2.117647</td></tr>
-	<tr><th scope=row>314</th><td>MRNA</td><td>2.1643136</td><td>18.782501</td><td>0.0000</td><td> 5.546</td><td>48913485824</td><td>0.4070775</td><td> 0.000000000</td><td>-0.06295800</td><td>392.813417</td><td>Healthcare</td><td>3.200000</td></tr>
-	<tr><th scope=row>392</th><td>REGN</td><td>4.7639020</td><td> 6.895521</td><td>0.0000</td><td>13.560</td><td>78642970624</td><td>0.4070775</td><td> 0.000000000</td><td> 0.38647089</td><td>123.582897</td><td>Healthcare</td><td>2.692308</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph6.svg" width="504pt" height="504pt"></img>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[69]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">test_marketCap</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Technology"</span><span class="p">)</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[69]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">test_marketCap</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Technology"</span><span class="p">)</span>
 <span class="nf">tail</span><span class="p">(</span><span class="n">test_marketCap</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">test_marketCap</span><span class="o">$</span><span class="n">marketCap</span><span class="p">),])</span>
 
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">marketCap</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+</pre>
+                              </div>
 
-     </div>
-</div>
-</div>
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table class="dataframe">
-<caption>A data.frame: 6 × 12</caption>
-<thead>
-	<tr><th></th><th scope=col>symbol</th><th scope=col>priceToSales</th><th scope=col>priceToBook</th><th scope=col>dividendYield</th><th scope=col>debtToEquity</th><th scope=col>marketCap</th><th scope=col>CARG</th><th scope=col>CANSG</th><th scope=col>opMarg</th><th scope=col>intCov</th><th scope=col>sector</th><th scope=col>rating</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>353</th><td>ORCL</td><td> 3.957854</td><td>20.461940</td><td>0.0164</td><td>  0.000</td><td>25.84706</td><td>0.024160905</td><td>-0.001252388</td><td>0.3304686</td><td> 3.462432</td><td>Technology</td><td>2.700000</td></tr>
-	<tr><th scope=row>116</th><td>CSCO</td><td> 3.368790</td><td> 4.445404</td><td>0.0335</td><td> 25.985</td><td>25.88097</td><td>0.003276903</td><td>-0.003692556</td><td>0.3012853</td><td>35.608295</td><td>Technology</td><td>2.684211</td></tr>
-	<tr><th scope=row>48</th><td>AVGO</td><td> 6.306811</td><td> 7.797709</td><td>0.0306</td><td>188.023</td><td>25.96589</td><td>0.096382079</td><td> 0.000000000</td><td>0.4653466</td><td> 7.301857</td><td>Technology</td><td>1.200000</td></tr>
-	<tr><th scope=row>341</th><td>NVDA</td><td>10.590220</td><td> 4.607480</td><td>0.0009</td><td> 45.008</td><td>26.46898</td><td>0.318381540</td><td> 0.440677729</td><td>0.3607758</td><td>38.593220</td><td>Technology</td><td>2.000000</td></tr>
-	<tr><th scope=row>318</th><td>MSFT</td><td> 9.106365</td><td>13.470004</td><td>0.0088</td><td> 47.075</td><td>28.22187</td><td>0.163571170</td><td> 0.034525303</td><td>0.4361364</td><td>43.495359</td><td>Technology</td><td>1.592593</td></tr>
-	<tr><th scope=row>4</th><td>AAPL</td><td> 6.015734</td><td>34.274002</td><td>0.0057</td><td>205.984</td><td>28.47747</td><td>0.113028291</td><td> 0.126278356</td><td>0.2841341</td><td>39.333837</td><td>Technology</td><td>2.050000</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>Warning message:
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <table class="dataframe">
+                                   <caption>A data.frame: 6 × 12</caption>
+                                   <thead>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>symbol</th>
+                                             <th scope=col>priceToSales</th>
+                                             <th scope=col>priceToBook</th>
+                                             <th scope=col>dividendYield</th>
+                                             <th scope=col>debtToEquity</th>
+                                             <th scope=col>marketCap</th>
+                                             <th scope=col>CARG</th>
+                                             <th scope=col>CANSG</th>
+                                             <th scope=col>opMarg</th>
+                                             <th scope=col>intCov</th>
+                                             <th scope=col>sector</th>
+                                             <th scope=col>rating</th>
+                                        </tr>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr>
+                                             <th scope=row>353</th>
+                                             <td>ORCL</td>
+                                             <td> 3.957854</td>
+                                             <td>20.461940</td>
+                                             <td>0.0164</td>
+                                             <td> 0.000</td>
+                                             <td>25.84706</td>
+                                             <td>0.024160905</td>
+                                             <td>-0.001252388</td>
+                                             <td>0.3304686</td>
+                                             <td> 3.462432</td>
+                                             <td>Technology</td>
+                                             <td>2.700000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>116</th>
+                                             <td>CSCO</td>
+                                             <td> 3.368790</td>
+                                             <td> 4.445404</td>
+                                             <td>0.0335</td>
+                                             <td> 25.985</td>
+                                             <td>25.88097</td>
+                                             <td>0.003276903</td>
+                                             <td>-0.003692556</td>
+                                             <td>0.3012853</td>
+                                             <td>35.608295</td>
+                                             <td>Technology</td>
+                                             <td>2.684211</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>48</th>
+                                             <td>AVGO</td>
+                                             <td> 6.306811</td>
+                                             <td> 7.797709</td>
+                                             <td>0.0306</td>
+                                             <td>188.023</td>
+                                             <td>25.96589</td>
+                                             <td>0.096382079</td>
+                                             <td> 0.000000000</td>
+                                             <td>0.4653466</td>
+                                             <td> 7.301857</td>
+                                             <td>Technology</td>
+                                             <td>1.200000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>341</th>
+                                             <td>NVDA</td>
+                                             <td>10.590220</td>
+                                             <td> 4.607480</td>
+                                             <td>0.0009</td>
+                                             <td> 45.008</td>
+                                             <td>26.46898</td>
+                                             <td>0.318381540</td>
+                                             <td> 0.440677729</td>
+                                             <td>0.3607758</td>
+                                             <td>38.593220</td>
+                                             <td>Technology</td>
+                                             <td>2.000000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>318</th>
+                                             <td>MSFT</td>
+                                             <td> 9.106365</td>
+                                             <td>13.470004</td>
+                                             <td>0.0088</td>
+                                             <td> 47.075</td>
+                                             <td>28.22187</td>
+                                             <td>0.163571170</td>
+                                             <td> 0.034525303</td>
+                                             <td>0.4361364</td>
+                                             <td>43.495359</td>
+                                             <td>Technology</td>
+                                             <td>1.592593</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>4</th>
+                                             <td>AAPL</td>
+                                             <td> 6.015734</td>
+                                             <td>34.274002</td>
+                                             <td>0.0057</td>
+                                             <td>205.984</td>
+                                             <td>28.47747</td>
+                                             <td>0.113028291</td>
+                                             <td> 0.126278356</td>
+                                             <td>0.2841341</td>
+                                             <td>39.333837</td>
+                                             <td>Technology</td>
+                                             <td>2.050000</td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+
+                         </div>
+
+                    </div>
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                         <div class="jp-RenderedText jp-OutputArea-output"
+                              data-mime-type="application/vnd.jupyter.stderr">
+                              <pre>Warning message:
 “Removed 10 rows containing non-finite values (stat_boxplot).”
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                         </div>
+                    </div>
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph7.svg" width="504pt" height="504pt"></img>
-</div>
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph7.svg" width="504pt" height="504pt"></img>
+                         </div>
 
-</div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
+          </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">test_debtToEquity</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Healthcare"</span><span class="p">)</span>
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">test_debtToEquity</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Healthcare"</span><span class="p">)</span>
 <span class="nf">tail</span><span class="p">(</span><span class="n">test_debtToEquity</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">test_debtToEquity</span><span class="o">$</span><span class="n">debtToEquity</span><span class="p">),])</span>
 
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">debtToEquity</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <table class="dataframe">
+                                   <caption>A data.frame: 6 × 12</caption>
+                                   <thead>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>symbol</th>
+                                             <th scope=col>priceToSales</th>
+                                             <th scope=col>priceToBook</th>
+                                             <th scope=col>dividendYield</th>
+                                             <th scope=col>debtToEquity</th>
+                                             <th scope=col>marketCap</th>
+                                             <th scope=col>CARG</th>
+                                             <th scope=col>CANSG</th>
+                                             <th scope=col>opMarg</th>
+                                             <th scope=col>intCov</th>
+                                             <th scope=col>sector</th>
+                                             <th scope=col>rating</th>
+                                        </tr>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr>
+                                             <th scope=row>477</th>
+                                             <td>WAT </td>
+                                             <td>5.9457110</td>
+                                             <td>45.627945</td>
+                                             <td>0.0000</td>
+                                             <td>408.595</td>
+                                             <td> 17051710464</td>
+                                             <td>0.048048096</td>
+                                             <td> 0.003311143</td>
+                                             <td>0.27985865</td>
+                                             <td>16.629000</td>
+                                             <td>Healthcare</td>
+                                             <td>2.750000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>5</th>
+                                             <td>ABBV</td>
+                                             <td>4.2414446</td>
+                                             <td>18.573164</td>
+                                             <td>0.0393</td>
+                                             <td>451.440</td>
+                                             <td>243242598400</td>
+                                             <td>0.197111448</td>
+                                             <td> 0.000000000</td>
+                                             <td>0.39994163</td>
+                                             <td> 9.400330</td>
+                                             <td>Healthcare</td>
+                                             <td>2.583333</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>147</th>
+                                             <td>DVA </td>
+                                             <td>0.7569899</td>
+                                             <td> 7.403483</td>
+                                             <td>0.0000</td>
+                                             <td>493.730</td>
+                                             <td> 8793460736</td>
+                                             <td>0.005998282</td>
+                                             <td>-0.163934017</td>
+                                             <td>0.17271161</td>
+                                             <td> 6.902272</td>
+                                             <td>Healthcare</td>
+                                             <td>3.000000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>6</th>
+                                             <td>ABC </td>
+                                             <td>0.1256231</td>
+                                             <td> 0.000000</td>
+                                             <td>0.0126</td>
+                                             <td>857.149</td>
+                                             <td> 28851394560</td>
+                                             <td>0.084103101</td>
+                                             <td> 0.008274333</td>
+                                             <td>0.01138503</td>
+                                             <td>14.607908</td>
+                                             <td>Healthcare</td>
+                                             <td>2.272727</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>32</th>
+                                             <td>AMGN</td>
+                                             <td>4.9194274</td>
+                                             <td>14.165639</td>
+                                             <td>0.0314</td>
+                                             <td>994.450</td>
+                                             <td>129459642368</td>
+                                             <td>0.030389266</td>
+                                             <td> 0.008984578</td>
+                                             <td>0.40917516</td>
+                                             <td> 7.736842</td>
+                                             <td>Healthcare</td>
+                                             <td>2.777778</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>322</th>
+                                             <td>MTD </td>
+                                             <td>6.7218914</td>
+                                             <td>45.627945</td>
+                                             <td>0.0000</td>
+                                             <td>994.450</td>
+                                             <td> 25982576640</td>
+                                             <td>0.081916215</td>
+                                             <td> 0.000000000</td>
+                                             <td>0.21809499</td>
+                                             <td>21.017182</td>
+                                             <td>Healthcare</td>
+                                             <td>3.250000</td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+
+                         </div>
+
+                    </div>
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph8.svg" width="504pt" height="504pt"></img>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table class="dataframe">
-<caption>A data.frame: 6 × 12</caption>
-<thead>
-	<tr><th></th><th scope=col>symbol</th><th scope=col>priceToSales</th><th scope=col>priceToBook</th><th scope=col>dividendYield</th><th scope=col>debtToEquity</th><th scope=col>marketCap</th><th scope=col>CARG</th><th scope=col>CANSG</th><th scope=col>opMarg</th><th scope=col>intCov</th><th scope=col>sector</th><th scope=col>rating</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>477</th><td>WAT </td><td>5.9457110</td><td>45.627945</td><td>0.0000</td><td>408.595</td><td> 17051710464</td><td>0.048048096</td><td> 0.003311143</td><td>0.27985865</td><td>16.629000</td><td>Healthcare</td><td>2.750000</td></tr>
-	<tr><th scope=row>5</th><td>ABBV</td><td>4.2414446</td><td>18.573164</td><td>0.0393</td><td>451.440</td><td>243242598400</td><td>0.197111448</td><td> 0.000000000</td><td>0.39994163</td><td> 9.400330</td><td>Healthcare</td><td>2.583333</td></tr>
-	<tr><th scope=row>147</th><td>DVA </td><td>0.7569899</td><td> 7.403483</td><td>0.0000</td><td>493.730</td><td>  8793460736</td><td>0.005998282</td><td>-0.163934017</td><td>0.17271161</td><td> 6.902272</td><td>Healthcare</td><td>3.000000</td></tr>
-	<tr><th scope=row>6</th><td>ABC </td><td>0.1256231</td><td> 0.000000</td><td>0.0126</td><td>857.149</td><td> 28851394560</td><td>0.084103101</td><td> 0.008274333</td><td>0.01138503</td><td>14.607908</td><td>Healthcare</td><td>2.272727</td></tr>
-	<tr><th scope=row>32</th><td>AMGN</td><td>4.9194274</td><td>14.165639</td><td>0.0314</td><td>994.450</td><td>129459642368</td><td>0.030389266</td><td> 0.008984578</td><td>0.40917516</td><td> 7.736842</td><td>Healthcare</td><td>2.777778</td></tr>
-	<tr><th scope=row>322</th><td>MTD </td><td>6.7218914</td><td>45.627945</td><td>0.0000</td><td>994.450</td><td> 25982576640</td><td>0.081916215</td><td> 0.000000000</td><td>0.21809499</td><td>21.017182</td><td>Healthcare</td><td>3.250000</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph8.svg" width="504pt" height="504pt"></img>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[65]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">test_priceToBook</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Healthcare"</span><span class="p">)</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[65]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">test_priceToBook</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sector</span> <span class="o">==</span> <span class="s">"Healthcare"</span><span class="p">)</span>
 <span class="nf">tail</span><span class="p">(</span><span class="n">test_priceToBook</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">test_priceToBook</span><span class="o">$</span><span class="n">priceToBook</span><span class="p">),])</span>
 
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">priceToBook</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <table class="dataframe">
+                                   <caption>A data.frame: 6 × 12</caption>
+                                   <thead>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>symbol</th>
+                                             <th scope=col>priceToSales</th>
+                                             <th scope=col>priceToBook</th>
+                                             <th scope=col>dividendYield</th>
+                                             <th scope=col>debtToEquity</th>
+                                             <th scope=col>marketCap</th>
+                                             <th scope=col>CARG</th>
+                                             <th scope=col>CANSG</th>
+                                             <th scope=col>opMarg</th>
+                                             <th scope=col>intCov</th>
+                                             <th scope=col>sector</th>
+                                             <th scope=col>rating</th>
+                                        </tr>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;chr&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr>
+                                             <th scope=row>502</th>
+                                             <td>ZTS </td>
+                                             <td> 9.1567360</td>
+                                             <td>19.26094</td>
+                                             <td>0.0071</td>
+                                             <td>144.912</td>
+                                             <td> 72255807488</td>
+                                             <td>0.10105677</td>
+                                             <td> 0.000000000</td>
+                                             <td>0.2992832</td>
+                                             <td> 9.879464</td>
+                                             <td>Healthcare</td>
+                                             <td>1.250000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>276</th>
+                                             <td>LLY </td>
+                                             <td>10.3813930</td>
+                                             <td>41.93240</td>
+                                             <td>0.0119</td>
+                                             <td>174.931</td>
+                                             <td>304411508736</td>
+                                             <td>0.09625590</td>
+                                             <td>-0.033745586</td>
+                                             <td>0.2487467</td>
+                                             <td>21.367569</td>
+                                             <td>Healthcare</td>
+                                             <td>2.100000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>233</th>
+                                             <td>IDXX</td>
+                                             <td> 8.6950810</td>
+                                             <td>45.39002</td>
+                                             <td>0.0000</td>
+                                             <td>200.624</td>
+                                             <td> 28469450752</td>
+                                             <td>0.13253976</td>
+                                             <td> 0.005644331</td>
+                                             <td>0.2114871</td>
+                                             <td>25.347088</td>
+                                             <td>Healthcare</td>
+                                             <td>2.125000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>215</th>
+                                             <td>HCA </td>
+                                             <td> 0.9975712</td>
+                                             <td>45.62794</td>
+                                             <td>0.0105</td>
+                                             <td> 0.000</td>
+                                             <td> 59959013376</td>
+                                             <td>0.07968804</td>
+                                             <td> 0.000000000</td>
+                                             <td>0.1561414</td>
+                                             <td> 5.720945</td>
+                                             <td>Healthcare</td>
+                                             <td>1.791667</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>322</th>
+                                             <td>MTD </td>
+                                             <td> 6.7218914</td>
+                                             <td>45.62794</td>
+                                             <td>0.0000</td>
+                                             <td>994.450</td>
+                                             <td> 25982576640</td>
+                                             <td>0.08191622</td>
+                                             <td> 0.000000000</td>
+                                             <td>0.2180950</td>
+                                             <td>21.017182</td>
+                                             <td>Healthcare</td>
+                                             <td>3.250000</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>477</th>
+                                             <td>WAT </td>
+                                             <td> 5.9457110</td>
+                                             <td>45.62794</td>
+                                             <td>0.0000</td>
+                                             <td>408.595</td>
+                                             <td> 17051710464</td>
+                                             <td>0.04804810</td>
+                                             <td> 0.003311143</td>
+                                             <td>0.2798586</td>
+                                             <td>16.629000</td>
+                                             <td>Healthcare</td>
+                                             <td>2.750000</td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+
+                         </div>
+
+                    </div>
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph9.svg" width="504pt" height="504pt"></img>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[66]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">rating</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
+</pre>
+                              </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
 
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table class="dataframe">
-<caption>A data.frame: 6 × 12</caption>
-<thead>
-	<tr><th></th><th scope=col>symbol</th><th scope=col>priceToSales</th><th scope=col>priceToBook</th><th scope=col>dividendYield</th><th scope=col>debtToEquity</th><th scope=col>marketCap</th><th scope=col>CARG</th><th scope=col>CANSG</th><th scope=col>opMarg</th><th scope=col>intCov</th><th scope=col>sector</th><th scope=col>rating</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>502</th><td>ZTS </td><td> 9.1567360</td><td>19.26094</td><td>0.0071</td><td>144.912</td><td> 72255807488</td><td>0.10105677</td><td> 0.000000000</td><td>0.2992832</td><td> 9.879464</td><td>Healthcare</td><td>1.250000</td></tr>
-	<tr><th scope=row>276</th><td>LLY </td><td>10.3813930</td><td>41.93240</td><td>0.0119</td><td>174.931</td><td>304411508736</td><td>0.09625590</td><td>-0.033745586</td><td>0.2487467</td><td>21.367569</td><td>Healthcare</td><td>2.100000</td></tr>
-	<tr><th scope=row>233</th><td>IDXX</td><td> 8.6950810</td><td>45.39002</td><td>0.0000</td><td>200.624</td><td> 28469450752</td><td>0.13253976</td><td> 0.005644331</td><td>0.2114871</td><td>25.347088</td><td>Healthcare</td><td>2.125000</td></tr>
-	<tr><th scope=row>215</th><td>HCA </td><td> 0.9975712</td><td>45.62794</td><td>0.0105</td><td>  0.000</td><td> 59959013376</td><td>0.07968804</td><td> 0.000000000</td><td>0.1561414</td><td> 5.720945</td><td>Healthcare</td><td>1.791667</td></tr>
-	<tr><th scope=row>322</th><td>MTD </td><td> 6.7218914</td><td>45.62794</td><td>0.0000</td><td>994.450</td><td> 25982576640</td><td>0.08191622</td><td> 0.000000000</td><td>0.2180950</td><td>21.017182</td><td>Healthcare</td><td>3.250000</td></tr>
-	<tr><th scope=row>477</th><td>WAT </td><td> 5.9457110</td><td>45.62794</td><td>0.0000</td><td>408.595</td><td> 17051710464</td><td>0.04804810</td><td> 0.003311143</td><td>0.2798586</td><td>16.629000</td><td>Healthcare</td><td>2.750000</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph9.svg" width="504pt" height="504pt"></img>
-</div>
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph10.svg" width="504pt" height="504pt"></img>
+                         </div>
 
-</div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[66]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">rating</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span>
-</pre></div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph10.svg" width="504pt" height="504pt"></img>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">rating</span><span class="p">))</span> <span class="o">+</span> 
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">rating</span><span class="p">))</span> <span class="o">+</span> 
     <span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">..density..</span><span class="p">),</span>      <span class="c1"># Histogram with density instead of count on y-axis</span>
                    <span class="n">binwidth</span><span class="o">=</span><span class="n">.</span><span class="m">5</span><span class="p">,</span>
                    <span class="n">colour</span><span class="o">=</span><span class="s">"black"</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">"white"</span><span class="p">)</span> <span class="o">+</span>
     <span class="nf">geom_density</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">.</span><span class="m">2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">"#FF6666"</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph11.svg" width="504pt" height="504pt"></img>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[102]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">colnames</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre>
+                              </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph11.svg" width="504pt" height="504pt"></img>
-</div>
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <style>
+                                   .list-inline {
+                                        list-style: none;
+                                        margin: 0;
+                                        padding: 0
+                                   }
 
-</div>
+                                   .list-inline>li {
+                                        display: inline-block
+                                   }
 
-</div>
+                                   .list-inline>li:not(:last-child)::after {
+                                        content: "\00b7";
+                                        padding: 0 .5ex
+                                   }
+                              </style>
+                              <ol class=list-inline>
+                                   <li>'symbol'</li>
+                                   <li>'priceToSales'</li>
+                                   <li>'priceToBook'</li>
+                                   <li>'dividendYield'</li>
+                                   <li>'debtToEquity'</li>
+                                   <li>'marketCap'</li>
+                                   <li>'CARG'</li>
+                                   <li>'CANSG'</li>
+                                   <li>'opMarg'</li>
+                                   <li>'intCov'</li>
+                                   <li>'sector'</li>
+                                   <li>'rating'</li>
+                                   <li>'id'</li>
+                              </ol>
 
-</div>
+                         </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[102]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">colnames</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>'symbol'</li><li>'priceToSales'</li><li>'priceToBook'</li><li>'dividendYield'</li><li>'debtToEquity'</li><li>'marketCap'</li><li>'CARG'</li><li>'CANSG'</li><li>'opMarg'</li><li>'intCov'</li><li>'sector'</li><li>'rating'</li><li>'id'</li></ol>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[100]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[100]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 
 <span class="c1">#create ID column</span>
 <span class="n">df</span><span class="o">$</span><span class="n">id</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -832,45 +1724,49 @@
 <span class="c1">#use 70% of dataset as training set and 30% as test set </span>
 <span class="n">train</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span> <span class="n">dplyr</span><span class="o">::</span><span class="nf">sample_frac</span><span class="p">(</span><span class="m">0.70</span><span class="p">)</span>
 <span class="n">test</span>  <span class="o">&lt;-</span> <span class="n">dplyr</span><span class="o">::</span><span class="nf">anti_join</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">'id'</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[124]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">model</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">rating</span> <span class="o">~</span> <span class="n">priceToSales</span><span class="o">+</span><span class="n">priceToBook</span><span class="o">+</span><span class="n">dividendYield</span><span class="o">+</span><span class="n">debtToEquity</span><span class="o">+</span><span class="n">marketCap</span><span class="o">+</span><span class="n">CARG</span><span class="o">+</span><span class="n">CANSG</span><span class="o">+</span><span class="n">opMarg</span><span class="o">+</span><span class="n">intCov</span><span class="o">+</span> <span class="n">sector</span><span class="m">-1</span><span class="p">,</span> <span class="n">train</span><span class="p">)</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[124]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">model</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">rating</span> <span class="o">~</span> <span class="n">priceToSales</span><span class="o">+</span><span class="n">priceToBook</span><span class="o">+</span><span class="n">dividendYield</span><span class="o">+</span><span class="n">debtToEquity</span><span class="o">+</span><span class="n">marketCap</span><span class="o">+</span><span class="n">CARG</span><span class="o">+</span><span class="n">CANSG</span><span class="o">+</span><span class="n">opMarg</span><span class="o">+</span><span class="n">intCov</span><span class="o">+</span> <span class="n">sector</span><span class="m">-1</span><span class="p">,</span> <span class="n">train</span><span class="p">)</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
 
-     </div>
-</div>
-</div>
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>
+
+
+                         <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                              <pre>
 Call:
 lm(formula = rating ~ priceToSales + priceToBook + dividendYield + 
     debtToEquity + marketCap + CARG + CANSG + opMarg + intCov + 
@@ -909,211 +1805,264 @@ Residual standard error: 0.4644 on 331 degrees of freedom
 Multiple R-squared:  0.9639,	Adjusted R-squared:  0.9617 
 F-statistic: 441.4 on 20 and 331 DF,  p-value: &lt; 2.2e-16
 </pre>
-</div>
+                         </div>
 
-</div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
+          </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[126]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">modelResiduals</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">residuals</span><span class="p">(</span><span class="n">model</span><span class="p">))</span> 
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[126]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">modelResiduals</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">residuals</span><span class="p">(</span><span class="n">model</span><span class="p">))</span> 
 
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">modelResiduals</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="nf">residuals</span><span class="p">(</span><span class="n">model</span><span class="p">)))</span> <span class="o">+</span>
   <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s">'deepskyblue'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
 
-     </div>
-</div>
-</div>
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                         <div class="jp-RenderedText jp-OutputArea-output"
+                              data-mime-type="application/vnd.jupyter.stderr">
+                              <pre>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                         </div>
+                    </div>
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-  <img src="/images/projects/graph12.svg" width="504pt" height="504pt"></img>
-</div>
+                         <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+                              <img src="/images/projects/graph12.svg" width="504pt" height="504pt"></img>
+                         </div>
 
-</div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[129]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># test model on new data</span>
-<span class="n">preds</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">sp500model</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
-</pre></div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[129]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="c1"># test model on new data</span>
+<span class="n">preds</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">sp500model</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+</pre>
+                              </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[134]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">modelEval</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">rating</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[134]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">modelEval</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">rating</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">modelEval</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">'Actual'</span><span class="p">,</span> <span class="s">'Predicted'</span><span class="p">)</span>
 <span class="n">modelEval</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">modelEval</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">modelEval</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              <table class="dataframe">
+                                   <caption>A data.frame: 6 × 2</caption>
+                                   <thead>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>Actual</th>
+                                             <th scope=col>Predicted</th>
+                                        </tr>
+                                        <tr>
+                                             <th></th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                             <th scope=col>&lt;dbl&gt;</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr>
+                                             <th scope=row>1</th>
+                                             <td>2.583333</td>
+                                             <td>2.587791</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>2</th>
+                                             <td>2.272727</td>
+                                             <td>2.545884</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>3</th>
+                                             <td>2.666667</td>
+                                             <td>2.265010</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>4</th>
+                                             <td>1.733333</td>
+                                             <td>2.357230</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>5</th>
+                                             <td>2.266667</td>
+                                             <td>2.357168</td>
+                                        </tr>
+                                        <tr>
+                                             <th scope=row>6</th>
+                                             <td>1.961538</td>
+                                             <td>2.158867</td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table class="dataframe">
-<caption>A data.frame: 6 × 2</caption>
-<thead>
-	<tr><th></th><th scope=col>Actual</th><th scope=col>Predicted</th></tr>
-	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>1</th><td>2.583333</td><td>2.587791</td></tr>
-	<tr><th scope=row>2</th><td>2.272727</td><td>2.545884</td></tr>
-	<tr><th scope=row>3</th><td>2.666667</td><td>2.265010</td></tr>
-	<tr><th scope=row>4</th><td>1.733333</td><td>2.357230</td></tr>
-	<tr><th scope=row>5</th><td>2.266667</td><td>2.357168</td></tr>
-	<tr><th scope=row>6</th><td>1.961538</td><td>2.158867</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[132]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">mse</span> <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">((</span><span class="n">modelEval</span><span class="o">$</span><span class="n">Actual</span> <span class="o">-</span> <span class="n">modelEval</span><span class="o">$</span><span class="n">Predicted</span><span class="p">)</span><span class="o">**</span><span class="m">2</span><span class="p">)</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[132]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">mse</span> <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">((</span><span class="n">modelEval</span><span class="o">$</span><span class="n">Actual</span> <span class="o">-</span> <span class="n">modelEval</span><span class="o">$</span><span class="n">Predicted</span><span class="p">)</span><span class="o">**</span><span class="m">2</span><span class="p">)</span>
 <span class="n">rmse</span> <span class="o">&lt;-</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[135]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="n">df</span><span class="o">$</span><span class="n">lmPred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">sp500model</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+</pre>
+                              </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[135]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">df</span><span class="o">$</span><span class="n">lmPred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">sp500model</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[137]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">dbWriteTable</span><span class="p">(</span><span class="n">connec</span><span class="p">,</span><span class="s">"SP500LM"</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">overwrite</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
-</pre></div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[137]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-r">
+                                   <pre><span></span><span class="nf">dbWriteTable</span><span class="p">(</span><span class="n">connec</span><span class="p">,</span><span class="s">"SP500LM"</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">overwrite</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</pre>
+                              </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-TRUE
-</div>
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output "
+                              data-mime-type="text/html">
+                              TRUE
+                         </div>
 
-</div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
+          </div>
 
-</div>
+     </div>
 </body>
 
 

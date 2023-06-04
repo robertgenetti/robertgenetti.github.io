@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Public Pensions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/images/favicon.png">
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class='page page-services-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    <li><a href="/" class="">Home</a></li>
+    <li><a href="/projects/" class="current">Projects</a></li>
+    <!-- <li><a href="/team/" class="">Team</a></li>
+    <li><a href="/testimonials/" class="">Testimonials</a></li> -->
+    <li><a href="/contact/" class="">About Me</a></li>
+  </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header header-extra'>
+  <div class="container">
+   
+    <div class="logo">
+      <a href="/"><img alt="Figurit Homepage" src="/assets/images/logo-mobile.png" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    <li><a href="/" class="">Home</a></li>
+    <li><a href="/projects/" class="current">Projects</a></li>
+    <!-- <li><a href="/education/" class="">Education</a></li>
+    <li><a href="/interests/" class="">Interests</a></li> -->
+    <li><a href="/contact/" class="">About Me</a></li>
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+    <div class="strip strip-white strip-diagonal">
+  <div class="container pt-4 pt-md-10">
+    <div class="row justify-content-center">
+      <div class="col-12 px-4">
+        <div class="service service-single">
+          <h1 class="title text-center">Public Pensions Project</h1>
+          <div style="display: flex;align-items: center;justify-content: center;">
+            <div class="whitebox mt-4 mb-12" style="max-width:750px;">
+              <img src="/images/projects/pp_hero.png" alt="Public Pensions" style="width:100%; object-fit: cover;">
+            </div>
+          </div>
+          <div class="content"><p>Looking at recent data on public pensions I was surprised at how common unfunded liabilities were and why managers of these funds were at a loss to correct the imbalance. I postulated that all stakeholders of these troubled funds shared the assumption that investment performance would outpace liabilities and the fund would in time be financial solvent. I questioned this reasoning and propose a more reasonable approach – honesty is the best policy.</p>
+
+<h3 id="goal">Goal</h3>
+
+<p>In this project we explore the attributes of public pensions that identify as having high unfunded liabilities and compare it to those with low unfunded liabilities. We will examine financial data to define these differences and collect evidence of any correlations that may explain why unfunded liabilities are so prevalent.</p>
+
+<h3 id="outcome">Outcome</h3>
+
+<p>The data indicates a pattern of unbalanced cash flow that contributes to higher rates of unfunded liabilities. Even in times of extraordinary investment performance, such as seen in 2021, only those pensions with minimal total deductions relative to cash inflows had the greatest positive impact on net position.</p>
+
+<div class="col-12 text-center">
+    <a href="https://public.tableau.com/views/PublicPensionFinancialReport/Dashboard1?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">Dashboard</a>
+    <!-- <a href="https://public.tableau.com/views/PublicPensionFinancialReport/Dashboard1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">Report</a> -->
+</div>
+
+<h3 id="overview">Overview</h3>
+
+<p><b>Role:</b> Data Analyst</p>
+<p><b>Requirements:</b> Develop a public pensions dashboard</p>
+<p><b>Timeline:</b> Approximately 40 hours</p>
+<p><b>Tools:</b> Apache Airflow, Python, SQL, Azure Data Studio, Affinity Design, Tableau</p>
+
+<div class="container text-center my-4">
+    <div class="row justify-content-center">
+        <div class="col p-2">
+            <h3>Plan</h3>
+            <img src="/images/projects/Plan.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Extract</h3>
+            <img src="/images/projects/Extract.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Analyze</h3>
+            <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Visualize</h3>
+            <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+    </div>
+</div>
+
+<div class="mb-3"></div>
+
+<h3 id="plan-3-steps">Plan (3 Steps)</h3>
+<ol>
+  <li>Extract and Load
+    <ul>
+      <li>Pull public pension data from Public Pensions Database</li>
+      <li>Import dataframes into SQL Postgres Database</li>
+    </ul>
+  </li>
+  <li>Analyze data in SQL
+    <ul>
+      <li>Feature selection</li>
+      <li>Omitt pension plans that have been closed</li>
+      <li>Export datasets into Excel files</li>
+    </ul>
+  </li>
+  <li>Design Tableau dashboard
+    <ul>
+      <li>Display each section of financial report</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="extract-transform-and-load">Extract, Transform, and Load</h3>
+<ul>
+  <li>Data source: <a href="https://publicplansdata.org/public-plans-database/">Public Pensions Database</a></li>
+  <li>All fields were collected: Financials, Asset allocation, etc.</li>
+</ul>
+
+<h4 id="apache-airflow">Apache Airflow</h4>
+<ul>
+  <li>Build three DAG functions to auto extract and load data into Postgresql database</li>
+  <li>Set Airflow to run every week to update database</li>
+</ul>
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: Apache Airflow (Python)</h4>
+        <a href="/projects/publicpensions//code#airflow" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/ppd_py.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h3 id="analyze-data">Analyze Data</h3>
+<ul>
+  <li>Feature selection - Azure Data Studio</li>
+</ul>
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: Azure Data Studio Code (SQL)</h4>
+        <a href="/projects/publicpensions//code#sql" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/PPD-Notebook.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h3 id="evaluate-results">Evaluate Results</h3>
+<ul>
+  <li>Design dashboard elements - Affinity Design</li>
+  <li>Build sheets and dashboards - Tabeau</li>
+  <li>Details sections with net position, membership, investment performance</li>
+  <li>Additional section with asset allocation information</li>
+</ul>
+
+<div class="mb-3"></div>
+
+<h4 id="tableau-dashboard-shapshot-">Tableau Dashboard Shapshot 📸</h4>
+<p><img src="/images/projects/pp_hero.png" alt="screenshot" /></p>
+<div class="mb-3"></div>
+
+<h3 id="conclusion">Conclusion</h3>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-6 mb-5">
+            <p>Every year that goes by the value of public pensions is drawn down. As members collect on pension benefits the fund value is diminished. That is why it is essential that the actuarial planning of cash outflows is in balance with expected inflows. But when planning and cashflow balancing is not performed in accordance with what is prudent, the pension is threatened and members are at a loss.</p>
+            <p>Not only are the members at a loss but so is the state or local government. Using 2021 as the base year, the data shows that pensions less than half funded have the greatest share of employer contributions as a percentage of total deductions at an average of 88%. That is compared to pensions more than 90% funded with employer contributions as a percentage of total deduction of 70%. That's a difference in employer contributions to deductions of 18%, far more financially burdensome to the state or local government. What is more surprising are the impacts of investment gains on annual net positions. Pensions that are below 50% funded have an investment inflow to total deductions rate of 102%, compared to the more lofty figure of 444% for pensions that are above 90% funded. A difference in the impact of investment inflows of 342%. Highly funded pensions are more effective at translating investment gains into actuarial assets because of lower total deductions on average. Once a pension becomes unbalanced in how it manages cashflow, recovery to accrue positive actuarial assets relative to unfunded liabilities becomes more difficult.</p>
+            <p>In this project we explored public pension fund data in an effort to gain a better understanding of how specific factors contribute to low levels of unfunded liabilities. The results, low total deductions relative to cash inflows significantly contributed to greater positive impacts of investment gains and decreased the burden on state and local government to make up the difference for cash outflows. Investment gains, even in extraordinaty times such as experienced in 2021, are not enough to correct for years of cashflow imbalances. Policy recommendation moving forward is to focus on improvements to monitoring and evaluating cashflows, making adjustment as needed.</p>
+            <div class="text-center">
+                <a href="https://public.tableau.com/views/PublicPensionFinancialReport/Dashboard1?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="whitebox"><a href="https://public.tableau.com/views/PublicPensionFinancialReport/Dashboard1?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" target="_blank">
+            <img src="/images/projects/ppd.gif" alt="Public Pensions" style="width:100%; height:auto; object-fit: cover;" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="footer-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="footer">
+          <h3 class="footer-title">Robert Genetti</h3>
+          <ul class="footer-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="sub-footer-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer">
+          <ul>
+            <li><strong>Phone: </strong>(669) 291-5278</li>
+            <li><strong>Email: </strong><a href="mailto:robertkgenetti@gmail.com">
+                robertkgenetti@gmail.com</a></li>
+          </ul>
+          <ul id="social" class="social">
+  <li>
+    <a class="social-github" href="https://github.com/robertgenetti" target="blank"><img src='/images/social/logo-github.png' alt="github-image" height="16"/></a>
+  </li>
+  <li>
+    <a class="social-linkedin" href="https://www.linkedin.com/in/robert-genetti-0ab34533" target="blank"><img src='/images/social/logo-linkedin.png' alt="linkedin-image" height="16"/></a>
+  </li>
+</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="/assets/js/scripts.js"></script>
+
+</body>
+</html>

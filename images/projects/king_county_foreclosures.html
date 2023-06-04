@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>king_county_foreclosures</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
+    <title>king_county_foreclosures</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+    <!-- Custom stylesheet, it must be in the same directory as the html file -->
+    <link rel="stylesheet" href="custom.css">
+
+    <!-- Load mathjax -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     init_mathjax = function() {
@@ -40,35 +44,48 @@
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --></head>
+    <!-- End of mathjax configuration -->
+</head>
+
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="(Seattle,-WA)-Distressed-Property-Dashboard-Project">(Seattle, WA) Distressed Property Dashboard Project<a class="anchor-link" href="#(Seattle,-WA)-Distressed-Property-Dashboard-Project">&#182;</a></h1><h2 id="Python,-SQL-and-Tableau:-Data-Extraction,-Key-Metrics,-Dashboard">Python, SQL and Tableau: Data Extraction, Key Metrics, Dashboard<a class="anchor-link" href="#Python,-SQL-and-Tableau:-Data-Extraction,-Key-Metrics,-Dashboard">&#182;</a></h2><ul>
-<li>Data Sources: King County Records, Assessor Parcel Website</li>
-<li>Dataset: Custom</li>
-<li>Export Option: SQL database</li>
-<li>Data Transformations: Concat multiple fields, remove unknown columns</li>
-<li>Future changes: Add historical trend column</li>
-</ul>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput "
+                    data-mime-type="text/markdown">
+                    <h1 id="(Seattle,-WA)-Distressed-Property-Dashboard-Project">(Seattle, WA) Distressed Property
+                        Dashboard Project<a class="anchor-link"
+                            href="#(Seattle,-WA)-Distressed-Property-Dashboard-Project">&#182;</a></h1>
+                    <h2 id="Python,-SQL-and-Tableau:-Data-Extraction,-Key-Metrics,-Dashboard">Python: Data Extraction<a
+                            class="anchor-link"
+                            href="#Python,-SQL-and-Tableau:-Data-Extraction,-Key-Metrics,-Dashboard">&#182;</a></h2>
+                    <ul>
+                        <li>Data Sources: King County Records, Assessor Parcel Website</li>
+                        <li>Dataset: Custom</li>
+                        <li>Export Option: SQL database</li>
+                        <li>Data Transformations: Concat multiple fields, remove unknown columns</li>
+                        <li>Future changes: Add historical trend column</li>
+                    </ul>
 
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Imports</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Imports</span>
 <span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.chrome.service</span> <span class="kn">import</span> <span class="n">Service</span>
 <span class="kn">from</span> <span class="nn">webdriver_manager.chrome</span> <span class="kn">import</span> <span class="n">ChromeDriverManager</span>
@@ -86,22 +103,25 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">notebook</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set current directory</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Set current directory</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">'/home/jovyan/work'</span><span class="p">)</span>
 
 <span class="c1"># Setup chromedriver</span>
@@ -113,22 +133,25 @@
 <span class="c1"># Set constants</span>
 <span class="n">records_url</span> <span class="o">=</span> <span class="s2">"https://recordsearch.kingcounty.gov/LandmarkWeb/search/index?theme=.blue&amp;section=searchCriteriaDocuments&amp;quickSearchSelection="</span>
 <span class="n">pid_url</span> <span class="o">=</span> <span class="s1">'https://blue.kingcounty.com/Assessor/eRealProperty/Detail.aspx?ParcelNbr='</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get driver</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Get driver</span>
 <span class="k">def</span> <span class="nf">driver_open</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">records_url</span><span class="p">):</span>
     <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service</span><span class="o">=</span><span class="n">Service</span><span class="p">(</span><span class="n">ChromeDriverManager</span><span class="p">()</span><span class="o">.</span><span class="n">install</span><span class="p">()),</span><span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
     <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -309,147 +332,154 @@
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'data/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">.csv'</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="s1">'Unnamed: 0'</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">df</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">refresh_data</span><span class="p">(</span><span class="s1">'seattle-distressed-properties'</span><span class="p">)</span>
-</pre></div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">refresh_data</span><span class="p">(</span><span class="s1">'seattle-distressed-properties'</span><span class="p">)</span>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Looking up records for the week(s) of 06/20/2022, 06/28/2022, 07/06/2022, 07/14/2022, 07/22/2022, 07/30/2022, 08/07/2022, 08/15/2022, 08/23/2022, 08/31/2022, 09/08/2022, 09/16/2022
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Looking up records for the week(s) of 06/20/2022, 06/28/2022, 07/06/2022, 07/14/2022, 07/22/2022, 07/30/2022, 08/07/2022, 08/15/2022, 08/23/2022, 08/31/2022, 09/08/2022, 09/16/2022
 Fetching records now
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    </div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/12 [00:00&lt;?, ?it/s]</pre>
-</div>
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/12 [00:00&lt;?, ?it/s]</pre>
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Adding parcel info
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Adding parcel info
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    </div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/170 [00:00&lt;?, ?it/s]</pre>
-</div>
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/170 [00:00&lt;?, ?it/s]</pre>
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Adding location info
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Adding location info
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    </div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/170 [00:00&lt;?, ?it/s]</pre>
-</div>
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/170 [00:00&lt;?, ?it/s]</pre>
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>36 were deleted
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>36 were deleted
 Save to file: data/seattle-distressed-properties.csv
 </pre>
-</div>
-</div>
+                    </div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[62]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[62]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 Int64Index: 134 entries, 0 to 169
 Data columns (total 14 columns):
  #   Column           Non-Null Count  Dtype  
@@ -471,78 +501,87 @@ Data columns (total 14 columns):
 dtypes: float64(2), int64(1), object(11)
 memory usage: 15.7+ KB
 </pre>
-</div>
-</div>
+                    </div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[67]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'Address'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[67]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'Address'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[67]:</div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child jp-OutputArea-executeResult">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[67]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>array([False])</pre>
-</div>
 
-</div>
 
-</div>
+                    <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult"
+                        data-mime-type="text/plain">
+                        <pre>array([False])</pre>
+                    </div>
 
-</div>
+                </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">'postgresql://postgres:headband@192.168.0.151:5432/mydb'</span><span class="p">)</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[60]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">"""</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[60]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="sd">"""</span>
 <span class="sd">Note to self: inlcude a unique index to use for postgres database insert functionality</span>
 
 <span class="sd">CREATE UNIQUE INDEX CONCURRENTLY seattle_rec_num </span>
@@ -585,51 +624,55 @@ memory usage: 15.7+ KB
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">'Got an error while updating server'</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">'Error: '</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">update_server</span><span class="p">(</span><span class="s2">"SeattleDistressedProp"</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Successfully updated server
 </pre>
-</div>
-</div>
+                        </div>
 
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="n">update_server</span><span class="p">(</span><span class="s2">"SeattleDistressedProp"</span><span class="p">)</span>
+</pre>
+                        </div>
 
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Successfully updated server
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </body>
 
 

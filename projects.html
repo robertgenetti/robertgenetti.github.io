@@ -21,7 +21,8 @@ bodyClass: page-services-list
 
   <div class="container pb-6">
     <div class="row">
-      {% for project in site.projects reversed %}
+      {% assign projects = site.projects | sort: "order" %}
+      {% for project in projects reversed %}
       <div class="col-12 col-md-4 mb-5">
         <a href="{{site.baseurl}}{{ project.url }}">
           <div class="service service-summary">

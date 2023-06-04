@@ -1,17 +1,22 @@
 [
   {
     "title": "Econometrics",
-    "description": "Modeling Consumer Demand",
+    "description": "Research and identify KPIs",
     "image": "images/interests/noun_branding_1885335.svg"
   },
   {
     "title": "Data Analysis",
-    "description": "Building Key Performance Indicators",
+    "description": "Analyze and interpret data",
     "image": "images/interests/noun_3d modeling_1885342.svg"
   },
   {
-    "title": "Statistical Modeling",
-    "description": "Automating Business Intelligence",
+    "title": "BI Visualizations",
+    "description": "Inform and evaluate next steps",
+    "image": "images/interests/noun_visual effect_1885325.svg"
+  },
+  {
+    "title": "Financial Markets",
+    "description": "Monitor security market conditions",
     "image": "images/interests/noun_The Process_1885341.svg"
   }
 ]

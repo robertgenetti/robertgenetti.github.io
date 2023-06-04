@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>sp500ranking</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+    <title>sp500ranking</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
+    <!-- Custom stylesheet, it must be in the same directory as the html file -->
+    <link rel="stylesheet" href="custom.css">
+
+    <!-- Load mathjax -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     init_mathjax = function() {
@@ -41,35 +45,47 @@
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --></head>
+    <!-- End of mathjax configuration -->
+</head>
+
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="S&amp;P-500-Ranking-Project">S&amp;P 500 Ranking Project<a class="anchor-link" href="#S&amp;P-500-Ranking-Project">&#182;</a></h1><h2 id="Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">Python, SQL and Tableau: Linear Regression, Key Metrics, Dashboard<a class="anchor-link" href="#Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">&#182;</a></h2><ul>
-<li>Data Source: Yahoo Finance</li>
-<li>Import Tool: Yfinance</li>
-<li>Export Option: SQL database</li>
-<li>Data Transformations: drop /edit cols, create features for regression analysis</li>
-<li>Future changes: Add portfolio risk analysis, Agg. economic health indicators</li>
-</ul>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput "
+                    data-mime-type="text/markdown">
+                    <h1 id="S&amp;P-500-Ranking-Project">S&amp;P 500 Screener Project<a class="anchor-link"
+                            href="#S&amp;P-500-Ranking-Project">&#182;</a></h1>
+                    <h2 id="Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">Python: ETL of S&P500
+                        financials<a class="anchor-link"
+                            href="#Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">&#182;</a></h2>
+                    <ul>
+                        <li>Data Source: Yahoo Finance</li>
+                        <li>Import Tool: Yfinance</li>
+                        <li>Export Option: SQL database</li>
+                        <li>Data Transformations: drop /edit cols, create features for regression analysis</li>
+                        <li>Future changes: Add portfolio risk analysis, Agg. economic health indicators</li>
+                    </ul>
 
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">notebook</span>
@@ -77,22 +93,25 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">os</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set current directory</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Set current directory</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">'/home/jovyan/work'</span><span class="p">)</span>
 
 <span class="c1"># Pandas settings</span>
@@ -100,22 +119,25 @@
 
 <span class="c1"># Constants</span>
 <span class="n">tickers_url</span> <span class="o">=</span> <span class="s2">"https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Fetch S&amp;P 500 ticker list</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Fetch S&amp;P 500 ticker list</span>
 <span class="k">def</span> <span class="nf">read_tickers</span><span class="p">():</span>    
     <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tickers_url</span><span class="p">)</span>
     <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">'html.parser'</span><span class="p">)</span>
@@ -137,42 +159,48 @@
     <span class="n">ticker_str</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ticker_arr</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">ticker_str</span><span class="p">,</span> <span class="n">ticker_arr</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># read tickers and init yahoo finance scraper</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># read tickers and init yahoo finance scraper</span>
 <span class="n">tickers</span><span class="p">,</span> <span class="n">ticker_arr</span> <span class="o">=</span> <span class="n">read_tickers</span><span class="p">()</span>
 <span class="n">sp500</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Tickers</span><span class="p">(</span><span class="n">tickers</span><span class="p">)</span>
 
 <span class="n">ticker_range</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ticker_arr</span><span class="p">))</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Extract</span>
 
 <span class="k">def</span> <span class="nf">extract_info</span><span class="p">(</span><span class="n">yfd</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -246,213 +274,225 @@
     <span class="k">return</span> <span class="n">df</span>
 
    
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">extract_info</span><span class="p">(</span><span class="n">sp500</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Load company info data successful
 </pre>
-</div>
-</div>
+                        </div>
 
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">,</span> <span class="n">df4</span> <span class="o">=</span> <span class="n">extract_financials</span><span class="p">(</span><span class="n">sp500</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Load company income statement data successful
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">extract_info</span><span class="p">(</span><span class="n">sp500</span><span class="p">)</span>
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
-</div>
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Load company balance sheet data successful
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Load company info data successful
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    </div>
+                </div>
 
+            </div>
 
+        </div>
 
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Load company cashflow statement data successful
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">,</span> <span class="n">df4</span> <span class="o">=</span> <span class="n">extract_financials</span><span class="p">(</span><span class="n">sp500</span><span class="p">)</span>
 </pre>
-</div>
-</div>
+                        </div>
 
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df5</span> <span class="o">=</span> <span class="n">extract_recommendations</span><span class="p">(</span><span class="n">sp500</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
-</div>
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Load company recommendation data successful
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Load company income statement data successful
 </pre>
-</div>
-</div>
+                    </div>
+                </div>
+                <div class="jp-OutputArea-child">
 
-</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
-</div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Transform</span>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
+                    </div>
+
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Load company balance sheet data successful
+</pre>
+                    </div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
+                    </div>
+
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Load company cashflow statement data successful
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="n">df5</span> <span class="o">=</span> <span class="n">extract_recommendations</span><span class="p">(</span><span class="n">sp500</span><span class="p">)</span>
+</pre>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/502 [00:00&lt;?, ?it/s]</pre>
+                    </div>
+
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Load company recommendation data successful
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Transform</span>
 
 <span class="c1"># drop empty or unecessary cols</span>
 <span class="n">null_cols</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span><span class="mi">500</span>
@@ -466,43 +506,46 @@
                  <span class="s1">'numberOfAnalystOpinions'</span><span class="p">,</span><span class="s1">'targetMeanPrice'</span><span class="p">,</span><span class="s1">'targetHighPrice'</span><span class="p">,</span><span class="s1">'recommendationMean'</span><span class="p">,</span>
                  <span class="s1">'gmtOffSetMilliseconds'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"df1 cleaning successful"</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>df1 cleaning successful
 </pre>
-</div>
-</div>
+                        </div>
 
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># run any test now</span>
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>df1 cleaning successful
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># run any test now</span>
 <span class="n">redo_arr</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="n">df4</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s1">'Ticker'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">redo_arr</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
     <span class="n">redo</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">redo_arr</span><span class="p">)</span>
@@ -518,99 +561,102 @@
     <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df3</span><span class="p">,</span><span class="n">df3r</span><span class="p">],</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">df4</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="n">df4</span><span class="p">[</span><span class="s1">'Ticker'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">redo_arr</span><span class="p">)]</span>
     <span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df4</span><span class="p">,</span><span class="n">df4r</span><span class="p">],</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Load company income statement data successful
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
-</div>
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Load company balance sheet data successful
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Load company income statement data successful
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    </div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>  0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
-</div>
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Load company cashflow statement data successful
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Load company balance sheet data successful
 </pre>
-</div>
-</div>
+                    </div>
+                </div>
+                <div class="jp-OutputArea-child">
 
-</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
-</div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Last check before sql import</span>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+                        <pre>  0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
+                    </div>
+
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Load company cashflow statement data successful
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Last check before sql import</span>
 <span class="n">m1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s1">'Ticker'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">&gt;</span><span class="mi">0</span>
 <span class="n">m2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s1">'Ticker'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">&gt;</span><span class="mi">0</span>
 <span class="n">m3</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df4</span><span class="p">[</span><span class="n">df4</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s1">'Ticker'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">&gt;</span><span class="mi">0</span>
@@ -619,60 +665,66 @@
     <span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset is complete'</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset is not complete'</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Dataset is complete
 </pre>
-</div>
-</div>
+                        </div>
 
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Dataset is complete
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">'postgresql://postgres:headband@192.168.0.151:5432/mydb'</span><span class="p">)</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="c1"># Load</span>
 <span class="k">def</span> <span class="nf">update_server</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span><span class="n">dataframe</span><span class="p">):</span>  
     <span class="k">try</span><span class="p">:</span>
         <span class="n">dataframe</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span><span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">)</span>
@@ -680,59 +732,63 @@
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">'Got an error while updating server'</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">'Error: '</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">,</span><span class="n">df3</span><span class="p">,</span><span class="n">df4</span><span class="p">,</span><span class="n">df5</span><span class="p">]</span>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3">
+                            <pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">,</span><span class="n">df3</span><span class="p">,</span><span class="n">df4</span><span class="p">,</span><span class="n">df5</span><span class="p">]</span>
 <span class="n">sql_tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Info"</span><span class="p">,</span><span class="s2">"Income"</span><span class="p">,</span><span class="s2">"BalanceSheet"</span><span class="p">,</span><span class="s2">"CashFlow"</span><span class="p">,</span><span class="s2">"Recommendation"</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dfs</span><span class="p">)):</span>
     <span class="n">update_server</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SP500</span><span class="si">{</span><span class="n">sql_tables</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span><span class="n">dfs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Successfully imported SP500Info to server
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                        <pre>Successfully imported SP500Info to server
 Successfully imported SP500Income to server
 Successfully imported SP500BalanceSheet to server
 Successfully imported SP500CashFlow to server
 Successfully imported SP500Recommendation to server
 </pre>
-</div>
-</div>
+                    </div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 </body>
 
 

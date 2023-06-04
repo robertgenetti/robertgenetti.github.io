@@ -40,12 +40,13 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  code:
+    output: true
+    permalink: /projects/:path/code/
   education:
     output: true
   #   permalink: /education/:path/
-  # interests:
-  #   output: true
-  #   permalink: /interests/:path/
+
 
 defaults:
   - scope:
@@ -53,6 +54,11 @@ defaults:
     values:
       layout: project
       bodyClass: page-services-single
+  - scope:
+      type: code
+    values:
+      layout: code
+      bodyClass: page-testimonials-list
   - scope:
       path: 'images'
     values:
@@ -65,6 +71,6 @@ sass:
 
 # Build settings
 plugins:
-   - jekyll-environment-variables
-
+  - jekyll-environment-variables
+  - jekyll-relative-links
 #

@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>seattle</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
+    <title>seattle</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+    <!-- Custom stylesheet, it must be in the same directory as the html file -->
+    <link rel="stylesheet" href="custom.css">
+
+    <!-- Load mathjax -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     init_mathjax = function() {
@@ -40,373 +44,696 @@
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --></head>
+    <!-- End of mathjax configuration -->
+</head>
+
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-sql"><pre><span></span><span class="c1">-- check database row count</span>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-sql">
+                            <pre><span></span><span class="c1">-- check database row count</span>
 <span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"></span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">seattle_mortgage</span><span class="w"></span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-(1 row(s) affected)
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-Total execution time: 00:00:00.017
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        (1 row(s) affected)
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table><tr><th>count</th></tr><tr><td>1012</td></tr></table>
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        Total execution time: 00:00:00.017
+                    </div>
 
-</div>
+                </div>
+                <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 
-</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 
-</div>
 
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Distressed-Property-Market-Dashboard-Project">Distressed Property Market Dashboard Project<a class="anchor-link" href="#Distressed-Property-Market-Dashboard-Project">&#182;</a></h1><h2 id="Python,-SQL-and-Tableau:-Data-Extraction,-Key-Metrics,-Dashboard">Python, SQL and Tableau: Data Extraction, Key Metrics, Dashboard<a class="anchor-link" href="#Python,-SQL-and-Tableau:-Data-Extraction,-Key-Metrics,-Dashboard">&#182;</a></h2><h3 id="Here-are-a-few-key-metrics-using-SQL">Here are a few key metrics using SQL<a class="anchor-link" href="#Here-are-a-few-key-metrics-using-SQL">&#182;</a></h3><ul>
-<li>(Panel) Overall distress property market trend</li>
-<li>(Panel) Residential/conventional home loan market</li>
-<li>(Agg. Val.) Average appraisal value</li>
-<li>(Cross-sectional) List of distressed properties in the king county area</li>
-</ul>
 
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-sql"><pre><span></span><span class="c1">-- (Panel) Overall distress property market trend</span>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+                        data-mime-type="text/html">
+                        <table>
+                            <tr>
+                                <th>count</th>
+                            </tr>
+                            <tr>
+                                <td>1012</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput "
+                    data-mime-type="text/markdown">
+                    <h1 id="Distressed-Property-Market-Dashboard-Project">Distressed Property Market Dashboard Project<a
+                            class="anchor-link" href="#Distressed-Property-Market-Dashboard-Project">&#182;</a></h1>
+                    <h2 id="Python,-SQL-and-Tableau:-Data-Extraction,-Key-Metrics,-Dashboard">SQL: Key Metrics<a
+                            class="anchor-link"
+                            href="#Python,-SQL-and-Tableau:-Data-Extraction,-Key-Metrics,-Dashboard">&#182;</a></h2>
+                    <h3 id="Here-are-a-few-key-metrics-using-SQL">Here are a few key metrics using SQL<a
+                            class="anchor-link" href="#Here-are-a-few-key-metrics-using-SQL">&#182;</a></h3>
+                    <ul>
+                        <li>(Panel) Overall distress property market trend</li>
+                        <li>(Panel) Residential/conventional home loan market</li>
+                        <li>(Agg. Val.) Average appraisal value</li>
+                        <li>(Cross-sectional) List of distressed properties in the king county area</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-sql">
+                            <pre><span></span><span class="c1">-- (Panel) Overall distress property market trend</span>
 <span class="k">select</span><span class="w"> </span><span class="ss">"SERIES"</span><span class="p">,</span><span class="w"> </span><span class="ss">"YEAR"</span><span class="p">,</span><span class="w"> </span><span class="ss">"QUARTER"</span><span class="p">,</span><span class="w"> </span><span class="ss">"MARKET"</span><span class="p">,</span><span class="w"> </span><span class="ss">"VALUE"</span><span class="w"></span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">seattle_mortgage</span><span class="w"></span>
 <span class="k">where</span><span class="w"> </span><span class="ss">"SERIES"</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">'Percent in Forbearance'</span><span class="w"></span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-(972 row(s) affected)
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-Displaying Top 10 rows.
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        (972 row(s) affected)
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
 
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-Total execution time: 00:00:00.152
-</div>
-
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table><tr><th>SERIES</th><th>YEAR</th><th>QUARTER</th><th>MARKET</th><th>VALUE</th></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2002</td><td>1</td><td>Enterprise</td><td>0.7</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2002</td><td>2</td><td>Enterprise</td><td>0.7</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2002</td><td>3</td><td>Enterprise</td><td>0.8</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2002</td><td>4</td><td>Enterprise</td><td>0.8</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2003</td><td>1</td><td>Enterprise</td><td>0.7</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2003</td><td>2</td><td>Enterprise</td><td>0.7</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2003</td><td>3</td><td>Enterprise</td><td>0.8</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2003</td><td>4</td><td>Enterprise</td><td>0.9</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2004</td><td>1</td><td>Enterprise</td><td>0.7</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2004</td><td>2</td><td>Enterprise</td><td>0.6</td></tr></table>
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        Displaying Top 10 rows.
+                    </div>
 
-</div>
+                </div>
+                <div class="jp-OutputArea-child">
 
-</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
-</div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell    celltag_hide_input">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-sql"><pre><span></span><span class="c1">-- (Panel) Residential/conventional home loan market</span>
+
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        Total execution time: 00:00:00.152
+                    </div>
+
+                </div>
+                <div class="jp-OutputArea-child jp-OutputArea-executeResult">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+
+
+
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+                        data-mime-type="text/html">
+                        <table>
+                            <tr>
+                                <th>SERIES</th>
+                                <th>YEAR</th>
+                                <th>QUARTER</th>
+                                <th>MARKET</th>
+                                <th>VALUE</th>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2002</td>
+                                <td>1</td>
+                                <td>Enterprise</td>
+                                <td>0.7</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2002</td>
+                                <td>2</td>
+                                <td>Enterprise</td>
+                                <td>0.7</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2002</td>
+                                <td>3</td>
+                                <td>Enterprise</td>
+                                <td>0.8</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2002</td>
+                                <td>4</td>
+                                <td>Enterprise</td>
+                                <td>0.8</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2003</td>
+                                <td>1</td>
+                                <td>Enterprise</td>
+                                <td>0.7</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2003</td>
+                                <td>2</td>
+                                <td>Enterprise</td>
+                                <td>0.7</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2003</td>
+                                <td>3</td>
+                                <td>Enterprise</td>
+                                <td>0.8</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2003</td>
+                                <td>4</td>
+                                <td>Enterprise</td>
+                                <td>0.9</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2004</td>
+                                <td>1</td>
+                                <td>Enterprise</td>
+                                <td>0.7</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2004</td>
+                                <td>2</td>
+                                <td>Enterprise</td>
+                                <td>0.6</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell    celltag_hide_input">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-sql">
+                            <pre><span></span><span class="c1">-- (Panel) Residential/conventional home loan market</span>
 <span class="k">select</span><span class="w"> </span><span class="ss">"SERIES"</span><span class="p">,</span><span class="w"> </span><span class="ss">"YEAR"</span><span class="p">,</span><span class="w"> </span><span class="ss">"QUARTER"</span><span class="p">,</span><span class="w"> </span><span class="ss">"MARKET"</span><span class="p">,</span><span class="w"> </span><span class="ss">"VALUE"</span><span class="w"></span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">seattle_mortgage</span><span class="w"></span>
 <span class="k">where</span><span class="w"> </span><span class="ss">"SERIES"</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">'Percent in Forbearance'</span><span class="w"></span>
 <span class="k">and</span><span class="w"> </span><span class="ss">"MARKET"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Other Conventional'</span><span class="w"></span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-(243 row(s) affected)
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-Displaying Top 10 rows.
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        (243 row(s) affected)
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
 
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-Total execution time: 00:00:00.030
-</div>
-
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table><tr><th>SERIES</th><th>YEAR</th><th>QUARTER</th><th>MARKET</th><th>VALUE</th></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2002</td><td>1</td><td>Other Conventional</td><td>2.1</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2002</td><td>2</td><td>Other Conventional</td><td>1.9</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2002</td><td>3</td><td>Other Conventional</td><td>2.2</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2002</td><td>4</td><td>Other Conventional</td><td>2.3</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2003</td><td>1</td><td>Other Conventional</td><td>2.0</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2003</td><td>2</td><td>Other Conventional</td><td>1.8</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2003</td><td>3</td><td>Other Conventional</td><td>1.8</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2003</td><td>4</td><td>Other Conventional</td><td>2.1</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2004</td><td>1</td><td>Other Conventional</td><td>1.8</td></tr><tr><td>Percent 30 or 60 Days Past Due Date</td><td>2004</td><td>2</td><td>Other Conventional</td><td>1.7</td></tr></table>
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        Displaying Top 10 rows.
+                    </div>
 
-</div>
+                </div>
+                <div class="jp-OutputArea-child">
 
-</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
-</div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-sql"><pre><span></span><span class="c1">-- (Agg. Val.) Average appraisal value</span>
+
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        Total execution time: 00:00:00.030
+                    </div>
+
+                </div>
+                <div class="jp-OutputArea-child jp-OutputArea-executeResult">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+
+
+
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+                        data-mime-type="text/html">
+                        <table>
+                            <tr>
+                                <th>SERIES</th>
+                                <th>YEAR</th>
+                                <th>QUARTER</th>
+                                <th>MARKET</th>
+                                <th>VALUE</th>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2002</td>
+                                <td>1</td>
+                                <td>Other Conventional</td>
+                                <td>2.1</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2002</td>
+                                <td>2</td>
+                                <td>Other Conventional</td>
+                                <td>1.9</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2002</td>
+                                <td>3</td>
+                                <td>Other Conventional</td>
+                                <td>2.2</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2002</td>
+                                <td>4</td>
+                                <td>Other Conventional</td>
+                                <td>2.3</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2003</td>
+                                <td>1</td>
+                                <td>Other Conventional</td>
+                                <td>2.0</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2003</td>
+                                <td>2</td>
+                                <td>Other Conventional</td>
+                                <td>1.8</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2003</td>
+                                <td>3</td>
+                                <td>Other Conventional</td>
+                                <td>1.8</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2003</td>
+                                <td>4</td>
+                                <td>Other Conventional</td>
+                                <td>2.1</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2004</td>
+                                <td>1</td>
+                                <td>Other Conventional</td>
+                                <td>1.8</td>
+                            </tr>
+                            <tr>
+                                <td>Percent 30 or 60 Days Past Due Date</td>
+                                <td>2004</td>
+                                <td>2</td>
+                                <td>Other Conventional</td>
+                                <td>1.7</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-sql">
+                            <pre><span></span><span class="c1">-- (Agg. Val.) Average appraisal value</span>
 <span class="k">select</span><span class="w"> </span><span class="n">CEILING</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">TO_NUMBER</span><span class="p">(</span><span class="ss">"Appraised Value"</span><span class="p">,</span><span class="w"> </span><span class="s1">'FM99G999G999'</span><span class="w"> </span><span class="p">)))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="ss">"Average"</span><span class="w"></span>
 <span class="k">from</span><span class="w"> </span><span class="ss">"SeattleDistressedProp"</span><span class="w"></span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-(1 row(s) affected)
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-Total execution time: 00:00:00.257
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        (1 row(s) affected)
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+                </div>
+                <div class="jp-OutputArea-child">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table><tr><th>Average</th></tr><tr><td>493907</td></tr></table>
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        Total execution time: 00:00:00.257
+                    </div>
 
-</div>
+                </div>
+                <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 
-</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
-</div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-sql"><pre><span></span><span class="c1">-- (Cross-sectional) List of distressed properties in the king county area</span>
+
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+                        data-mime-type="text/html">
+                        <table>
+                            <tr>
+                                <th>Average</th>
+                            </tr>
+                            <tr>
+                                <td>493907</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-sql">
+                            <pre><span></span><span class="c1">-- (Cross-sectional) List of distressed properties in the king county area</span>
 <span class="k">select</span><span class="w"> </span><span class="ss">"Record Date"</span><span class="p">,</span><span class="ss">"PID"</span><span class="p">,</span><span class="ss">"Address"</span><span class="p">,</span><span class="ss">"Appraised Value"</span><span class="p">,</span><span class="ss">"Latitude"</span><span class="p">,</span><span class="ss">"Longitude"</span><span class="p">,</span><span class="ss">"Neighborhood"</span><span class="p">,</span><span class="ss">"Metro"</span><span class="p">,</span><span class="ss">"Grantee"</span><span class="w"></span>
 <span class="k">from</span><span class="w"> </span><span class="ss">"SeattleDistressedProp"</span><span class="w"></span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">"Record Date"</span><span class="w"></span>
-</pre></div>
+</pre>
+                        </div>
 
-     </div>
-</div>
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
 
 
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-(134 row(s) affected)
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-Displaying Top 10 rows.
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        (134 row(s) affected)
+                    </div>
 
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                </div>
+                <div class="jp-OutputArea-child">
 
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-Total execution time: 00:00:00.032
-</div>
-
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table><tr><th>Record Date</th><th>PID</th><th>Address</th><th>Appraised Value</th><th>Latitude</th><th>Longitude</th><th>Neighborhood</th><th>Metro</th><th>Grantee</th></tr><tr><td>06/21/2022</td><td>7225500280</td><td>30537 5TH AVE SW 98023</td><td>519,000</td><td>47.327724599999996</td><td>-122.34113418535375</td><td>Mirror Lake</td><td>Federal Way</td><td>CLEAR RECON CORPAEGIS LAND TITLE GROUP...</td></tr><tr><td>06/22/2022</td><td>0699002230</td><td>12932 NE 131ST ST 98034</td><td>328,000</td><td>47.7175885</td><td>-122.16798441313318</td><td>Kirkland</td><td>King County</td><td>NORTH STAR TRUSTEE LLCHOMESTREET BANK...</td></tr><tr><td>06/22/2022</td><td>1222069101</td><td>19324 HOLLYHILLS DR NE 98011</td><td>989,000</td><td>47.76782685</td><td>-122.17036347613123</td><td>North Creek</td><td>Bothell</td><td>ACKER SEAN DACKER HEIDI J...</td></tr><tr><td>06/23/2022</td><td>3971701899</td><td>22024 260TH AVE SE 98038</td><td>682,000</td><td>47.40390495</td><td>-121.99406930091548</td><td>Maple Valley</td><td>King County</td><td>QUALITY LOAN SERVICE CORPORATION OF WALAKEVIEW LOAN SERVICING LLC...</td></tr><tr><td>06/23/2022</td><td>3546000540</td><td>24230 116TH PL SE </td><td>465,000</td><td>47.384213700000004</td><td>-122.1859362960468</td><td>East Pointe</td><td>Kent</td><td>BEACH MORTGAGE COMPANYQUALITY LOAN SERVICE CORPORATION OF WA...</td></tr><tr><td>06/23/2022</td><td>2122059213</td><td>4729 ROOSEVELT WAY NE 98105</td><td>839,000</td><td>47.66402575</td><td>-122.31770574597698</td><td>University Heights</td><td>University District</td><td>PNC BANK NAQUALITY LOAN SERVICE CORPORATION OF WA</td></tr><tr><td>06/23/2022</td><td>5335200070</td><td>21518 117TH AVE SE 98031</td><td>1,521,000</td><td>47.40944485</td><td>-122.18516267433654</td><td>Hillshire Terrace</td><td>Kent</td><td>NORTH STAR TRUSTEE LLCWILMINGTON TRUST NA</td></tr><tr><td>06/23/2022</td><td>1459750120</td><td>119 37TH AVE E 98112</td><td>536,000</td><td>47.61898334999999</td><td>-122.28674057451731</td><td>Denny-Blaine</td><td>Harrison/Denny–Blaine</td><td>NORTH STAR TRUSTEE LLCSERVICEMAC LLC</td></tr><tr><td>06/23/2022</td><td>9103000450</td><td>1822 NE 190TH ST 98155</td><td>869,000</td><td>47.76668377777778</td><td>-122.30996488888889</td><td>Shoreline</td><td>King County</td><td>BORREGO MANAGEMENT LLCKLAVANO JIM...</td></tr><tr><td>06/24/2022</td><td>7129302745</td><td>12508 SE 273RD PL 98030</td><td>263,000</td><td>47.356899</td><td>-122.17383036668008</td><td>Kent</td><td>King County</td><td>CULVER GARY EKROHN GARY</td></tr></table>
-</div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        Displaying Top 10 rows.
+                    </div>
 
-</div>
+                </div>
+                <div class="jp-OutputArea-child">
 
-</div>
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
-</div>
 
-</div>
+
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+                        Total execution time: 00:00:00.032
+                    </div>
+
+                </div>
+                <div class="jp-OutputArea-child jp-OutputArea-executeResult">
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+
+
+                    <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+                        data-mime-type="text/html">
+                        <table>
+                            <tr>
+                                <th>Record Date</th>
+                                <th>PID</th>
+                                <th>Address</th>
+                                <th>Appraised Value</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Neighborhood</th>
+                                <th>Metro</th>
+                                <th>Grantee</th>
+                            </tr>
+                            <tr>
+                                <td>06/21/2022</td>
+                                <td>7225500280</td>
+                                <td>30537 5TH AVE SW 98023</td>
+                                <td>519,000</td>
+                                <td>47.327724599999996</td>
+                                <td>-122.34113418535375</td>
+                                <td>Mirror Lake</td>
+                                <td>Federal Way</td>
+                                <td>CLEAR RECON CORPAEGIS LAND TITLE GROUP...</td>
+                            </tr>
+                            <tr>
+                                <td>06/22/2022</td>
+                                <td>0699002230</td>
+                                <td>12932 NE 131ST ST 98034</td>
+                                <td>328,000</td>
+                                <td>47.7175885</td>
+                                <td>-122.16798441313318</td>
+                                <td>Kirkland</td>
+                                <td>King County</td>
+                                <td>NORTH STAR TRUSTEE LLCHOMESTREET BANK...</td>
+                            </tr>
+                            <tr>
+                                <td>06/22/2022</td>
+                                <td>1222069101</td>
+                                <td>19324 HOLLYHILLS DR NE 98011</td>
+                                <td>989,000</td>
+                                <td>47.76782685</td>
+                                <td>-122.17036347613123</td>
+                                <td>North Creek</td>
+                                <td>Bothell</td>
+                                <td>ACKER SEAN DACKER HEIDI J...</td>
+                            </tr>
+                            <tr>
+                                <td>06/23/2022</td>
+                                <td>3971701899</td>
+                                <td>22024 260TH AVE SE 98038</td>
+                                <td>682,000</td>
+                                <td>47.40390495</td>
+                                <td>-121.99406930091548</td>
+                                <td>Maple Valley</td>
+                                <td>King County</td>
+                                <td>QUALITY LOAN SERVICE CORPORATION OF WALAKEVIEW LOAN SERVICING LLC...</td>
+                            </tr>
+                            <tr>
+                                <td>06/23/2022</td>
+                                <td>3546000540</td>
+                                <td>24230 116TH PL SE </td>
+                                <td>465,000</td>
+                                <td>47.384213700000004</td>
+                                <td>-122.1859362960468</td>
+                                <td>East Pointe</td>
+                                <td>Kent</td>
+                                <td>BEACH MORTGAGE COMPANYQUALITY LOAN SERVICE CORPORATION OF WA...</td>
+                            </tr>
+                            <tr>
+                                <td>06/23/2022</td>
+                                <td>2122059213</td>
+                                <td>4729 ROOSEVELT WAY NE 98105</td>
+                                <td>839,000</td>
+                                <td>47.66402575</td>
+                                <td>-122.31770574597698</td>
+                                <td>University Heights</td>
+                                <td>University District</td>
+                                <td>PNC BANK NAQUALITY LOAN SERVICE CORPORATION OF WA</td>
+                            </tr>
+                            <tr>
+                                <td>06/23/2022</td>
+                                <td>5335200070</td>
+                                <td>21518 117TH AVE SE 98031</td>
+                                <td>1,521,000</td>
+                                <td>47.40944485</td>
+                                <td>-122.18516267433654</td>
+                                <td>Hillshire Terrace</td>
+                                <td>Kent</td>
+                                <td>NORTH STAR TRUSTEE LLCWILMINGTON TRUST NA</td>
+                            </tr>
+                            <tr>
+                                <td>06/23/2022</td>
+                                <td>1459750120</td>
+                                <td>119 37TH AVE E 98112</td>
+                                <td>536,000</td>
+                                <td>47.61898334999999</td>
+                                <td>-122.28674057451731</td>
+                                <td>Denny-Blaine</td>
+                                <td>Harrison/Denny–Blaine</td>
+                                <td>NORTH STAR TRUSTEE LLCSERVICEMAC LLC</td>
+                            </tr>
+                            <tr>
+                                <td>06/23/2022</td>
+                                <td>9103000450</td>
+                                <td>1822 NE 190TH ST 98155</td>
+                                <td>869,000</td>
+                                <td>47.76668377777778</td>
+                                <td>-122.30996488888889</td>
+                                <td>Shoreline</td>
+                                <td>King County</td>
+                                <td>BORREGO MANAGEMENT LLCKLAVANO JIM...</td>
+                            </tr>
+                            <tr>
+                                <td>06/24/2022</td>
+                                <td>7129302745</td>
+                                <td>12508 SE 273RD PL 98030</td>
+                                <td>263,000</td>
+                                <td>47.356899</td>
+                                <td>-122.17383036668008</td>
+                                <td>Kent</td>
+                                <td>King County</td>
+                                <td>CULVER GARY EKROHN GARY</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </body>
 
 

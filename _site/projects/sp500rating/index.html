@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>S&P 500 Rating</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/images/favicon.png">
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class='page page-services-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    <li><a href="/" class="">Home</a></li>
+    <li><a href="/projects/" class="current">Projects</a></li>
+    <!-- <li><a href="/team/" class="">Team</a></li>
+    <li><a href="/testimonials/" class="">Testimonials</a></li> -->
+    <li><a href="/contact/" class="">About Me</a></li>
+  </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header header-extra'>
+  <div class="container">
+   
+    <div class="logo">
+      <a href="/"><img alt="Figurit Homepage" src="/assets/images/logo-mobile.png" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    <li><a href="/" class="">Home</a></li>
+    <li><a href="/projects/" class="current">Projects</a></li>
+    <!-- <li><a href="/education/" class="">Education</a></li>
+    <li><a href="/interests/" class="">Interests</a></li> -->
+    <li><a href="/contact/" class="">About Me</a></li>
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+    <div class="strip strip-white strip-diagonal">
+  <div class="container pt-4 pt-md-10">
+    <div class="row justify-content-center">
+      <div class="col-12 px-4">
+        <div class="service service-single">
+          <h1 class="title text-center">S&P 500 Rating Project</h1>
+          <div style="display: flex;align-items: center;justify-content: center;">
+            <div class="whitebox mt-4 mb-12" style="max-width:750px;">
+              <img src="/images/projects/sp500rating.png" alt="S&P 500 Rating" style="width:100%; object-fit: cover;">
+            </div>
+          </div>
+          <div class="content"><p>Learning to invest is difficult to say the least, but with the right analytical tools and with enough practice it can be done. Having fun while learning is always the goal when picking up new skills. And learning financial analysis is not different. Necessity is the mother of invention and this project is a necessary step on the road to a better understanding of the basics.</p>
+
+<h3 id="goal">Goal</h3>
+<p>This project aims to improve financial statement learning for beginner investors and provide a basic understanding of common financial ratio analysis.</p>
+
+<h3 id="outcome">Outcome</h3>
+<p>Solid financial analysis skills are the foundation to building more advanced skills and becoming a successful investor.</p>
+
+<div class="col-12 text-center">
+    <a href="https://public.tableau.com/views/SP500StockScreener/screener?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">Dashboard</a>
+    <!-- <a href="https://public.tableau.com/views/SP500StockScreener/screener?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link" class="button button-primary mt-2 mb-6" style="text-decoration:none;" target="_blank">Report</a> -->
+</div>
+
+<h3 id="overview">Overview</h3>
+
+<p><b>Role:</b> Data Analyst</p>
+<p><b>Requirements:</b> Develop a stock screener and analysis dashboard</p>
+<p><b>Timeline:</b> Approximately 120 hours</p>
+<p><b>Tools:</b> Python, R, Jupyter Lab, SQL, Azure Data Studio, Affinity Design, Tableau</p>
+
+<div class="container text-center my-4">
+    <div class="row justify-content-center">
+        <div class="col p-2">
+            <h3>Plan</h3>
+            <img src="/images/projects/Plan.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Extract</h3>
+            <img src="/images/projects/Extract.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Analyze</h3>
+            <img src="/images/projects/Analyze.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+        <div class="col p-2">
+            <h3>Visualize</h3>
+            <img src="/images/projects/Visual.png" style="width:100px; height:auto; object-fit: cover;" />
+        </div>
+    </div>
+</div>
+
+<div class="mb-3"></div>
+
+<h3 id="plan-4-steps">Plan (4 Steps)</h3>
+<ol>
+  <li>Extract, Transform, and Load
+    <ul>
+      <li>Pull list of companies in S&amp;P 500</li>
+      <li>Pull financial data from Yahoo Finance</li>
+      <li>Sort and transform data in Pandas</li>
+      <li>Import dataframes into SQL Postgres Database</li>
+    </ul>
+  </li>
+  <li>Analyze buy/sell recommendation data in Python
+    <ul>
+      <li>Select features best suited</li>
+      <li>Transform data to limit outliers</li>
+      <li>Import into SQL Postgres Database</li>
+    </ul>
+  </li>
+  <li>Build Linear Regression with Fixed Effects in R
+    <ul>
+      <li>Explore data</li>
+      <li>Perform linear regression on test data</li>
+      <li>Use fixed effects to seperate sector bias</li>
+    </ul>
+  </li>
+  <li>Design Tableau dashboard
+    <ul>
+      <li>Screener to filter companies based on specific measures</li>
+      <li>Buy/sell recommendation estimate – OLS model</li>
+      <li>Income statement KPIs</li>
+      <li>Balance sheet KPIs</li>
+      <li>Cashflow statement KPIs</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="extract-transform-and-load">Extract, Transform, and Load</h3>
+<ul>
+  <li>Data source: <a href="https://finance.yahoo.com/">Yahoo Finance</a></li>
+  <li>Four different datasets were collected: general info, income statement, balance sheet, cashflow statement</li>
+  <li>Info dataset common features: symbol, date, total revenue, debt/equity</li>
+  <li>Income Statement dataset common features: ticker, date, net income, cost of revenue</li>
+  <li>Balance Sheet dataset common features: ticker, date, total assets, total liabilities</li>
+  <li>Cashflow Statement dataset common features: ticker, date, cash from operations, cash from financing</li>
+</ul>
+
+<h4 id="jupyter-notebook">Jupyter Notebook</h4>
+<ul>
+  <li>Build ETL functions to extract and load data into Postgresql database</li>
+</ul>
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: JupyterLab (Python)</h4>
+        <a href="/projects/sp500rating//code#python1" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/sp500ranking.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h3 id="analyze-data">Analyze Data</h3>
+<ul>
+  <li>Feature selection - Azure Data Studio</li>
+  <li>Statistical Analysis - OLS Model to estimate buy/sell recommendations</li>
+</ul>
+
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: Azure Data Studio Code (SQL)</h4>
+        <a href="/projects/sp500rating//code#sql" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/sp500.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: JupyterLab (Python)</h4>
+        <a href="/projects/sp500rating//code#python2" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/sp500_lm_features.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+<div class="my-3">
+    <div class="row justify-content-between mt-4 px-1">
+        <h4>Code Snippet: R-Studio (R)</h4>
+        <a href="/projects/sp500rating//code#r" class="button button-primary" style="text-decoration:none;">View Code</a>
+    </div>
+    <div style="border: 1px solid #dcdcdc;">
+    <iframe scrolling="no" src="/images/projects/sp500_lm.html" frameborder="0" height="330" width="100%"></iframe>
+    </div>
+</div>
+
+<h3 id="evaluate-results">Evaluate Results</h3>
+<ul>
+  <li>Design - Affinity Design</li>
+  <li>Visualization - Tableau</li>
+</ul>
+<div class="mb-3"></div>
+
+<h4 id="tableau-dashboard-shapshot-">Tableau Dashboard Shapshot 📸</h4>
+<p><img src="/images/projects/book3.png" alt="screenshot" /></p>
+<div class="mb-3"></div>
+
+<h3 id="conclusion">Conclusion</h3>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-6 mb-5">
+            <p>When I began investing for the first time I had trouble identifying trends and value in the equities market. The novice investors are at risk of making investment decisions based on incomplete information. That is why having a dedicated stock screener and buy/sell recommendations model is important to improving financial analysis skills.</p>
+            <p>Jan 2023, when this project’s data was last updated, the financial market was in a decidedly downward correction, shifting from the elevated levels of the year and a half before to a slightly lower valuations. Following this trend was lower projected earnings and less favorable buy/sell recommendations. Our own OLS model estimated a majority of stocks as a hold recommendation indicating a pull back in investments is underway.</p>
+            <p>This project began as simple idea, to build a data visualization that would improve financial statement analysis and recommend buy/sell targets provided with the most recent data. For me the project gave me a better understanding of how different segments of the market are valued and what financial ratios to look for when analyzing specific stocks. If you are interested in financial markets and would like to learn more visit <a href="https://www.betterinvesting.org/" style="text-decoration:none;" target="_blank">betterinvesting.org</a> for tips on how to become an investor yourself.</p>
+            <div class="text-center">
+                <a href="https://public.tableau.com/views/SP500StockScreener/screener?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" class="button button-primary mt-6" style="text-decoration:none;" target="_blank">View Dashboard</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="whitebox"><a href="https://public.tableau.com/views/SP500StockScreener/screener?:language=en-US&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link" target="_blank">
+            <img src="/images/projects/sp500rating.gif" alt="S&amp;P 500 Rating" style="width:100%; height:auto; object-fit: cover;" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="footer-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="footer">
+          <h3 class="footer-title">Robert Genetti</h3>
+          <ul class="footer-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="sub-footer-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer">
+          <ul>
+            <li><strong>Phone: </strong>(669) 291-5278</li>
+            <li><strong>Email: </strong><a href="mailto:robertkgenetti@gmail.com">
+                robertkgenetti@gmail.com</a></li>
+          </ul>
+          <ul id="social" class="social">
+  <li>
+    <a class="social-github" href="https://github.com/robertgenetti" target="blank"><img src='/images/social/logo-github.png' alt="github-image" height="16"/></a>
+  </li>
+  <li>
+    <a class="social-linkedin" href="https://www.linkedin.com/in/robert-genetti-0ab34533" target="blank"><img src='/images/social/logo-linkedin.png' alt="linkedin-image" height="16"/></a>
+  </li>
+</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="/assets/js/scripts.js"></script>
+
+</body>
+</html>

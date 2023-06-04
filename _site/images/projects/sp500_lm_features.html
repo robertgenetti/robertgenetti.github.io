@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>sp500_lm_features</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+<head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
+     <title>sp500_lm_features</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+     <!-- Custom stylesheet, it must be in the same directory as the html file -->
+     <link rel="stylesheet" href="custom.css">
+
+     <!-- Load mathjax -->
+     <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
+     <!-- MathJax configuration -->
+     <script type="text/x-mathjax-config">
     init_mathjax = function() {
         if (window.MathJax) {
         // MathJax loaded
@@ -40,33 +44,49 @@
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --></head>
+     <!-- End of mathjax configuration -->
+</head>
+
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="S&amp;P-500-Ranking-Project---Linear-Model-Feature-Selection">S&amp;P 500 Ranking Project - Linear Model Feature Selection<a class="anchor-link" href="#S&amp;P-500-Ranking-Project---Linear-Model-Feature-Selection">&#182;</a></h1><h2 id="Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">Python, SQL and Tableau: Linear Regression, Key Metrics, Dashboard<a class="anchor-link" href="#Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">&#182;</a></h2><ul>
-<li>Dependent variable: recommendation score 1-5 ( 1=strong_buy, 2=buy, 3=neutral, 4=under_perform, 5=sell )</li>
-<li>Independent variables:  p/s, p/b, div yield, 5-yr CompAvg RevGrowth%, 5-yr CompAvg NumSharesGrowth%, med oper marg%, int coverage, d/e, log(market cap)</li>
-<li>Fixed effects: sector</li>
-</ul>
+     <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">
+                    </div>
+                    <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput "
+                         data-mime-type="text/markdown">
+                         <h1 id="S&amp;P-500-Ranking-Project---Linear-Model-Feature-Selection">S&amp;P 500 Screener
+                              Project - Linear Model Feature Selection<a class="anchor-link"
+                                   href="#S&amp;P-500-Ranking-Project---Linear-Model-Feature-Selection">&#182;</a></h1>
+                         <h2 id="Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">Python: Linear
+                              Regression Feature Selection<a class="anchor-link"
+                                   href="#Python,-SQL-and-Tableau:-Linear-Regression,-Key-Metrics,-Dashboard">&#182;</a>
+                         </h2>
+                         <ul>
+                              <li>Dependent variable: recommendation score 1-5 ( 1=strong_buy, 2=buy, 3=neutral,
+                                   4=under_perform, 5=sell )</li>
+                              <li>Independent variables: p/s, p/b, div yield, 5-yr CompAvg RevGrowth%, 5-yr CompAvg
+                                   NumSharesGrowth%, med oper marg%, int coverage, d/e, log(market cap)</li>
+                              <li>Fixed effects: sector</li>
+                         </ul>
 
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+                    </div>
+               </div>
+          </div>
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">notebook</span>
@@ -75,116 +95,134 @@
 <span class="kn">from</span> <span class="nn">scipy.stats.mstats</span> <span class="kn">import</span> <span class="n">winsorize</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">os</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set current directory</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># Set current directory</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">'/home/jovyan/work'</span><span class="p">)</span>
 
 <span class="c1"># Pandas settings</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_columns"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">'postgresql://postgres:headband@192.168.0.151:5432/mydb'</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sql_tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Info"</span><span class="p">,</span><span class="s2">"Income"</span><span class="p">,</span><span class="s2">"BalanceSheet"</span><span class="p">,</span><span class="s2">"CashFlow"</span><span class="p">,</span><span class="s2">"Recommendation"</span><span class="p">]</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="n">sql_tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Info"</span><span class="p">,</span><span class="s2">"Income"</span><span class="p">,</span><span class="s2">"BalanceSheet"</span><span class="p">,</span><span class="s2">"CashFlow"</span><span class="p">,</span><span class="s2">"Recommendation"</span><span class="p">]</span>
 <span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sql_tables</span><span class="p">)):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_table</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SP500</span><span class="si">{</span><span class="n">sql_tables</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
     <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">info_df</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="n">info_df</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">income_df</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">balance_df</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">cash_df</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">recomm_df</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[77]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lm_df</span> <span class="o">=</span> <span class="n">info_df</span><span class="p">[[</span><span class="s1">'symbol'</span><span class="p">,</span><span class="s1">'priceToSalesTrailing12Months'</span><span class="p">,</span><span class="s1">'priceToBook'</span><span class="p">,</span><span class="s1">'dividendYield'</span><span class="p">,</span><span class="s1">'debtToEquity'</span><span class="p">,</span><span class="s1">'marketCap'</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'symbol'</span><span class="p">)</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[77]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="n">lm_df</span> <span class="o">=</span> <span class="n">info_df</span><span class="p">[[</span><span class="s1">'symbol'</span><span class="p">,</span><span class="s1">'priceToSalesTrailing12Months'</span><span class="p">,</span><span class="s1">'priceToBook'</span><span class="p">,</span><span class="s1">'dividendYield'</span><span class="p">,</span><span class="s1">'debtToEquity'</span><span class="p">,</span><span class="s1">'marketCap'</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'symbol'</span><span class="p">)</span>
 <span class="n">lm_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[78]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compound Annual Revenue Growth</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[78]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># Compound Annual Revenue Growth</span>
 
 <span class="n">idx_income_years</span> <span class="o">=</span> <span class="n">income_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'Ticker'</span><span class="p">])[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">'idxmin'</span><span class="p">,</span> <span class="s1">'idxmax'</span><span class="p">])</span>
 <span class="n">first_income_years</span> <span class="o">=</span> <span class="n">income_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_income_years</span><span class="p">[</span><span class="s1">'idxmin'</span><span class="p">]]</span>
@@ -200,22 +238,25 @@
 <span class="n">merged_income_years</span><span class="p">[</span><span class="s1">'Total Revenue_last'</span><span class="p">]</span> <span class="o">/</span> <span class="n">merged_income_years</span><span class="p">[</span><span class="s1">'Total Revenue_first'</span><span class="p">],</span>
 <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">merged_income_years</span><span class="p">[</span><span class="s1">'diff'</span><span class="p">])</span>
 <span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[79]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compound Annual Number of Share Growth</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[79]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># Compound Annual Number of Share Growth</span>
 
 <span class="n">idx_balance_years</span> <span class="o">=</span> <span class="n">balance_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'Ticker'</span><span class="p">])[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">'idxmin'</span><span class="p">,</span> <span class="s1">'idxmax'</span><span class="p">])</span>
 <span class="n">first_balance_years</span> <span class="o">=</span> <span class="n">balance_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_balance_years</span><span class="p">[</span><span class="s1">'idxmin'</span><span class="p">]]</span>
@@ -231,169 +272,185 @@
 <span class="n">merged_balance_years</span><span class="p">[</span><span class="s1">'Common Stock_last'</span><span class="p">]</span> <span class="o">/</span> <span class="n">merged_balance_years</span><span class="p">[</span><span class="s1">'Common Stock_first'</span><span class="p">],</span>
 <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">merged_balance_years</span><span class="p">[</span><span class="s1">'diff'</span><span class="p">])</span>
 <span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[80]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 4 yr Average Operating Margin</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[80]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># 4 yr Average Operating Margin</span>
 
 <span class="n">merged_finance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cash_df</span><span class="p">,</span> <span class="n">income_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">'Ticker'</span><span class="p">,</span> <span class="s1">'Date'</span><span class="p">],</span> <span class="n">right_on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Ticker'</span><span class="p">,</span><span class="s1">'Date'</span><span class="p">])</span>
 <span class="n">merged_finance</span><span class="p">[</span><span class="s1">'Oper Margin'</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_finance</span><span class="p">[</span><span class="s1">'Total Cash From Operating Activities'</span><span class="p">]</span><span class="o">/</span><span class="n">merged_finance</span><span class="p">[</span><span class="s1">'Total Revenue'</span><span class="p">]</span>
 <span class="n">lm_df</span><span class="p">[</span><span class="s1">'opMarg'</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_finance</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Ticker'</span><span class="p">)[</span><span class="s1">'Oper Margin'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[81]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Interest Coverage</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[81]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># Interest Coverage</span>
 
 <span class="n">merged_finance</span><span class="p">[</span><span class="s1">'Interest Coverage'</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_finance</span><span class="p">[</span><span class="s1">'Total Cash From Operating Activities'</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">merged_finance</span><span class="p">[</span><span class="s1">'Interest Expense'</span><span class="p">])</span>
 <span class="n">idx_years</span> <span class="o">=</span> <span class="n">merged_finance</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'Ticker'</span><span class="p">])[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">'idxmax'</span><span class="p">])</span>
 <span class="n">lm_df</span><span class="p">[</span><span class="s1">'intCov'</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_finance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_years</span><span class="p">[</span><span class="s1">'idxmax'</span><span class="p">]][</span><span class="s1">'Interest Coverage'</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[82]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Test</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[82]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># Test</span>
 <span class="n">merged_finance</span><span class="p">[</span><span class="n">merged_finance</span><span class="p">[</span><span class="s1">'Ticker'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'MNST'</span><span class="p">][[</span><span class="s1">'Date'</span><span class="p">,</span><span class="s1">'Total Cash From Operating Activities'</span><span class="p">,</span><span class="s1">'Interest Expense'</span><span class="p">]]</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child jp-OutputArea-executeResult">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[82]:</div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+                              data-mime-type="text/html">
+                              <div>
+                                   <style scoped>
+                                        .dataframe tbody tr th:only-of-type {
+                                             vertical-align: middle;
+                                        }
+
+                                        .dataframe tbody tr th {
+                                             vertical-align: top;
+                                        }
+
+                                        .dataframe thead th {
+                                             text-align: right;
+                                        }
+                                   </style>
+                                   <table border="1" class="dataframe">
+                                        <thead>
+                                             <tr style="text-align: right;">
+                                                  <th></th>
+                                                  <th>Date</th>
+                                                  <th>Total Cash From Operating Activities</th>
+                                                  <th>Interest Expense</th>
+                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                             <tr>
+                                                  <th>1284</th>
+                                                  <td>2021-12-31</td>
+                                                  <td>1.155741e+09</td>
+                                                  <td>-19000.0</td>
+                                             </tr>
+                                             <tr>
+                                                  <th>1285</th>
+                                                  <td>2020-12-31</td>
+                                                  <td>1.364163e+09</td>
+                                                  <td>-39000.0</td>
+                                             </tr>
+                                             <tr>
+                                                  <th>1286</th>
+                                                  <td>2019-12-31</td>
+                                                  <td>1.113762e+09</td>
+                                                  <td>-56000.0</td>
+                                             </tr>
+                                             <tr>
+                                                  <th>1287</th>
+                                                  <td>2018-12-31</td>
+                                                  <td>1.161881e+09</td>
+                                                  <td>-60000.0</td>
+                                             </tr>
+                                        </tbody>
+                                   </table>
+                              </div>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[82]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Total Cash From Operating Activities</th>
-      <th>Interest Expense</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1284</th>
-      <td>2021-12-31</td>
-      <td>1.155741e+09</td>
-      <td>-19000.0</td>
-    </tr>
-    <tr>
-      <th>1285</th>
-      <td>2020-12-31</td>
-      <td>1.364163e+09</td>
-      <td>-39000.0</td>
-    </tr>
-    <tr>
-      <th>1286</th>
-      <td>2019-12-31</td>
-      <td>1.113762e+09</td>
-      <td>-56000.0</td>
-    </tr>
-    <tr>
-      <th>1287</th>
-      <td>2018-12-31</td>
-      <td>1.161881e+09</td>
-      <td>-60000.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[83]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Sector</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[83]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># Sector</span>
 
 <span class="n">lm_df</span><span class="p">[</span><span class="s1">'sector'</span><span class="p">]</span> <span class="o">=</span> <span class="n">info_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'symbol'</span><span class="p">)[</span><span class="s1">'sector'</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[84]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">set_recommendation</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[84]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="k">def</span> <span class="nf">set_recommendation</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">score</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Strong Buy'</span><span class="p">,</span><span class="s1">'Buy'</span><span class="p">]:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">elif</span> <span class="n">score</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Market Outperform'</span><span class="p">,</span><span class="s1">'Overweight'</span><span class="p">,</span><span class="s1">'Perform'</span><span class="p">,</span><span class="s1">'Positive'</span><span class="p">,</span><span class="s1">'Sector Outperform'</span><span class="p">,</span><span class="s1">'Outperform'</span><span class="p">]:</span>
@@ -406,22 +463,25 @@
         <span class="k">return</span> <span class="mi">5</span>
     
 <span class="n">recomm_df</span><span class="p">[</span><span class="s1">'Rating'</span><span class="p">]</span> <span class="o">=</span> <span class="n">recomm_df</span><span class="p">[</span><span class="s1">'To Grade'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">set_recommendation</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[85]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check for missing values and set recommendation score</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[85]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># Check for missing values and set recommendation score</span>
 
 <span class="n">test</span> <span class="o">=</span> <span class="n">recomm_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Ticker'</span><span class="p">)[</span><span class="s1">'Rating'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">test_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[</span><span class="s1">'Ticker'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
@@ -439,44 +499,47 @@
 <span class="k">else</span><span class="p">:</span>
     <span class="n">lm_df</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span> <span class="o">=</span> <span class="n">recomm_df</span><span class="p">[</span><span class="s1">'Rating'</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'Looks good'</span><span class="p">)</span>
-</pre></div>
+</pre>
+                              </div>
 
-     </div>
-</div>
-</div>
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Fixing missing recommendations...
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                         <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                              <pre>Fixing missing recommendations...
 Fix complete
 </pre>
-</div>
-</div>
+                         </div>
+                    </div>
 
-</div>
+               </div>
 
-</div>
+          </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[86]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># rename col and zero out nan values</span>
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[86]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># rename col and zero out nan values</span>
 <span class="n">lm_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'priceToSalesTrailing12Months'</span><span class="p">:</span><span class="s1">'priceToSales'</span><span class="p">},</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">lm_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="c1"># winsorize outliers</span>
@@ -490,154 +553,158 @@ Fix complete
 <span class="n">lm_df</span><span class="p">[</span><span class="s1">'dividendYield'</span><span class="p">]</span> <span class="o">=</span> <span class="n">winsorize</span><span class="p">(</span><span class="n">lm_df</span><span class="p">[</span><span class="s1">'dividendYield'</span><span class="p">],</span><span class="n">win_lim</span><span class="p">)</span>
 
 <span class="n">lm_df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
-</pre></div>
+</pre>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child jp-OutputArea-executeResult">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[86]:</div>
+
+
+
+                         <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+                              data-mime-type="text/html">
+                              <div>
+                                   <style scoped>
+                                        .dataframe tbody tr th:only-of-type {
+                                             vertical-align: middle;
+                                        }
+
+                                        .dataframe tbody tr th {
+                                             vertical-align: top;
+                                        }
+
+                                        .dataframe thead th {
+                                             text-align: right;
+                                        }
+                                   </style>
+                                   <table border="1" class="dataframe">
+                                        <thead>
+                                             <tr style="text-align: right;">
+                                                  <th></th>
+                                                  <th>symbol</th>
+                                                  <th>priceToSales</th>
+                                                  <th>priceToBook</th>
+                                                  <th>dividendYield</th>
+                                                  <th>debtToEquity</th>
+                                                  <th>marketCap</th>
+                                                  <th>CARG</th>
+                                                  <th>CANSG</th>
+                                                  <th>opMarg</th>
+                                                  <th>intCov</th>
+                                                  <th>sector</th>
+                                                  <th>rating</th>
+                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                             <tr>
+                                                  <th>497</th>
+                                                  <td>YUM</td>
+                                                  <td>4.847612</td>
+                                                  <td>0.000000</td>
+                                                  <td>0.0186</td>
+                                                  <td>0.000</td>
+                                                  <td>3.221238e+10</td>
+                                                  <td>0.049957</td>
+                                                  <td>0.0</td>
+                                                  <td>0.232926</td>
+                                                  <td>3.096189</td>
+                                                  <td>Consumer Cyclical</td>
+                                                  <td>1.857143</td>
+                                             </tr>
+                                             <tr>
+                                                  <th>498</th>
+                                                  <td>ZBH</td>
+                                                  <td>2.855887</td>
+                                                  <td>1.838131</td>
+                                                  <td>0.0087</td>
+                                                  <td>53.098</td>
+                                                  <td>2.255580e+10</td>
+                                                  <td>-0.004079</td>
+                                                  <td>0.0</td>
+                                                  <td>0.195432</td>
+                                                  <td>7.193858</td>
+                                                  <td>Healthcare</td>
+                                                  <td>2.500000</td>
+                                             </tr>
+                                             <tr>
+                                                  <th>499</th>
+                                                  <td>ZBRA</td>
+                                                  <td>2.560271</td>
+                                                  <td>6.823679</td>
+                                                  <td>0.0000</td>
+                                                  <td>43.221</td>
+                                                  <td>1.462427e+10</td>
+                                                  <td>0.100812</td>
+                                                  <td>0.0</td>
+                                                  <td>0.186273</td>
+                                                  <td>213.800000</td>
+                                                  <td>Technology</td>
+                                                  <td>2.666667</td>
+                                             </tr>
+                                             <tr>
+                                                  <th>500</th>
+                                                  <td>ZION</td>
+                                                  <td>2.823184</td>
+                                                  <td>1.163843</td>
+                                                  <td>0.0279</td>
+                                                  <td>0.000</td>
+                                                  <td>8.190056e+09</td>
+                                                  <td>0.041367</td>
+                                                  <td>0.0</td>
+                                                  <td>0.291518</td>
+                                                  <td>0.000000</td>
+                                                  <td>Financial Services</td>
+                                                  <td>2.666667</td>
+                                             </tr>
+                                             <tr>
+                                                  <th>501</th>
+                                                  <td>ZTS</td>
+                                                  <td>9.156736</td>
+                                                  <td>19.260940</td>
+                                                  <td>0.0071</td>
+                                                  <td>144.912</td>
+                                                  <td>7.225581e+10</td>
+                                                  <td>0.101057</td>
+                                                  <td>0.0</td>
+                                                  <td>0.299283</td>
+                                                  <td>9.879464</td>
+                                                  <td>Healthcare</td>
+                                                  <td>1.250000</td>
+                                             </tr>
+                                        </tbody>
+                                   </table>
+                              </div>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
 
      </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[86]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>symbol</th>
-      <th>priceToSales</th>
-      <th>priceToBook</th>
-      <th>dividendYield</th>
-      <th>debtToEquity</th>
-      <th>marketCap</th>
-      <th>CARG</th>
-      <th>CANSG</th>
-      <th>opMarg</th>
-      <th>intCov</th>
-      <th>sector</th>
-      <th>rating</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>497</th>
-      <td>YUM</td>
-      <td>4.847612</td>
-      <td>0.000000</td>
-      <td>0.0186</td>
-      <td>0.000</td>
-      <td>3.221238e+10</td>
-      <td>0.049957</td>
-      <td>0.0</td>
-      <td>0.232926</td>
-      <td>3.096189</td>
-      <td>Consumer Cyclical</td>
-      <td>1.857143</td>
-    </tr>
-    <tr>
-      <th>498</th>
-      <td>ZBH</td>
-      <td>2.855887</td>
-      <td>1.838131</td>
-      <td>0.0087</td>
-      <td>53.098</td>
-      <td>2.255580e+10</td>
-      <td>-0.004079</td>
-      <td>0.0</td>
-      <td>0.195432</td>
-      <td>7.193858</td>
-      <td>Healthcare</td>
-      <td>2.500000</td>
-    </tr>
-    <tr>
-      <th>499</th>
-      <td>ZBRA</td>
-      <td>2.560271</td>
-      <td>6.823679</td>
-      <td>0.0000</td>
-      <td>43.221</td>
-      <td>1.462427e+10</td>
-      <td>0.100812</td>
-      <td>0.0</td>
-      <td>0.186273</td>
-      <td>213.800000</td>
-      <td>Technology</td>
-      <td>2.666667</td>
-    </tr>
-    <tr>
-      <th>500</th>
-      <td>ZION</td>
-      <td>2.823184</td>
-      <td>1.163843</td>
-      <td>0.0279</td>
-      <td>0.000</td>
-      <td>8.190056e+09</td>
-      <td>0.041367</td>
-      <td>0.0</td>
-      <td>0.291518</td>
-      <td>0.000000</td>
-      <td>Financial Services</td>
-      <td>2.666667</td>
-    </tr>
-    <tr>
-      <th>501</th>
-      <td>ZTS</td>
-      <td>9.156736</td>
-      <td>19.260940</td>
-      <td>0.0071</td>
-      <td>144.912</td>
-      <td>7.225581e+10</td>
-      <td>0.101057</td>
-      <td>0.0</td>
-      <td>0.299283</td>
-      <td>9.879464</td>
-      <td>Healthcare</td>
-      <td>1.250000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[66]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load</span>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[66]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="c1"># Load</span>
 <span class="k">def</span> <span class="nf">update_server</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span><span class="n">dataframe</span><span class="p">):</span>  
     <span class="k">try</span><span class="p">:</span>
         <span class="n">dataframe</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span><span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">)</span>
@@ -645,51 +712,55 @@ Fix complete
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">'Got an error while updating server'</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">'Error: '</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[87]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">update_server</span><span class="p">(</span><span class="s1">'SP500LM'</span><span class="p">,</span><span class="n">lm_df</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Successfully imported SP500LM to server
 </pre>
-</div>
-</div>
+                              </div>
 
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
-</div>
+     </div>
+     <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+          <div class="jp-Cell-inputWrapper">
+               <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+               </div>
+               <div class="jp-InputArea jp-Cell-inputArea">
+                    <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[87]:</div>
+                    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                         <div class="CodeMirror cm-s-jupyter">
+                              <div class=" highlight hl-ipython3">
+                                   <pre><span></span><span class="n">update_server</span><span class="p">(</span><span class="s1">'SP500LM'</span><span class="p">,</span><span class="n">lm_df</span><span class="p">)</span>
+</pre>
+                              </div>
 
-</div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="jp-Cell-outputWrapper">
+               <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+               </div>
+
+
+               <div class="jp-OutputArea jp-Cell-outputArea">
+                    <div class="jp-OutputArea-child">
+
+                         <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                         <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+                              <pre>Successfully imported SP500LM to server
+</pre>
+                         </div>
+                    </div>
+
+               </div>
+
+          </div>
+
+     </div>
 </body>
 
 

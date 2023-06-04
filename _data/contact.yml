@@ -1,10 +1,11 @@
 email: 'robertkgenetti@gmail.com'
-phone: '669 291-5278'
-title: 'Robert Genetti'
+phone: '(669) 291-5278'
+title: "Hi, I'm Robert!"
+name: 'Robert Genetti'
 image: '/images/social/my_photo.png'
 resume: '/images/education/Resume.pdf'
 jobtitle: 'Data Analyst'
-intro: "Translating problems into structured analysis that directly drive actionable insights."
+intro: "I'm a economics graduate based in Silicon Valley. I'm a firm believer in using data to address complex problems and making the world a better place."
 content: 
   - paragraph: "I am a problem solver who has a passion for data and a focus on presenting actionable insights. My skills as a <b>Data Analyst</b> are in technical tools, statistical analysis, and economic research."
   - paragraph: "As a data analyst I am proficient in conducting extensive data analysis and developing actionable insights. Additionally, I have develop a deep understanding of applied economics using statistical methods of inference."
