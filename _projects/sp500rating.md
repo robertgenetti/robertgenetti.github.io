@@ -6,7 +6,7 @@ gif: "/images/projects/sp500rating.gif"
 link: "https://public.tableau.com/views/SP500StockScreener/screener?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link"
 ---
 
- Learning to invest is difficult to say the least, but with the right analytical tools and with enough practice it can be done. Having fun while learning is always the goal when picking up new skills. And learning financial analysis is not different. Necessity is the mother of invention and this project is a necessary step on the road to a better understanding of the basics.
+ Learning to invest is a great skill to have, but can be a bit intimidating for the uninitiated. Having on hand the necessary analytical tools can make all the difference. Being better prepared when financial shift in the market occur and responding in kind is essential. Using a stock screener is one of those necessary tools and will make cross comparison much easier and faster, saving time and money when looking for the next investment opportunity.
 
 ### Goal
 This project aims to improve financial statement learning for beginner investors and provide a basic understanding of common financial ratio analysis.
