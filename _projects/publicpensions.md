@@ -7,7 +7,7 @@ link: "https://public.tableau.com/views/PublicPensionFinancialReport/Dashboard1?
 ---
 
 
-Looking at recent data on public pensions I was surprised at how common unfunded liabilities were and why managers of these funds were at a loss to correct the imbalance. I postulated that all stakeholders of these troubled funds shared the assumption that investment performance would outpace liabilities and the fund would in time be financial solvent. I questioned this reasoning and propose a more reasonable approach -- honesty is the best policy.
+Looking at recent data on public pensions I was surprised at how common unfunded liabilities were and why managers of these funds were at a loss to correct the imbalance. I postulated that all stakeholders in these under funded public pensions share the assumption that investment performance will reduce liabilities and improve funding levels in time. I question the basis of this reasoning and propose a more objective approach to identify potential areas for financial improvement.
 
 ### Goal
 
